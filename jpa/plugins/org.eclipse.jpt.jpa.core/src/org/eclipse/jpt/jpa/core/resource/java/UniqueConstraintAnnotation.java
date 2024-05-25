@@ -9,8 +9,11 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.common.core.resource.java.NestableAnnotation;
 import org.eclipse.jpt.common.utility.iterable.ListIterable;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA annotation
@@ -28,7 +31,7 @@ import org.eclipse.jpt.common.utility.iterable.ListIterable;
 public interface UniqueConstraintAnnotation
 	extends NestableAnnotation
 {
-	String ANNOTATION_NAME = JPA.UNIQUE_CONSTRAINT;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA.UNIQUE_CONSTRAINT;
 
 	/**
 	 * Corresponds to the 'columnNames' element of the UniqueConstraint annotation.

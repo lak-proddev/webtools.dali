@@ -147,6 +147,18 @@ public interface JpaProject
 	 * Return the Eclipse project associated with the JPA project.
 	 */
 	IProject getProject();
+
+	default IProjectFacetVersion getProjectFacetVersion() {
+		IProject project = getProject();
+		IProjectFacetVersion version = project != null
+				? FacetedProjectUtilities.getProjectFacetVersion(project, FACET_ID)
+				: null;
+		if (version == null) {
+			version = FACET_VERSION;
+		}
+		return version;
+	}
+
 	class ProjectEquals
 		extends CriterionPredicate<JpaProject, IProject>
 	{

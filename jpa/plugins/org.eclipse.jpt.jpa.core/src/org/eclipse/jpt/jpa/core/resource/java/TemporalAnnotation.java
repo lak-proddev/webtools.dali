@@ -9,6 +9,10 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+
 /**
  * Corresponds to the JPA annotation
  * <code>javax.persistence.Temporal</code>
@@ -25,5 +29,5 @@ package org.eclipse.jpt.jpa.core.resource.java;
 public interface TemporalAnnotation
 	extends BaseTemporalAnnotation
 {
-	String ANNOTATION_NAME = JPA.TEMPORAL;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA.TEMPORAL;
 }

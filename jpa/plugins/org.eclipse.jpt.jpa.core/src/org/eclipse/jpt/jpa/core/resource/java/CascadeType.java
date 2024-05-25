@@ -102,7 +102,7 @@ public enum CascadeType {
 		return javaAnnotationValues;
 	}
 
-	public static Function<IProjectFacetVersion, String> toJavaAnnotationValue(CascadeType cascadeType) {
+	public static String toJavaAnnotationValue(CascadeType cascadeType) {
 		return (cascadeType == null) ? null : cascadeType.getJavaAnnotationValue();
 	}
 

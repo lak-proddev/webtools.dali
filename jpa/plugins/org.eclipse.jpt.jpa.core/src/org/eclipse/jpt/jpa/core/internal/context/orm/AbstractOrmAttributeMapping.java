@@ -11,6 +11,7 @@ package org.eclipse.jpt.jpa.core.internal.context.orm;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IType;
@@ -21,14 +22,14 @@ import org.eclipse.jpt.common.utility.internal.iterable.EmptyIterable;
 import org.eclipse.jpt.common.utility.internal.iterable.SingleElementIterable;
 import org.eclipse.jpt.common.utility.transformer.Transformer;
 import org.eclipse.jpt.jpa.core.context.AttributeMapping;
-import org.eclipse.jpt.jpa.core.context.SpecifiedColumn;
 import org.eclipse.jpt.jpa.core.context.ColumnMapping;
 import org.eclipse.jpt.jpa.core.context.Generator;
 import org.eclipse.jpt.jpa.core.context.PersistentType;
-import org.eclipse.jpt.jpa.core.context.SpecifiedRelationship;
 import org.eclipse.jpt.jpa.core.context.RelationshipMapping;
-import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedPersistentAttribute;
+import org.eclipse.jpt.jpa.core.context.SpecifiedColumn;
+import org.eclipse.jpt.jpa.core.context.SpecifiedRelationship;
 import org.eclipse.jpt.jpa.core.context.java.JavaPersistentType;
+import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedPersistentAttribute;
 import org.eclipse.jpt.jpa.core.context.orm.EntityMappings;
 import org.eclipse.jpt.jpa.core.context.orm.OrmAttributeMapping;
 import org.eclipse.jpt.jpa.core.context.orm.OrmBaseEmbeddedMapping;
@@ -42,9 +43,9 @@ import org.eclipse.jpt.jpa.core.context.orm.OrmManyToOneMapping;
 import org.eclipse.jpt.jpa.core.context.orm.OrmMultiRelationshipMapping;
 import org.eclipse.jpt.jpa.core.context.orm.OrmOneToManyMapping;
 import org.eclipse.jpt.jpa.core.context.orm.OrmOneToOneMapping;
-import org.eclipse.jpt.jpa.core.context.orm.OrmSpecifiedPersistentAttribute;
 import org.eclipse.jpt.jpa.core.context.orm.OrmRelationshipMapping;
 import org.eclipse.jpt.jpa.core.context.orm.OrmSingleRelationshipMapping;
+import org.eclipse.jpt.jpa.core.context.orm.OrmSpecifiedPersistentAttribute;
 import org.eclipse.jpt.jpa.core.context.orm.OrmTransientMapping;
 import org.eclipse.jpt.jpa.core.context.orm.OrmTypeMapping;
 import org.eclipse.jpt.jpa.core.context.orm.OrmVersionMapping;
@@ -419,7 +420,7 @@ public abstract class AbstractOrmAttributeMapping<X extends XmlAttributeMapping>
 	 * most mappings are "singular"
 	 */
 	protected String getMetamodelFieldTypeName() {
-		return JPA2_0.SINGULAR_ATTRIBUTE;
+		return JPA2_0.SINGULAR_ATTRIBUTE.apply(getProjectFacetVersion());
 	}
 
 	protected final Iterable<String> getMetamodelFieldTypeArgumentNames() {

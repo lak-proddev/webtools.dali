@@ -9,7 +9,10 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa2.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.jpa.core.resource.java.ReferenceTableAnnotation;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA 2.0 annotation
@@ -27,5 +30,5 @@ import org.eclipse.jpt.jpa.core.resource.java.ReferenceTableAnnotation;
 public interface CollectionTableAnnotation2_0 
 	extends ReferenceTableAnnotation
 {
-	String ANNOTATION_NAME = JPA2_0.COLLECTION_TABLE;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA2_0.COLLECTION_TABLE;
 }

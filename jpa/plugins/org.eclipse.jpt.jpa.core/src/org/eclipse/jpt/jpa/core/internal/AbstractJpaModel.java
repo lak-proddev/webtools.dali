@@ -33,6 +33,7 @@ import org.eclipse.jpt.jpa.core.jpa2_1.JpaFactory2_1;
 import org.eclipse.jpt.jpa.core.jpa2_1.JpaProject2_1;
 import org.eclipse.jpt.jpa.db.Catalog;
 import org.eclipse.jpt.jpa.db.Database;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Some common Dali behavior:<ul>
@@ -133,6 +134,10 @@ public abstract class AbstractJpaModel<P extends JpaModel>
 	 */
 	public JpaProject getJpaProject() {
 		return this.parent.getJpaProject();
+	}
+
+	public IProjectFacetVersion getProjectFacetVersion() {
+		return this.getJpaProject().getProjectFacetVersion();
 	}
 
 	public JpaProject.Manager getJpaProjectManager() {

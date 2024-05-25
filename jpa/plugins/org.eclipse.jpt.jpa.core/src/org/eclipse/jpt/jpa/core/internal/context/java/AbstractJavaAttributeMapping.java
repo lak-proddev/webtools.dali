@@ -259,7 +259,7 @@ public abstract class AbstractJavaAttributeMapping<A extends Annotation>
 	 * most mappings are "singular"
 	 */
 	protected String getMetamodelFieldTypeName() {
-		return JPA2_0.SINGULAR_ATTRIBUTE;
+		return JPA2_0.SINGULAR_ATTRIBUTE.apply(null);
 	}
 
 	protected final Iterable<String> getMetamodelFieldTypeArgumentNames() {

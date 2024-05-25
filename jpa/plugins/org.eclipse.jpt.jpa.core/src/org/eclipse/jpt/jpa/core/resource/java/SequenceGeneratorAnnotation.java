@@ -9,7 +9,10 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.common.core.utility.TextRange;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA annotation
@@ -27,7 +30,7 @@ import org.eclipse.jpt.common.core.utility.TextRange;
 public interface SequenceGeneratorAnnotation
 	extends DatabaseGeneratorAnnotation
 {
-	String ANNOTATION_NAME = JPA.SEQUENCE_GENERATOR;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA.SEQUENCE_GENERATOR;
 
 	/**
 	 * Corresponds to the 'sequenceName' element of the *Generator annotation.

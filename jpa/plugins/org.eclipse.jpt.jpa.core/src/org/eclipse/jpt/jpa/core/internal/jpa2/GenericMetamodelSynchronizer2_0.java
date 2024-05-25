@@ -317,7 +317,7 @@ public class GenericMetamodelSynchronizer2_0
 	}
 
 	protected void printStaticMetamodelAnnotationOn(BodySourceWriter pw) {
-		pw.printAnnotation(JPA2_0.STATIC_METAMODEL);
+		pw.printAnnotation(JPA2_0.STATIC_METAMODEL.apply(JpaProject2_0.FACET_VERSION));
 		pw.print('(');
 		pw.printTypeDeclaration(this.sourceType.getName());
 		pw.print(".class");

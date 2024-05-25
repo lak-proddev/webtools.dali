@@ -309,7 +309,7 @@ public abstract class AbstractJavaBasicMapping
 
 	@Override
 	protected String getAnnotationName() {
-		return BasicAnnotation.ANNOTATION_NAME;
+		return BasicAnnotation.ANNOTATION_NAME.apply(getJpaProject().getProjectFacetVersion());
 	}
 
 	@Override

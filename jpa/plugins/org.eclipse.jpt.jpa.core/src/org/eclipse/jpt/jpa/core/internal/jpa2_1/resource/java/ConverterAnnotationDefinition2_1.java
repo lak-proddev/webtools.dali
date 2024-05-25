@@ -54,6 +54,6 @@ public final class ConverterAnnotationDefinition2_1
 	}
 
 	public String getAnnotationName() {
-		return ConverterAnnotation2_1.ANNOTATION_NAME;
+		return ConverterAnnotation2_1.ANNOTATION_NAME.apply(get);
 	}
 }

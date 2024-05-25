@@ -9,8 +9,11 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa2_1.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.common.core.resource.java.Annotation;
 import org.eclipse.jpt.common.core.utility.TextRange;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA 2.1 annotation
@@ -28,8 +31,7 @@ import org.eclipse.jpt.common.core.utility.TextRange;
 public interface ConverterAnnotation2_1
 	extends Annotation
 {
-	String ANNOTATION_NAME = JPA2_1.CONVERTER;
-	
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA2_1.CONVERTER;	
 
 	// ********** autoApply **********
 

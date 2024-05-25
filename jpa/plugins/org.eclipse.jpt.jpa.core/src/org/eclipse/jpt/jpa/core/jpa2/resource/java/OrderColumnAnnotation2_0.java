@@ -9,8 +9,11 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa2.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.common.core.utility.TextRange;
 import org.eclipse.jpt.jpa.core.resource.java.NamedColumnAnnotation;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA 2.0 annotation
@@ -28,7 +31,7 @@ import org.eclipse.jpt.jpa.core.resource.java.NamedColumnAnnotation;
 public interface OrderColumnAnnotation2_0
 	extends NamedColumnAnnotation
 {
-	String ANNOTATION_NAME = JPA2_0.ORDER_COLUMN;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA2_0.ORDER_COLUMN;
 	
 
 	// ********** nullable **********

@@ -9,7 +9,10 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.common.core.resource.java.Annotation;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA annotation
@@ -27,5 +30,5 @@ import org.eclipse.jpt.common.core.resource.java.Annotation;
 public interface IdAnnotation
 	extends Annotation
 {
-	String ANNOTATION_NAME = JPA.ID;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA.ID;
 }

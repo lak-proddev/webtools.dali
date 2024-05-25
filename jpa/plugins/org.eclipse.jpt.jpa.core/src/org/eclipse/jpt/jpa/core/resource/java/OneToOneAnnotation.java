@@ -9,6 +9,10 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+
 /**
  * Corresponds to the JPA annotation
  * <code>javax.persistence.OneToOne</code>
@@ -25,5 +29,5 @@ package org.eclipse.jpt.jpa.core.resource.java;
 public interface OneToOneAnnotation 
 	extends SingleRelationshipMappingAnnotation, OwnableRelationshipMappingAnnotation
 {
-	String ANNOTATION_NAME = JPA.ONE_TO_ONE;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA.ONE_TO_ONE;
 }

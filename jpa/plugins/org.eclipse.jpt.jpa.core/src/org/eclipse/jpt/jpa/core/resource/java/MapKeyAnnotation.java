@@ -9,8 +9,11 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.common.core.resource.java.Annotation;
 import org.eclipse.jpt.common.core.utility.TextRange;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA annotation
@@ -28,7 +31,7 @@ import org.eclipse.jpt.common.core.utility.TextRange;
 public interface MapKeyAnnotation
 	extends Annotation
 {
-	String ANNOTATION_NAME = JPA.MAP_KEY;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA.MAP_KEY;
 
 	/**
 	 * Corresponds to the 'name' element of the MapKey annotation.

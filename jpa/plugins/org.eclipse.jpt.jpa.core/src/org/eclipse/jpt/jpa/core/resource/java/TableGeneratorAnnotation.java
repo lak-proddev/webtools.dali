@@ -9,8 +9,11 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.common.core.utility.TextRange;
 import org.eclipse.jpt.common.utility.iterable.ListIterable;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA annotation
@@ -28,7 +31,7 @@ import org.eclipse.jpt.common.utility.iterable.ListIterable;
 public interface TableGeneratorAnnotation
 	extends DatabaseGeneratorAnnotation
 {
-	String ANNOTATION_NAME = JPA.TABLE_GENERATOR;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA.TABLE_GENERATOR;
 
 	/**
 	 * Corresponds to the 'table' element of the TableGenerator annotation.

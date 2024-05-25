@@ -10,7 +10,10 @@
 package org.eclipse.jpt.jpa.core.resource.java;
 
 import java.util.List;
+import java.util.function.Function;
+
 import org.eclipse.jpt.common.core.utility.TextRange;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 
 /**
@@ -29,8 +32,7 @@ import org.eclipse.jpt.common.core.utility.TextRange;
 public interface NamedNativeQueryAnnotation
 	extends QueryAnnotation
 {
-	String ANNOTATION_NAME = JPA.NAMED_NATIVE_QUERY;
-
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA.NAMED_NATIVE_QUERY;
 
 	// ********** query **********
 

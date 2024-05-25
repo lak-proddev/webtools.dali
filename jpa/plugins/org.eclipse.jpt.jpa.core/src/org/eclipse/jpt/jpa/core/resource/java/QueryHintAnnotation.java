@@ -9,8 +9,11 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.common.core.resource.java.NestableAnnotation;
 import org.eclipse.jpt.common.core.utility.TextRange;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA annotation
@@ -28,7 +31,7 @@ import org.eclipse.jpt.common.core.utility.TextRange;
 public interface QueryHintAnnotation
 	extends NestableAnnotation
 {
-	String ANNOTATION_NAME = JPA.QUERY_HINT;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA.QUERY_HINT;
 
 	/**
 	 * Corresponds to the 'name' element of the QueryHint annotation.

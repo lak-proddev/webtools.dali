@@ -9,9 +9,12 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa2.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.common.core.resource.java.Annotation;
 import org.eclipse.jpt.common.core.utility.TextRange;
 import org.eclipse.jpt.jpa.core.resource.java.AccessType;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA 2.0 annotation
@@ -29,7 +32,7 @@ import org.eclipse.jpt.jpa.core.resource.java.AccessType;
 public interface AccessAnnotation2_0
 	extends Annotation
 {
-	String ANNOTATION_NAME = JPA2_0.ACCESS;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA2_0.ACCESS;
 	
 	/**
 	 * Corresponds to the 'value' element of the Access annotation.

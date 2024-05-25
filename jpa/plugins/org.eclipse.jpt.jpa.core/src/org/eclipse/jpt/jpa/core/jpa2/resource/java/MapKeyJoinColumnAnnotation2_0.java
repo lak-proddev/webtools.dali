@@ -9,7 +9,10 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa2.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.jpa.core.resource.java.CompleteJoinColumnAnnotation;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA annotation
@@ -27,5 +30,5 @@ import org.eclipse.jpt.jpa.core.resource.java.CompleteJoinColumnAnnotation;
 public interface MapKeyJoinColumnAnnotation2_0
 	extends CompleteJoinColumnAnnotation
 {
-	String ANNOTATION_NAME = JPA2_0.MAP_KEY_JOIN_COLUMN;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA2_0.MAP_KEY_JOIN_COLUMN;
 }

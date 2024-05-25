@@ -9,6 +9,10 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+
 /**
  * Corresponds to the JPA annotation
  * <code>javax.persistence.Table</code>
@@ -25,5 +29,5 @@ package org.eclipse.jpt.jpa.core.resource.java;
 public interface TableAnnotation
 	extends BaseTableAnnotation
 {
-	String ANNOTATION_NAME = JPA.TABLE;
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA.TABLE;
 }
