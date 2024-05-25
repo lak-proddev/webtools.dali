@@ -17,14 +17,11 @@ import org.eclipse.jpt.common.core.utility.jdt.AnnotatedElement;
 import org.eclipse.jpt.jpa.core.internal.jpa2.resource.java.binary.BinaryAccessAnnotation2_0;
 import org.eclipse.jpt.jpa.core.internal.jpa2.resource.java.source.SourceAccessAnnotation2_0;
 import org.eclipse.jpt.jpa.core.jpa2.resource.java.AccessAnnotation2_0;
-import org.eclipse.jpt.jpa.core.jpa3.resource.java.AccessAnnotation3_0;
 
 /**
  * <code>javax.persistence.Access</code>
  */
-public final class AccessAnnotationDefinition3_0
-	implements AnnotationDefinition
-{
+public final class AccessAnnotationDefinition3_0 implements AnnotationDefinition {
 	// singleton
 	private static final AnnotationDefinition INSTANCE = new AccessAnnotationDefinition3_0();
 
@@ -55,6 +52,6 @@ public final class AccessAnnotationDefinition3_0
 	}
 
 	public String getAnnotationName() {
-		return AccessAnnotation3_0.ANNOTATION_NAME;
+		return AccessAnnotation2_0.ANNOTATION_NAME;
 	}
 }

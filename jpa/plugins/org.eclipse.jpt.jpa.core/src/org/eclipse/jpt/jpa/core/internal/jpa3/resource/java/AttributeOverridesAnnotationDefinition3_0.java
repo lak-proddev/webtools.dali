@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2013 Oracle. All rights reserved.
+ * Copyright (c) 2009, 2011 Oracle. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
@@ -10,23 +10,21 @@
 package org.eclipse.jpt.jpa.core.internal.jpa3.resource.java;
 
 import org.eclipse.jdt.core.IAnnotation;
+import org.eclipse.jpt.common.core.internal.resource.java.binary.BinaryNamedAnnotation;
+import org.eclipse.jpt.common.core.internal.resource.java.source.SourceNamedAnnotation;
 import org.eclipse.jpt.common.core.resource.java.Annotation;
 import org.eclipse.jpt.common.core.resource.java.AnnotationDefinition;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceAnnotatedElement;
 import org.eclipse.jpt.common.core.utility.jdt.AnnotatedElement;
-import org.eclipse.jpt.jpa.core.internal.jpa2.resource.java.binary.BinaryAccessAnnotation2_0;
-import org.eclipse.jpt.jpa.core.internal.jpa2.resource.java.source.SourceAccessAnnotation2_0;
-import org.eclipse.jpt.jpa.core.jpa2.resource.java.AccessAnnotation2_0;
-import org.eclipse.jpt.jpa.core.jpa3.resource.java.AccessAnnotation3_0;
+import org.eclipse.jpt.jpa.core.resource.java.JPA;
+import org.eclipse.jpt.jpa.core.resource.persistence.v3_0.JPA3_0;
 
 /**
- * <code>javax.persistence.Access</code>
+ * javax.persistence.AttributeOverrides
  */
-public final class AccessAnnotationDefinition3_0
-	implements AnnotationDefinition
-{
+public final class AttributeOverridesAnnotationDefinition3_0 implements AnnotationDefinition {
 	// singleton
-	private static final AnnotationDefinition INSTANCE = new AccessAnnotationDefinition3_0();
+	private static final AnnotationDefinition INSTANCE = new AttributeOverridesAnnotationDefinition3_0();
 
 	/**
 	 * Return the singleton.
@@ -38,23 +36,23 @@ public final class AccessAnnotationDefinition3_0
 	/**
 	 * Ensure single instance.
 	 */
-	private AccessAnnotationDefinition3_0() {
+	private AttributeOverridesAnnotationDefinition3_0() {
 		super();
 	}
 
 	public Annotation buildAnnotation(JavaResourceAnnotatedElement parent, AnnotatedElement annotatedElement) {
-		return new SourceAccessAnnotation2_0(parent, annotatedElement);
+		return new SourceNamedAnnotation(parent, annotatedElement, getAnnotationName());
 	}
 
 	public Annotation buildNullAnnotation(JavaResourceAnnotatedElement parent) {
-		return new NullAccessAnnotation2_0(parent);
+		throw new UnsupportedOperationException();
 	}
 
 	public Annotation buildAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
-		return new BinaryAccessAnnotation2_0(parent, jdtAnnotation);
+		return new BinaryNamedAnnotation(parent, jdtAnnotation, getAnnotationName());
 	}
 
 	public String getAnnotationName() {
-		return AccessAnnotation3_0.ANNOTATION_NAME;
+		return JPA3_0.ATTRIBUTE_OVERRIDES;
 	}
 }
