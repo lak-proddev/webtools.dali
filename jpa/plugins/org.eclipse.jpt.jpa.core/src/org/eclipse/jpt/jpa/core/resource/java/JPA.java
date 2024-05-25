@@ -9,6 +9,11 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
+import org.eclipse.jpt.jpa.core.JpaProject;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+
 /**
  * JPA Java-related stuff (annotations etc.)
  * <p>
@@ -25,27 +30,27 @@ package org.eclipse.jpt.jpa.core.resource.java;
 public interface JPA {
 
 	// JPA package
-	String PACKAGE = "javax.persistence";
-	String PACKAGE_ = PACKAGE + '.';
-
+	Function<IProjectFacetVersion, String> PACKAGE = version -> JpaProject.isAboveJpa30(version) ? "jakarta.persistence"
+			: "javax.persistence";
+	Function<IProjectFacetVersion, String> PACKAGE_ = version -> PACKAGE.apply(version) + '.';
 
 	// ********** API **********
 
 	// JPA annotations
-	String ASSOCIATION_OVERRIDE = PACKAGE_ + "AssociationOverride";
+	Function<IProjectFacetVersion, String> ASSOCIATION_OVERRIDE = ver -> PACKAGE_.apply(ver) + "AssociationOverride";
 		String ASSOCIATION_OVERRIDE__NAME = "name";
 		String ASSOCIATION_OVERRIDE__JOIN_COLUMNS = "joinColumns";
-	String ASSOCIATION_OVERRIDES = PACKAGE_ + "AssociationOverrides";
+	Function<IProjectFacetVersion, String> ASSOCIATION_OVERRIDES = ver -> PACKAGE_.apply(ver) + "AssociationOverrides";
 		String ASSOCIATION_OVERRIDES__VALUE = "value";
-	String ATTRIBUTE_OVERRIDE = PACKAGE_ + "AttributeOverride";
+	Function<IProjectFacetVersion, String> ATTRIBUTE_OVERRIDE = ver -> PACKAGE_.apply(ver) + "AttributeOverride";
 		String ATTRIBUTE_OVERRIDE__NAME = "name";
 		String ATTRIBUTE_OVERRIDE__COLUMN = "column";
-	String ATTRIBUTE_OVERRIDES = PACKAGE_ + "AttributeOverrides";
+	Function<IProjectFacetVersion, String> ATTRIBUTE_OVERRIDES = ver -> PACKAGE_.apply(ver) + "AttributeOverrides";
 		String ATTRIBUTE_OVERRIDES__VALUE = "value";
-	String BASIC = PACKAGE_ + "Basic";
+	Function<IProjectFacetVersion, String> BASIC = ver -> PACKAGE_.apply(ver) + "Basic";
 		String BASIC__FETCH = "fetch";
 		String BASIC__OPTIONAL = "optional";
-	String COLUMN = PACKAGE_ + "Column";
+	Function<IProjectFacetVersion, String> COLUMN = ver -> PACKAGE_.apply(ver) + "Column";
 		String COLUMN__NAME = "name";
 		String COLUMN__UNIQUE = "unique";
 		String COLUMN__NULLABLE = "nullable";
@@ -56,44 +61,44 @@ public interface JPA {
 		String COLUMN__LENGTH = "length";
 		String COLUMN__PRECISION = "precision";
 		String COLUMN__SCALE = "scale";
-	String COLUMN_RESULT = PACKAGE_ + "ColumnResult";
+	Function<IProjectFacetVersion, String> COLUMN_RESULT = ver -> PACKAGE_.apply(ver) + "ColumnResult";
 		String COLUMN_RESULT__NAME = "name";
-	String DISCRIMINATOR_COLUMN = PACKAGE_ + "DiscriminatorColumn";
+	Function<IProjectFacetVersion, String> DISCRIMINATOR_COLUMN = ver -> PACKAGE_.apply(ver) + "DiscriminatorColumn";
 		String DISCRIMINATOR_COLUMN__NAME = "name";
 		String DISCRIMINATOR_COLUMN__DISCRIMINATOR_TYPE = "discriminatorType";
 		String DISCRIMINATOR_COLUMN__COLUMN_DEFINITION = "columnDefinition";
 		String DISCRIMINATOR_COLUMN__LENGTH = "length";
-	String DISCRIMINATOR_VALUE = PACKAGE_ + "DiscriminatorValue";
+	Function<IProjectFacetVersion, String> DISCRIMINATOR_VALUE = ver -> PACKAGE_.apply(ver) + "DiscriminatorValue";
 		String DISCRIMINATOR_VALUE__VALUE = "value";
-	String EMBEDDABLE = PACKAGE_ + "Embeddable";
-	String EMBEDDED = PACKAGE_ + "Embedded";
-	String EMBEDDED_ID = PACKAGE_ + "EmbeddedId";
-	String ENTITY = PACKAGE_ + "Entity";
+	Function<IProjectFacetVersion, String> EMBEDDABLE = ver -> PACKAGE_.apply(ver) + "Embeddable";
+	Function<IProjectFacetVersion, String> EMBEDDED = ver -> PACKAGE_.apply(ver) + "Embedded";
+	Function<IProjectFacetVersion, String> EMBEDDED_ID = ver -> PACKAGE_.apply(ver) + "EmbeddedId";
+	Function<IProjectFacetVersion, String> ENTITY = ver -> PACKAGE_.apply(ver) + "Entity";
 		String ENTITY__NAME = "name";
-	String ENTITY_LISTENERS = PACKAGE_ + "EntityListeners";
+	Function<IProjectFacetVersion, String> ENTITY_LISTENERS = ver -> PACKAGE_.apply(ver) + "EntityListeners";
 		String ENTITY_LISTENERS__VALUE = "value";
-	String ENTITY_RESULT = PACKAGE_ + "EntityResult";
+	Function<IProjectFacetVersion, String> ENTITY_RESULT = ver -> PACKAGE_.apply(ver) + "EntityResult";
 		String ENTITY_RESULT__ENTITY_CLASS = "entityClass";
 		String ENTITY_RESULT__FIELDS = "fields";
 		String ENTITY_RESULT__DISCRIMINATOR_COLUMN = "discriminatorColumn";
-	String ENUMERATED = PACKAGE_ + "Enumerated";
+	Function<IProjectFacetVersion, String> ENUMERATED = ver -> PACKAGE_.apply(ver) + "Enumerated";
 		String ENUMERATED__VALUE = "value";
-	String EXCLUDE_DEFAULT_LISTENERS = PACKAGE_ + "ExcludeDefaultListeners";
-	String EXCLUDE_SUPERCLASS_LISTENERS = PACKAGE_ + "ExcludeSuperclassListeners";
-	String FIELD_RESULT = PACKAGE_ + "FieldResult";
+	Function<IProjectFacetVersion, String> EXCLUDE_DEFAULT_LISTENERS = ver -> PACKAGE_.apply(ver) + "ExcludeDefaultListeners";
+	Function<IProjectFacetVersion, String> EXCLUDE_SUPERCLASS_LISTENERS = ver -> PACKAGE_.apply(ver) + "ExcludeSuperclassListeners";
+	Function<IProjectFacetVersion, String> FIELD_RESULT = ver -> PACKAGE_.apply(ver) + "FieldResult";
 		String FIELD_RESULT__NAME = "name";
 		String FIELD_RESULT__COLUMN = "column";
-	String FLUSH_MODE = PACKAGE_ + "FlushMode";
+	Function<IProjectFacetVersion, String> FLUSH_MODE = ver -> PACKAGE_.apply(ver) + "FlushMode";
 		String FLUSH_MODE__VALUE = "value";
-	String GENERATED_VALUE = PACKAGE_ + "GeneratedValue";
+	Function<IProjectFacetVersion, String> GENERATED_VALUE = ver -> PACKAGE_.apply(ver) + "GeneratedValue";
 		String GENERATED_VALUE__STRATEGY = "strategy";
 		String GENERATED_VALUE__GENERATOR = "generator";
-	String ID = PACKAGE_ + "Id";
-	String ID_CLASS = PACKAGE_ + "IdClass";
+	Function<IProjectFacetVersion, String> ID = ver -> PACKAGE_.apply(ver) + "Id";
+	Function<IProjectFacetVersion, String> ID_CLASS = ver -> PACKAGE_.apply(ver) + "IdClass";
 		String ID_CLASS__VALUE = "value";
-	String INHERITANCE = PACKAGE_ + "Inheritance";
+	Function<IProjectFacetVersion, String> INHERITANCE = ver -> PACKAGE_.apply(ver) + "Inheritance";
 		String INHERITANCE__STRATEGY = "strategy";
-	String JOIN_COLUMN = PACKAGE_ + "JoinColumn";
+	Function<IProjectFacetVersion, String> JOIN_COLUMN = ver -> PACKAGE_.apply(ver) + "JoinColumn";
 		String JOIN_COLUMN__NAME = "name";
 		String JOIN_COLUMN__REFERENCED_COLUMN_NAME = "referencedColumnName";
 		String JOIN_COLUMN__UNIQUE = "unique";
@@ -102,106 +107,106 @@ public interface JPA {
 		String JOIN_COLUMN__UPDATABLE = "updatable";
 		String JOIN_COLUMN__COLUMN_DEFINITION = "columnDefinition";
 		String JOIN_COLUMN__TABLE = "table";
-	String JOIN_COLUMNS = PACKAGE_ + "JoinColumns";
+	Function<IProjectFacetVersion, String> JOIN_COLUMNS = ver -> PACKAGE_.apply(ver) + "JoinColumns";
 		String JOIN_COLUMNS__VALUE = "value";
-	String JOIN_TABLE = PACKAGE_ + "JoinTable";
+	Function<IProjectFacetVersion, String> JOIN_TABLE = ver -> PACKAGE_.apply(ver) + "JoinTable";
 		String JOIN_TABLE__NAME = "name";
 		String JOIN_TABLE__CATALOG = "catalog";
 		String JOIN_TABLE__SCHEMA = "schema";
 		String JOIN_TABLE__JOIN_COLUMNS = "joinColumns";
 		String JOIN_TABLE__INVERSE_JOIN_COLUMNS = "inverseJoinColumns";
 		String JOIN_TABLE__UNIQUE_CONSTRAINTS = "uniqueConstraints";
-	String LOB = PACKAGE_ + "Lob";
-	String MANY_TO_MANY = PACKAGE_ + "ManyToMany";
+	Function<IProjectFacetVersion, String> LOB = ver -> PACKAGE_.apply(ver) + "Lob";
+	Function<IProjectFacetVersion, String> MANY_TO_MANY = ver -> PACKAGE_.apply(ver) + "ManyToMany";
 		String MANY_TO_MANY__TARGET_ENTITY = "targetEntity";
 		String MANY_TO_MANY__CASCADE = "cascade";
 		String MANY_TO_MANY__FETCH = "fetch";
 		String MANY_TO_MANY__MAPPED_BY = "mappedBy";
-	String MANY_TO_ONE = PACKAGE_ + "ManyToOne";
+	Function<IProjectFacetVersion, String> MANY_TO_ONE = ver -> PACKAGE_.apply(ver) + "ManyToOne";
 		String MANY_TO_ONE__TARGET_ENTITY = "targetEntity";
 		String MANY_TO_ONE__CASCADE = "cascade";
 		String MANY_TO_ONE__FETCH = "fetch";
 		String MANY_TO_ONE__OPTIONAL = "optional";
-	String MAP_KEY = PACKAGE_ + "MapKey";
+	Function<IProjectFacetVersion, String> MAP_KEY = ver -> PACKAGE_.apply(ver) + "MapKey";
 		String MAP_KEY__NAME = "name";
-	String MAPPED_SUPERCLASS = PACKAGE_ + "MappedSuperclass";
-	String NAMED_NATIVE_QUERIES = PACKAGE_ + "NamedNativeQueries";
+	Function<IProjectFacetVersion, String> MAPPED_SUPERCLASS = ver -> PACKAGE_.apply(ver) + "MappedSuperclass";
+	Function<IProjectFacetVersion, String> NAMED_NATIVE_QUERIES = ver -> PACKAGE_.apply(ver) + "NamedNativeQueries";
 		String NAMED_NATIVE_QUERIES__VALUE = "value";
-	String NAMED_NATIVE_QUERY = PACKAGE_ + "NamedNativeQuery";
+	Function<IProjectFacetVersion, String> NAMED_NATIVE_QUERY = ver -> PACKAGE_.apply(ver) + "NamedNativeQuery";
 		String NAMED_NATIVE_QUERY__NAME = "name";
 		String NAMED_NATIVE_QUERY__QUERY = "query";
 		String NAMED_NATIVE_QUERY__HINTS = "hints";
 		String NAMED_NATIVE_QUERY__RESULT_CLASS = "resultClass";
 		String NAMED_NATIVE_QUERY__RESULT_SET_MAPPING = "resultSetMapping";
-	String NAMED_QUERIES = PACKAGE_ + "NamedQueries";
+	Function<IProjectFacetVersion, String> NAMED_QUERIES = ver -> PACKAGE_.apply(ver) + "NamedQueries";
 		String NAMED_QUERIES__VALUE = "value";
-	String NAMED_QUERY = PACKAGE_ + "NamedQuery";
+	Function<IProjectFacetVersion, String> NAMED_QUERY = ver -> PACKAGE_.apply(ver) + "NamedQuery";
 		String NAMED_QUERY__NAME = "name";
 		String NAMED_QUERY__QUERY = "query";
 		String NAMED_QUERY__HINTS = "hints";
-	String ONE_TO_MANY = PACKAGE_ + "OneToMany";
+	Function<IProjectFacetVersion, String> ONE_TO_MANY = ver -> PACKAGE_.apply(ver) + "OneToMany";
 		String ONE_TO_MANY__TARGET_ENTITY = "targetEntity";
 		String ONE_TO_MANY__CASCADE = "cascade";
 		String ONE_TO_MANY__FETCH = "fetch";
 		String ONE_TO_MANY__MAPPED_BY = "mappedBy";
-	String ONE_TO_ONE = PACKAGE_ + "OneToOne";
+	Function<IProjectFacetVersion, String> ONE_TO_ONE = ver -> PACKAGE_.apply(ver) + "OneToOne";
 		String ONE_TO_ONE__TARGET_ENTITY = "targetEntity";
 		String ONE_TO_ONE__CASCADE = "cascade";
 		String ONE_TO_ONE__FETCH = "fetch";
 		String ONE_TO_ONE__OPTIONAL = "optional";
 		String ONE_TO_ONE__MAPPED_BY = "mappedBy";
-	String ORDER_BY = PACKAGE_ + "OrderBy";
+	Function<IProjectFacetVersion, String> ORDER_BY = ver -> PACKAGE_.apply(ver) + "OrderBy";
 		String ORDER_BY__VALUE = "value";
-	String PERSISTENCE_CONTEXT = PACKAGE_ + "PersistenceContext";
+	Function<IProjectFacetVersion, String> PERSISTENCE_CONTEXT = ver -> PACKAGE_.apply(ver) + "PersistenceContext";
 		String PERSISTENCE_CONTEXT__NAME = "name";
 		String PERSISTENCE_CONTEXT__UNIT_NAME = "unitName";
 		String PERSISTENCE_CONTEXT__TYPE = "type";
-	String PERSISTENCE_CONTEXTS = PACKAGE_ + "PersistenceContexts";
+	Function<IProjectFacetVersion, String> PERSISTENCE_CONTEXTS = ver -> PACKAGE_.apply(ver) + "PersistenceContexts";
 		String PERSISTENCE_CONTEXTS__VALUE = "value";
-	String PERSISTENCE_UNIT = PACKAGE_ + "XmlPersistenceUnit";
+	Function<IProjectFacetVersion, String> PERSISTENCE_UNIT = ver -> PACKAGE_.apply(ver) + "XmlPersistenceUnit";
 		String PERSISTENCE_UNIT__NAME = "name";
 		String PERSISTENCE_UNIT__UNIT_NAME = "unitName";
-	String PERSISTENCE_UNITS = PACKAGE_ + "PersistenceUnits";
+	Function<IProjectFacetVersion, String> PERSISTENCE_UNITS = ver -> PACKAGE_.apply(ver) + "PersistenceUnits";
 		String PERSISTENCE_UNITS__VALUE = "value";
-	String POST_LOAD = PACKAGE_ + "PostLoad";
-	String POST_PERSIST = PACKAGE_ + "PostPersist";
-	String POST_REMOVE = PACKAGE_ + "PostRemove";
-	String POST_UPDATE = PACKAGE_ + "PostUpdate";
-	String PRE_PERSIST = PACKAGE_ + "PrePersist";
-	String PRE_REMOVE = PACKAGE_ + "PreRemove";
-	String PRE_UPDATE = PACKAGE_ + "PreUpdate";
-	String PRIMARY_KEY_JOIN_COLUMN = PACKAGE_ + "PrimaryKeyJoinColumn";
+	Function<IProjectFacetVersion, String> POST_LOAD = ver -> PACKAGE_.apply(ver) + "PostLoad";
+	Function<IProjectFacetVersion, String> POST_PERSIST = ver -> PACKAGE_.apply(ver) + "PostPersist";
+	Function<IProjectFacetVersion, String> POST_REMOVE = ver -> PACKAGE_.apply(ver) + "PostRemove";
+	Function<IProjectFacetVersion, String> POST_UPDATE = ver -> PACKAGE_.apply(ver) + "PostUpdate";
+	Function<IProjectFacetVersion, String> PRE_PERSIST = ver -> PACKAGE_.apply(ver) + "PrePersist";
+	Function<IProjectFacetVersion, String> PRE_REMOVE = ver -> PACKAGE_.apply(ver) + "PreRemove";
+	Function<IProjectFacetVersion, String> PRE_UPDATE = ver -> PACKAGE_.apply(ver) + "PreUpdate";
+	Function<IProjectFacetVersion, String> PRIMARY_KEY_JOIN_COLUMN = ver -> PACKAGE_.apply(ver) + "PrimaryKeyJoinColumn";
 		String PRIMARY_KEY_JOIN_COLUMN__NAME = "name";
 		String PRIMARY_KEY_JOIN_COLUMN__REFERENCED_COLUMN_NAME = "referencedColumnName";
 		String PRIMARY_KEY_JOIN_COLUMN__COLUMN_DEFINITION = "columnDefinition";
-	String PRIMARY_KEY_JOIN_COLUMNS = PACKAGE_ + "PrimaryKeyJoinColumns";
+	Function<IProjectFacetVersion, String> PRIMARY_KEY_JOIN_COLUMNS = ver -> PACKAGE_.apply(ver) + "PrimaryKeyJoinColumns";
 		String PRIMARY_KEY_JOIN_COLUMNS__VALUE = "value";
-	String QUERY_HINT = PACKAGE_ + "QueryHint";
+	Function<IProjectFacetVersion, String> QUERY_HINT = ver -> PACKAGE_.apply(ver) + "QueryHint";
 		String QUERY_HINT__NAME = "name";
 		String QUERY_HINT__VALUE = "value";
-	String SECONDARY_TABLE = PACKAGE_ + "SecondaryTable";
+	Function<IProjectFacetVersion, String> SECONDARY_TABLE = ver -> PACKAGE_.apply(ver) + "SecondaryTable";
 		String SECONDARY_TABLE__NAME = "name";
 		String SECONDARY_TABLE__CATALOG = "catalog";
 		String SECONDARY_TABLE__SCHEMA = "schema";
 		String SECONDARY_TABLE__PK_JOIN_COLUMNS = "pkJoinColumns";
 		String SECONDARY_TABLE__UNIQUE_CONSTRAINTS = "uniqueConstraints";
-	String SECONDARY_TABLES = PACKAGE_ + "SecondaryTables";
+	Function<IProjectFacetVersion, String> SECONDARY_TABLES = ver -> PACKAGE_.apply(ver) + "SecondaryTables";
 		String SECONDARY_TABLES__VALUE = "value";
-	String SEQUENCE_GENERATOR = PACKAGE_ + "SequenceGenerator";
+	Function<IProjectFacetVersion, String> SEQUENCE_GENERATOR = ver -> PACKAGE_.apply(ver) + "SequenceGenerator";
 		String SEQUENCE_GENERATOR__NAME = "name";
 		String SEQUENCE_GENERATOR__SEQUENCE_NAME = "sequenceName";
 		String SEQUENCE_GENERATOR__INITIAL_VALUE = "initialValue";
 		String SEQUENCE_GENERATOR__ALLOCATION_SIZE = "allocationSize";
-	String SQL_RESULT_SET_MAPPING = PACKAGE_ + "SqlResultSetMapping";
+	Function<IProjectFacetVersion, String> SQL_RESULT_SET_MAPPING = ver -> PACKAGE_.apply(ver) + "SqlResultSetMapping";
 		String SQL_RESULT_SET_MAPPING__NAME = "name";
 		String SQL_RESULT_SET_MAPPING__ENTITIES = "entities";
 		String SQL_RESULT_SET_MAPPING__COLUMNS = "columns";
-	String TABLE = PACKAGE_ + "Table";
+	Function<IProjectFacetVersion, String> TABLE = ver -> PACKAGE_.apply(ver) + "Table";
 		String TABLE__NAME = "name";
 		String TABLE__CATALOG = "catalog";
 		String TABLE__SCHEMA = "schema";
 		String TABLE__UNIQUE_CONSTRAINTS = "uniqueConstraints";
-	String TABLE_GENERATOR = PACKAGE_ + "TableGenerator";
+	Function<IProjectFacetVersion, String> TABLE_GENERATOR = ver -> PACKAGE_.apply(ver) + "TableGenerator";
 		String TABLE_GENERATOR__NAME = "name";
 		String TABLE_GENERATOR__TABLE = "table";
 		String TABLE_GENERATOR__CATALOG = "catalog";
@@ -212,92 +217,92 @@ public interface JPA {
 		String TABLE_GENERATOR__INITIAL_VALUE = "initialValue";
 		String TABLE_GENERATOR__ALLOCATION_SIZE = "allocationSize";
 		String TABLE_GENERATOR__UNIQUE_CONSTRAINTS = "uniqueConstraints";
-	String TEMPORAL = PACKAGE_ + "Temporal";
+	Function<IProjectFacetVersion, String> TEMPORAL = ver -> PACKAGE_.apply(ver) + "Temporal";
 		String TEMPORAL__VALUE = "value";
-	String TRANSIENT = PACKAGE_ + "Transient";
-	String UNIQUE_CONSTRAINT = PACKAGE_ + "UniqueConstraint";
+	Function<IProjectFacetVersion, String> TRANSIENT = ver -> PACKAGE_.apply(ver) + "Transient";
+	Function<IProjectFacetVersion, String> UNIQUE_CONSTRAINT = ver -> PACKAGE_.apply(ver) + "UniqueConstraint";
 		String UNIQUE_CONSTRAINT__COLUMN_NAMES = "columnNames";
-	String VERSION = PACKAGE_ + "Version";
+	Function<IProjectFacetVersion, String> VERSION = ver -> PACKAGE_.apply(ver) + "Version";
 
 	// JPA enums
-	String CASCADE_TYPE = PACKAGE_ + "CascadeType";
-		String CASCADE_TYPE_ = CASCADE_TYPE + '.';
-		String CASCADE_TYPE__ALL = CASCADE_TYPE_ + "ALL";
-		String CASCADE_TYPE__MERGE = CASCADE_TYPE_ + "MERGE";
-		String CASCADE_TYPE__PERSIST = CASCADE_TYPE_ + "PERSIST";
-		String CASCADE_TYPE__REFRESH = CASCADE_TYPE_ + "REFRESH";
-		String CASCADE_TYPE__REMOVE = CASCADE_TYPE_ + "REMOVE";
+	Function<IProjectFacetVersion, String> CASCADE_TYPE = ver -> PACKAGE_.apply(ver) + "CascadeType";
+		Function<IProjectFacetVersion, String> CASCADE_TYPE_ = ver -> CASCADE_TYPE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> CASCADE_TYPE__ALL = ver -> CASCADE_TYPE_.apply(ver) + "ALL";
+		Function<IProjectFacetVersion, String> CASCADE_TYPE__MERGE = ver -> CASCADE_TYPE_.apply(ver) + "MERGE";
+		Function<IProjectFacetVersion, String> CASCADE_TYPE__PERSIST = ver -> CASCADE_TYPE_.apply(ver) + "PERSIST";
+		Function<IProjectFacetVersion, String> CASCADE_TYPE__REFRESH = ver -> CASCADE_TYPE_.apply(ver) + "REFRESH";
+		Function<IProjectFacetVersion, String> CASCADE_TYPE__REMOVE = ver -> CASCADE_TYPE_.apply(ver) + "REMOVE";
 
-	String DISCRIMINATOR_TYPE = PACKAGE_ + "DiscriminatorType";
-		String DISCRIMINATOR_TYPE_ = DISCRIMINATOR_TYPE + '.';
-		String DISCRIMINATOR_TYPE__CHAR = DISCRIMINATOR_TYPE_ + "CHAR";
-		String DISCRIMINATOR_TYPE__INTEGER = DISCRIMINATOR_TYPE_ + "INTEGER";
-		String DISCRIMINATOR_TYPE__STRING = DISCRIMINATOR_TYPE_ + "STRING";
+	Function<IProjectFacetVersion, String> DISCRIMINATOR_TYPE = ver -> PACKAGE_.apply(ver) + "DiscriminatorType";
+		Function<IProjectFacetVersion, String> DISCRIMINATOR_TYPE_ = ver -> DISCRIMINATOR_TYPE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> DISCRIMINATOR_TYPE__CHAR = ver -> DISCRIMINATOR_TYPE_.apply(ver) + "CHAR";
+		Function<IProjectFacetVersion, String> DISCRIMINATOR_TYPE__INTEGER = ver -> DISCRIMINATOR_TYPE_.apply(ver) + "INTEGER";
+		Function<IProjectFacetVersion, String> DISCRIMINATOR_TYPE__STRING = ver -> DISCRIMINATOR_TYPE_.apply(ver) + "STRING";
 
-	String ENUM_TYPE = PACKAGE_ + "EnumType";
-		String ENUM_TYPE_ = ENUM_TYPE + '.';
-		String ENUM_TYPE__ORDINAL = ENUM_TYPE_ + "ORDINAL";
-		String ENUM_TYPE__STRING = ENUM_TYPE_ + "STRING";
+	Function<IProjectFacetVersion, String> ENUM_TYPE = ver -> PACKAGE_.apply(ver) + "EnumType";
+		Function<IProjectFacetVersion, String> ENUM_TYPE_ = ver -> ENUM_TYPE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> ENUM_TYPE__ORDINAL = ver -> ENUM_TYPE_.apply(ver) + "ORDINAL";
+		Function<IProjectFacetVersion, String> ENUM_TYPE__STRING = ver -> ENUM_TYPE_.apply(ver) + "STRING";
 
-	String FETCH_TYPE = PACKAGE_ + "FetchType";
-		String FETCH_TYPE_ = FETCH_TYPE + '.';
-		String FETCH_TYPE__EAGER = FETCH_TYPE_ + "EAGER";
-		String FETCH_TYPE__LAZY = FETCH_TYPE_ + "LAZY";
+	Function<IProjectFacetVersion, String> FETCH_TYPE = ver -> PACKAGE_.apply(ver) + "FetchType";
+		Function<IProjectFacetVersion, String> FETCH_TYPE_ = ver -> FETCH_TYPE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> FETCH_TYPE__EAGER = ver -> FETCH_TYPE_.apply(ver) + "EAGER";
+		Function<IProjectFacetVersion, String> FETCH_TYPE__LAZY = ver -> FETCH_TYPE_.apply(ver) + "LAZY";
 
-	String FLUSH_MODE_TYPE = PACKAGE_ + "FlushModeType";
-		String FLUSH_MODE_TYPE_ = FLUSH_MODE_TYPE + '.';
-		String FLUSH_MODE_TYPE__AUTO = FLUSH_MODE_TYPE_ + "AUTO";
-		String FLUSH_MODE_TYPE__COMMIT = FLUSH_MODE_TYPE_ + "COMMIT";
+	Function<IProjectFacetVersion, String> FLUSH_MODE_TYPE = ver -> PACKAGE_.apply(ver) + "FlushModeType";
+		Function<IProjectFacetVersion, String> FLUSH_MODE_TYPE_ = ver -> FLUSH_MODE_TYPE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> FLUSH_MODE_TYPE__AUTO = ver -> FLUSH_MODE_TYPE_.apply(ver) + "AUTO";
+		Function<IProjectFacetVersion, String> FLUSH_MODE_TYPE__COMMIT = ver -> FLUSH_MODE_TYPE_.apply(ver) + "COMMIT";
 
-	String GENERATION_TYPE = PACKAGE_ + "GenerationType";
-		String GENERATION_TYPE_ = GENERATION_TYPE + '.';
-		String GENERATION_TYPE__AUTO = GENERATION_TYPE_ + "AUTO";
-		String GENERATION_TYPE__IDENTITY = GENERATION_TYPE_ + "IDENTITY";
-		String GENERATION_TYPE__SEQUENCE = GENERATION_TYPE_ + "SEQUENCE";
-		String GENERATION_TYPE__TABLE = GENERATION_TYPE_ + "TABLE";
+	Function<IProjectFacetVersion, String> GENERATION_TYPE = ver -> PACKAGE_.apply(ver) + "GenerationType";
+		Function<IProjectFacetVersion, String> GENERATION_TYPE_ = ver -> GENERATION_TYPE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> GENERATION_TYPE__AUTO = ver -> GENERATION_TYPE_.apply(ver) + "AUTO";
+		Function<IProjectFacetVersion, String> GENERATION_TYPE__IDENTITY = ver -> GENERATION_TYPE_.apply(ver) + "IDENTITY";
+		Function<IProjectFacetVersion, String> GENERATION_TYPE__SEQUENCE = ver -> GENERATION_TYPE_.apply(ver) + "SEQUENCE";
+		Function<IProjectFacetVersion, String> GENERATION_TYPE__TABLE = ver -> GENERATION_TYPE_.apply(ver) + "TABLE";
 
-	String INHERITANCE_TYPE = PACKAGE_ + "InheritanceType";
-		String INHERITANCE_TYPE_ = INHERITANCE_TYPE + '.';
-		String INHERITANCE_TYPE__JOINED = INHERITANCE_TYPE_ + "JOINED";
-		String INHERITANCE_TYPE__SINGLE_TABLE = INHERITANCE_TYPE_ + "SINGLE_TABLE";
-		String INHERITANCE_TYPE__TABLE_PER_CLASS = INHERITANCE_TYPE_ + "TABLE_PER_CLASS";
+	Function<IProjectFacetVersion, String> INHERITANCE_TYPE = ver -> PACKAGE_.apply(ver) + "InheritanceType";
+		Function<IProjectFacetVersion, String> INHERITANCE_TYPE_ = ver -> INHERITANCE_TYPE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> INHERITANCE_TYPE__JOINED = ver -> INHERITANCE_TYPE_.apply(ver) + "JOINED";
+		Function<IProjectFacetVersion, String> INHERITANCE_TYPE__SINGLE_TABLE = ver -> INHERITANCE_TYPE_.apply(ver) + "SINGLE_TABLE";
+		Function<IProjectFacetVersion, String> INHERITANCE_TYPE__TABLE_PER_CLASS = ver -> INHERITANCE_TYPE_.apply(ver) + "TABLE_PER_CLASS";
 
-	String PERSISTENCE_CONTEXT_TYPE = PACKAGE_ + "PersistenceContextType";
-		String PERSISTENCE_CONTEXT_TYPE_ = PERSISTENCE_CONTEXT_TYPE + '.';
-		String PERSISTENCE_CONTEXT_TYPE__EXTENDED = PERSISTENCE_CONTEXT_TYPE_ + "EXTENDED";
-		String PERSISTENCE_CONTEXT_TYPE__TRANSACTION = PERSISTENCE_CONTEXT_TYPE_ + "TRANSACTION";
+	Function<IProjectFacetVersion, String> PERSISTENCE_CONTEXT_TYPE = ver -> PACKAGE_.apply(ver) + "PersistenceContextType";
+		Function<IProjectFacetVersion, String> PERSISTENCE_CONTEXT_TYPE_ = ver -> PERSISTENCE_CONTEXT_TYPE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> PERSISTENCE_CONTEXT_TYPE__EXTENDED = ver -> PERSISTENCE_CONTEXT_TYPE_.apply(ver) + "EXTENDED";
+		Function<IProjectFacetVersion, String> PERSISTENCE_CONTEXT_TYPE__TRANSACTION = ver -> PERSISTENCE_CONTEXT_TYPE_.apply(ver) + "TRANSACTION";
 
-	String TEMPORAL_TYPE = PACKAGE_ + "TemporalType";
-		String TEMPORAL_TYPE_ = TEMPORAL_TYPE + '.';
-		String TEMPORAL_TYPE__DATE = TEMPORAL_TYPE_ + "DATE";
-		String TEMPORAL_TYPE__TIME = TEMPORAL_TYPE_ + "TIME";
-		String TEMPORAL_TYPE__TIMESTAMP = TEMPORAL_TYPE_ + "TIMESTAMP";
+	Function<IProjectFacetVersion, String> TEMPORAL_TYPE = ver -> PACKAGE_.apply(ver) + "TemporalType";
+		Function<IProjectFacetVersion, String> TEMPORAL_TYPE_ = ver -> TEMPORAL_TYPE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> TEMPORAL_TYPE__DATE = ver -> TEMPORAL_TYPE_.apply(ver) + "DATE";
+		Function<IProjectFacetVersion, String> TEMPORAL_TYPE__TIME = ver -> TEMPORAL_TYPE_.apply(ver) + "TIME";
+		Function<IProjectFacetVersion, String> TEMPORAL_TYPE__TIMESTAMP = ver -> TEMPORAL_TYPE_.apply(ver) + "TIMESTAMP";
 
 	// JPA interfaces
-	String ENTITY_MANAGER = PACKAGE_ + "EntityManager";
-	String ENTITY_MANAGER_FACTORY = PACKAGE_ + "EntityManagerFactory";
-	String ENTITY_TRANSACTION = PACKAGE_ + "EntityTransaction";
-	String INSTRUMENTABLE_CLASS_LOADER = PACKAGE_ + "InstrumentableClassLoader";
-	String QUERY = PACKAGE_ + "Query";
+	Function<IProjectFacetVersion, String> ENTITY_MANAGER = ver -> PACKAGE_.apply(ver) + "EntityManager";
+	Function<IProjectFacetVersion, String> ENTITY_MANAGER_FACTORY = ver -> PACKAGE_.apply(ver) + "EntityManagerFactory";
+	Function<IProjectFacetVersion, String> ENTITY_TRANSACTION = ver -> PACKAGE_.apply(ver) + "EntityTransaction";
+	Function<IProjectFacetVersion, String> INSTRUMENTABLE_CLASS_LOADER = ver -> PACKAGE_.apply(ver) + "InstrumentableClassLoader";
+	Function<IProjectFacetVersion, String> QUERY = ver -> PACKAGE_.apply(ver) + "Query";
 
 	// JPA classes
-	String PERSISTENCE = PACKAGE_ + "XmlPersistence";
+	Function<IProjectFacetVersion, String> PERSISTENCE = ver -> PACKAGE_.apply(ver) + "XmlPersistence";
 
 	// JPA exceptions
-	String NON_UNIQUE_RESULT_EXCEPTION = PACKAGE_ + "NonUniqueResultException";
-	String OBJECT_NOT_FOUND_EXCEPTION = PACKAGE_ + "ObjectNotFoundException";
-	String PERSISTENCE_EXCEPTION = PACKAGE_ + "PersistenceException";
+	Function<IProjectFacetVersion, String> NON_UNIQUE_RESULT_EXCEPTION = ver -> PACKAGE_.apply(ver) + "NonUniqueResultException";
+	Function<IProjectFacetVersion, String> OBJECT_NOT_FOUND_EXCEPTION = ver -> PACKAGE_.apply(ver) + "ObjectNotFoundException";
+	Function<IProjectFacetVersion, String> PERSISTENCE_EXCEPTION = ver -> PACKAGE_.apply(ver) + "PersistenceException";
 
 
 	// ********** SPI **********
 
 	// JPA SPI package
-	String SPI_PACKAGE = PACKAGE_ + "spi";
-	String SPI_PACKAGE_ = SPI_PACKAGE + '.';
+	Function<IProjectFacetVersion, String> SPI_PACKAGE = ver -> PACKAGE_.apply(ver) + "spi";
+	Function<IProjectFacetVersion, String> SPI_PACKAGE_ = ver -> SPI_PACKAGE.apply(ver) + '.';
 
 	// JPA SPI interfaces
-	String ENTITY_MANAGER_FACTORY_PROVIDER = SPI_PACKAGE_ + "EntityManagerFactoryProvider";
-	String PERSISTENCE_INFO = SPI_PACKAGE_ + "PersistenceInfo";
-	String PERSISTENCE_PROVIDER = SPI_PACKAGE_ + "PersistenceProvider";
+	Function<IProjectFacetVersion, String> ENTITY_MANAGER_FACTORY_PROVIDER = ver -> SPI_PACKAGE.apply(ver) + "EntityManagerFactoryProvider";
+	Function<IProjectFacetVersion, String> PERSISTENCE_INFO = ver -> SPI_PACKAGE.apply(ver) + "PersistenceInfo";
+	Function<IProjectFacetVersion, String> PERSISTENCE_PROVIDER = ver -> SPI_PACKAGE.apply(ver) + "PersistenceProvider";
 
 }

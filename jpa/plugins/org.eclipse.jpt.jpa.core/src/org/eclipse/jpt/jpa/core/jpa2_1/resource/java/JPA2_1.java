@@ -9,7 +9,10 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa2_1.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.jpa.core.resource.java.JPA;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * JPA 2.1 Java-related stuff (annotations etc.)
@@ -24,39 +27,37 @@ import org.eclipse.jpt.jpa.core.resource.java.JPA;
  * @since 3.3
  */
 @SuppressWarnings("nls")
-public interface JPA2_1 
-{
-	// JPA package
-	String PACKAGE = JPA.PACKAGE;
-	String PACKAGE_ = JPA.PACKAGE_;
+public interface JPA2_1 {
 
+	// JPA package
+	Function<IProjectFacetVersion, String> PACKAGE_ = JPA.PACKAGE_;
 
 	// ********** API **********
 
 	// JPA 2.1 annotations
-	String CONVERTER = PACKAGE_ + "Converter";
+	Function<IProjectFacetVersion, String> CONVERTER = ver -> PACKAGE_.apply(ver) + "Converter";
 		String CONVERTER__AUTO_APPLY = "autoApply";
 		
-	String NAMED_STORED_PROCEDURE_QUERIES = PACKAGE_ + "NamedStoredProcedureQueries";
+	Function<IProjectFacetVersion, String> NAMED_STORED_PROCEDURE_QUERIES = ver -> PACKAGE_.apply(ver) + "NamedStoredProcedureQueries";
 		String NAMED_STORED_PROCEDURE_QUERIES__VALUE = "value";
-	String NAMED_STORED_PROCEDURE_QUERY =PACKAGE_ + "NamedStoredProcedureQuery";
+	Function<IProjectFacetVersion, String> NAMED_STORED_PROCEDURE_QUERY =ver -> PACKAGE_.apply(ver) + "NamedStoredProcedureQuery";
 		String NAMED_STORED_PROCEDURE_QUERY__NAME = "name";
 		String NAMED_STORED_PROCEDURE_QUERY__PROCEDURE_NAME= "procedureName";
 		String NAMED_STORED_PROCEDURE_QUERY__PARAMETERS = "parameters";
 		String NAMED_STORED_PROCEDURE_QUERY__RESULT_CLASSES = "resultClasses";
 		String NAMED_STORED_PROCEDURE_QUERY__RESULT_SET_MAPPINGS= "resultSetMappings";
 		String NAMED_STORED_PROCEDURE_QUERY__HINTS = "hints";
-	String NAMED_STORED_PROCEDURE_PARAMETER = PACKAGE_ + "StoredProcedureParameter";
+	Function<IProjectFacetVersion, String> NAMED_STORED_PROCEDURE_PARAMETER = ver -> PACKAGE_.apply(ver) + "StoredProcedureParameter";
 		String NAMED_STORED_PROCEDURE_PARAMETER__NAME = "name";
 		String NAMED_STORED_PROCEDURE_PARAMETER__MODE = "mode";
 		String NAMED_STORED_PROCEDURE_PARAMETER__TYPE = "type";
 		
 	// JPA 2.1 enums
-	String PARAMETER_MODE = PACKAGE_ + "ParameterMode";
-		String PARAMETER_MODE_ = PARAMETER_MODE + '.';
-		String PARAMETER_MODE__IN = PARAMETER_MODE_ + "IN";
-		String PARAMETER_MODE__INOUT = PARAMETER_MODE_ + "INOUT";
-		String PARAMETER_MODE__OUT = PARAMETER_MODE_ + "OUT";
-		String PARAMETER_MODE__REF_CURSOR= PARAMETER_MODE_ + "REF_CURSOR";
+	Function<IProjectFacetVersion, String> PARAMETER_MODE = ver -> PACKAGE_.apply(ver) + "ParameterMode";
+		Function<IProjectFacetVersion, String> PARAMETER_MODE_ = ver -> PARAMETER_MODE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> PARAMETER_MODE__IN = ver -> PARAMETER_MODE_.apply(ver) + "IN";
+		Function<IProjectFacetVersion, String> PARAMETER_MODE__INOUT = ver -> PARAMETER_MODE_.apply(ver) + "INOUT";
+		Function<IProjectFacetVersion, String> PARAMETER_MODE__OUT = ver -> PARAMETER_MODE_.apply(ver) + "OUT";
+		Function<IProjectFacetVersion, String> PARAMETER_MODE__REF_CURSOR= ver -> PARAMETER_MODE_.apply(ver) + "REF_CURSOR";
 
 }

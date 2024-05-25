@@ -9,6 +9,10 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
+
 /**
  * Corresponds to the JPA annotation
  * <code>javax.persistence.AttributeOverride</code>
@@ -22,11 +26,8 @@ package org.eclipse.jpt.jpa.core.resource.java;
  * @version 2.2
  * @since 2.0
  */
-public interface AttributeOverrideAnnotation
-	extends OverrideAnnotation
-{
-	String ANNOTATION_NAME = JPA.ATTRIBUTE_OVERRIDE;
-
+public interface AttributeOverrideAnnotation extends OverrideAnnotation {
+	Function<IProjectFacetVersion, String> ANNOTATION_NAME = JPA.ATTRIBUTE_OVERRIDE;
 
 	/**
 	 * Corresponds to the 'column' element of the AttributeOverride annotation.

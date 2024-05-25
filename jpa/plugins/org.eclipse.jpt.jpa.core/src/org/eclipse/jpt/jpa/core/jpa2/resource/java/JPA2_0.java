@@ -9,7 +9,10 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa2.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.jpa.core.resource.java.JPA;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * JPA 2.0 Java-related stuff (annotations etc.)
@@ -24,12 +27,10 @@ import org.eclipse.jpt.jpa.core.resource.java.JPA;
  * @since 2.3
  */
 @SuppressWarnings("nls")
-public interface JPA2_0 
-{
-	// JPA package
-	String PACKAGE = "javax.persistence";
-	String PACKAGE_ = PACKAGE + '.';
+public interface JPA2_0 {
 
+	// JPA package
+	Function<IProjectFacetVersion, String> PACKAGE_ = JPA.PACKAGE_;
 
 	// ********** API **********
 
