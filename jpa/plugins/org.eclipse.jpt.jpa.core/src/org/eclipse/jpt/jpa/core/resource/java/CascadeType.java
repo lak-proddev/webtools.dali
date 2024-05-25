@@ -9,9 +9,12 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.resource.java;
 
+import java.util.function.Function;
+
 import org.eclipse.jpt.common.utility.internal.ArrayTools;
 import org.eclipse.jpt.common.utility.internal.StringTools;
 import org.eclipse.jpt.jpa.core.jpa2.resource.java.JPA2_0;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Corresponds to the JPA 1.0/2.0 enum
@@ -36,16 +39,16 @@ public enum CascadeType {
 	DETACH(JPA2_0.CASCADE_TYPE__DETACH); //added in JPA 2.0
 
 
-	private String javaAnnotationValue;
+	private Function<IProjectFacetVersion, String> javaAnnotationValue;
 
-	CascadeType(String javaAnnotationValue) {
+	CascadeType(Function<IProjectFacetVersion, String> javaAnnotationValue) {
 		if (javaAnnotationValue == null) {
 			throw new NullPointerException();
 		}
 		this.javaAnnotationValue = javaAnnotationValue;
 	}
 
-	public String getJavaAnnotationValue() {
+	public Function<IProjectFacetVersion, String> getJavaAnnotationValue() {
 		return this.javaAnnotationValue;
 	}
 
@@ -99,7 +102,7 @@ public enum CascadeType {
 		return javaAnnotationValues;
 	}
 
-	public static String toJavaAnnotationValue(CascadeType cascadeType) {
+	public static Function<IProjectFacetVersion, String> toJavaAnnotationValue(CascadeType cascadeType) {
 		return (cascadeType == null) ? null : cascadeType.getJavaAnnotationValue();
 	}
 

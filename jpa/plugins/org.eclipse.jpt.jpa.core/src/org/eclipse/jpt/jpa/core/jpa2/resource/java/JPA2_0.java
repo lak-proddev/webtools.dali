@@ -35,32 +35,32 @@ public interface JPA2_0 {
 	// ********** API **********
 
 	// JPA 2.0 annotations
-	String ACCESS = PACKAGE_ + "Access";
+	Function<IProjectFacetVersion, String> ACCESS = ver -> PACKAGE_.apply(ver) + "Access";
 		String ACCESS__VALUE = "value";
 
 	// ASSOCIATION_OVERRIDE
 		String ASSOCIATION_OVERRIDE__JOIN_TABLE = "joinTable";
 
-	String CACHEABLE = PACKAGE_ + "Cacheable";
+	Function<IProjectFacetVersion, String> CACHEABLE = ver -> PACKAGE_.apply(ver) + "Cacheable";
 		String CACHEABLE__VALUE = "value";
 		
-	String CASCADE_TYPE__DETACH = JPA.CASCADE_TYPE_ + "DETACH";
+	Function<IProjectFacetVersion, String> CASCADE_TYPE__DETACH = ver -> JPA.CASCADE_TYPE_.apply(ver) + "DETACH";
 
-	String COLLECTION_TABLE = PACKAGE_ + "CollectionTable";
+	Function<IProjectFacetVersion, String> COLLECTION_TABLE = ver -> PACKAGE_.apply(ver) + "CollectionTable";
 		String COLLECTION_TABLE__NAME = "name";
 		String COLLECTION_TABLE__SCHEMA = "schema";
 		String COLLECTION_TABLE__CATALOG = "catalog";
 		String COLLECTION_TABLE__JOIN_COLUMNS = "joinColumns";
 		String COLLECTION_TABLE__UNIQUE_CONSTRAINTS = "uniqueConstraints";
 	
-	String ELEMENT_COLLECTION = PACKAGE_ + "ElementCollection";
+	Function<IProjectFacetVersion, String> ELEMENT_COLLECTION = ver -> PACKAGE_.apply(ver) + "ElementCollection";
 		String ELEMENT_COLLECTION__FETCH = "fetch";
 		String ELEMENT_COLLECTION__TARGET_CLASS = "targetClass";
 
-	String MAP_KEY_CLASS = PACKAGE_ + "MapKeyClass";
+	Function<IProjectFacetVersion, String> MAP_KEY_CLASS = ver -> PACKAGE_.apply(ver) + "MapKeyClass";
 		String MAP_KEY_CLASS__VALUE = "value";
 	
-	String MAP_KEY_COLUMN = PACKAGE_ + "MapKeyColumn";
+	Function<IProjectFacetVersion, String> MAP_KEY_COLUMN = ver -> PACKAGE_.apply(ver) + "MapKeyColumn";
 		String MAP_KEY_COLUMN__NAME = "name";
 		String MAP_KEY_COLUMN__UNIQUE = "unique";
 		String MAP_KEY_COLUMN__NULLABLE = "nullable";
@@ -72,10 +72,10 @@ public interface JPA2_0 {
 		String MAP_KEY_COLUMN__PRECISION = "precision";
 		String MAP_KEY_COLUMN__SCALE = "scale";
 
-	String MAP_KEY_ENUMERATED = PACKAGE_ + "MapKeyEnumerated";
+	Function<IProjectFacetVersion, String> MAP_KEY_ENUMERATED = ver -> PACKAGE_.apply(ver) + "MapKeyEnumerated";
 		String MAP_KEY_ENUMERATED__VALUE = "value";
 		
-	String MAP_KEY_JOIN_COLUMN = PACKAGE_ + "MapKeyJoinColumn";
+	Function<IProjectFacetVersion, String> MAP_KEY_JOIN_COLUMN = ver -> PACKAGE_.apply(ver) + "MapKeyJoinColumn";
 		String MAP_KEY_JOIN_COLUMN__NAME = "name";
 		String MAP_KEY_JOIN_COLUMN__REFERENCED_COLUMN_NAME = "referencedColumnName";
 		String MAP_KEY_JOIN_COLUMN__UNIQUE = "unique";
@@ -85,13 +85,13 @@ public interface JPA2_0 {
 		String MAP_KEY_JOIN_COLUMN__COLUMN_DEFINITION = "columnDefinition";
 		String MAP_KEY_JOIN_COLUMN__TABLE = "table";
 		
-	String MAP_KEY_JOIN_COLUMNS = PACKAGE_ + "MapKeyJoinColumns";
+	Function<IProjectFacetVersion, String> MAP_KEY_JOIN_COLUMNS = ver -> PACKAGE_.apply(ver) + "MapKeyJoinColumns";
 		String MAP_KEY_JOIN_COLUMNS__VALUE = "value";
 
-	String MAP_KEY_TEMPORAL = PACKAGE_ + "MapKeyTemporal";
+	Function<IProjectFacetVersion, String> MAP_KEY_TEMPORAL = ver -> PACKAGE_.apply(ver) + "MapKeyTemporal";
 		String MAP_KEY_TEMPORAL__VALUE = "value";
 
-	String MAPS_ID = PACKAGE_ + "MapsId";
+	Function<IProjectFacetVersion, String> MAPS_ID = ver -> PACKAGE_.apply(ver) + "MapsId";
 		String MAPS_ID__VALUE = "value";
 
 	// NAMED_QUERY
@@ -103,7 +103,7 @@ public interface JPA2_0 {
 	// ONE_TO_ONE
 		String ONE_TO_ONE__ORPHAN_REMOVAL = "orphanRemoval";
 
-	String ORDER_COLUMN = PACKAGE_ + "OrderColumn";
+	Function<IProjectFacetVersion, String> ORDER_COLUMN = ver -> PACKAGE_.apply(ver) + "OrderColumn";
 		String ORDER_COLUMN__NAME = "name";
 		String ORDER_COLUMN__NULLABLE = "nullable";
 		String ORDER_COLUMN__INSERTABLE = "insertable";
@@ -116,33 +116,30 @@ public interface JPA2_0 {
 
 
 	// JPA 2.0 enums
-	String ACCESS_TYPE = PACKAGE_ + "AccessType";
-		String ACCESS_TYPE_ = ACCESS_TYPE + '.';
-		String ACCESS_TYPE__FIELD = ACCESS_TYPE_ + "FIELD";
-		String ACCESS_TYPE__PROPERTY = ACCESS_TYPE_ + "PROPERTY";
+	Function<IProjectFacetVersion, String> ACCESS_TYPE = ver -> PACKAGE_.apply(ver) + "AccessType";
+		Function<IProjectFacetVersion, String> ACCESS_TYPE_ = ver -> ACCESS_TYPE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> ACCESS_TYPE__FIELD = ver -> ACCESS_TYPE_.apply(ver) + "FIELD";
+		Function<IProjectFacetVersion, String> ACCESS_TYPE__PROPERTY = ver -> ACCESS_TYPE_.apply(ver) + "PROPERTY";
 
-	String LOCK_MODE_TYPE = PACKAGE_ + "LockModeType";
-		String LOCK_MODE_TYPE_ = LOCK_MODE_TYPE + '.';
-		String LOCK_MODE_TYPE__READ = LOCK_MODE_TYPE_ + "READ";
-		String LOCK_MODE_TYPE__WRITE = LOCK_MODE_TYPE_ + "WRITE";
-		String LOCK_MODE_TYPE__OPTIMISTIC = LOCK_MODE_TYPE_ + "OPTIMISTIC";
-		String LOCK_MODE_TYPE__OPTIMISTIC_FORCE_INCREMENT = LOCK_MODE_TYPE_ + "OPTIMISTIC_FORCE_INCREMENT";
-		String LOCK_MODE_TYPE__PESSIMISTIC_READ = LOCK_MODE_TYPE_ + "PESSIMISTIC_READ";
-		String LOCK_MODE_TYPE__PESSIMISTIC_WRITE = LOCK_MODE_TYPE_ + "PESSIMISTIC_WRITE";
-		String LOCK_MODE_TYPE__PESSIMISTIC_FORCE_INCREMENT = LOCK_MODE_TYPE_ + "PESSIMISTIC_FORCE_INCREMENT";
-		String LOCK_MODE_TYPE__NONE = LOCK_MODE_TYPE_ + "NONE";
+	Function<IProjectFacetVersion, String> LOCK_MODE_TYPE = ver -> PACKAGE_.apply(ver) + "LockModeType";
+		Function<IProjectFacetVersion, String> LOCK_MODE_TYPE_ = ver -> LOCK_MODE_TYPE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> LOCK_MODE_TYPE__READ = ver -> LOCK_MODE_TYPE_.apply(ver) + "READ";
+		Function<IProjectFacetVersion, String> LOCK_MODE_TYPE__WRITE = ver -> LOCK_MODE_TYPE_.apply(ver) + "WRITE";
+		Function<IProjectFacetVersion, String> LOCK_MODE_TYPE__OPTIMISTIC = ver -> LOCK_MODE_TYPE_.apply(ver) + "OPTIMISTIC";
+		Function<IProjectFacetVersion, String> LOCK_MODE_TYPE__OPTIMISTIC_FORCE_INCREMENT = ver -> LOCK_MODE_TYPE_.apply(ver) + "OPTIMISTIC_FORCE_INCREMENT";
+		Function<IProjectFacetVersion, String> LOCK_MODE_TYPE__PESSIMISTIC_READ = ver -> LOCK_MODE_TYPE_.apply(ver) + "PESSIMISTIC_READ";
+		Function<IProjectFacetVersion, String> LOCK_MODE_TYPE__PESSIMISTIC_WRITE = ver -> LOCK_MODE_TYPE_.apply(ver) + "PESSIMISTIC_WRITE";
+		Function<IProjectFacetVersion, String> LOCK_MODE_TYPE__PESSIMISTIC_FORCE_INCREMENT = ver -> LOCK_MODE_TYPE_.apply(ver) + "PESSIMISTIC_FORCE_INCREMENT";
+		Function<IProjectFacetVersion, String> LOCK_MODE_TYPE__NONE = ver -> LOCK_MODE_TYPE_.apply(ver) + "NONE";
 
 	// JPA 2.0 metamodel
-	String METAMODEL_PACKAGE = PACKAGE_ + "metamodel";
-	String METAMODEL_PACKAGE_ = METAMODEL_PACKAGE + '.';
-
-	String STATIC_METAMODEL = METAMODEL_PACKAGE_ + "StaticMetamodel";
+	Function<IProjectFacetVersion, String> METAMODEL_PACKAGE = ver -> PACKAGE_.apply(ver) + "metamodel";
+		Function<IProjectFacetVersion, String> METAMODEL_PACKAGE_ = ver -> METAMODEL_PACKAGE.apply(ver) + '.';
+		Function<IProjectFacetVersion, String> STATIC_METAMODEL = ver -> METAMODEL_PACKAGE_.apply(ver) + "StaticMetamodel";
 		String STATIC_METAMODEL__VALUE = "value";
-
-	String SINGULAR_ATTRIBUTE = METAMODEL_PACKAGE_ + "SingularAttribute";
-
-	String COLLECTION_ATTRIBUTE = METAMODEL_PACKAGE_ + "CollectionAttribute";
-	String LIST_ATTRIBUTE = METAMODEL_PACKAGE_ + "ListAttribute";
-	String MAP_ATTRIBUTE = METAMODEL_PACKAGE_ + "MapAttribute";
-	String SET_ATTRIBUTE = METAMODEL_PACKAGE_ + "SetAttribute";
+		Function<IProjectFacetVersion, String> SINGULAR_ATTRIBUTE = ver -> METAMODEL_PACKAGE_.apply(ver) + "SingularAttribute";
+		Function<IProjectFacetVersion, String> COLLECTION_ATTRIBUTE = ver -> METAMODEL_PACKAGE_.apply(ver) + "CollectionAttribute";
+		Function<IProjectFacetVersion, String> LIST_ATTRIBUTE = ver -> METAMODEL_PACKAGE_.apply(ver) + "ListAttribute";
+		Function<IProjectFacetVersion, String> MAP_ATTRIBUTE = ver -> METAMODEL_PACKAGE_.apply(ver) + "MapAttribute";
+		Function<IProjectFacetVersion, String> SET_ATTRIBUTE = ver -> METAMODEL_PACKAGE_.apply(ver) + "SetAttribute";
 }
