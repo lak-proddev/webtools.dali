@@ -200,7 +200,7 @@ public abstract class AbstractJavaPersistentAttribute
 	}
 
 	protected AccessAnnotation2_0 getAccessAnnotation() {
-		return (AccessAnnotation2_0) this.getResourceAttribute().getAnnotation(AccessAnnotation2_0.ANNOTATION_NAME);
+		return (AccessAnnotation2_0) this.getResourceAttribute().getAnnotation(AccessAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 

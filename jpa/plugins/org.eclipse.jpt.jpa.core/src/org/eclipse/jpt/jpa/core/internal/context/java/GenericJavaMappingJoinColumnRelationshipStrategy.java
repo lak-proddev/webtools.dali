@@ -62,22 +62,22 @@ public class GenericJavaMappingJoinColumnRelationshipStrategy
 	}
 
 	protected ListIterable<NestableAnnotation> getNestableJoinColumnAnnotations() {
-		return this.getResourceAttribute().getAnnotations(JoinColumnAnnotation.ANNOTATION_NAME);
+		return this.getResourceAttribute().getAnnotations(JoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion() ));
 	}
 
 	@Override
 	protected JoinColumnAnnotation addJoinColumnAnnotation(int index) {
-		return (JoinColumnAnnotation) this.getResourceAttribute().addAnnotation(index, JoinColumnAnnotation.ANNOTATION_NAME);
+		return (JoinColumnAnnotation) this.getResourceAttribute().addAnnotation(index, JoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion() ));
 	}
 
 	@Override
 	protected void removeJoinColumnAnnotation(int index) {
-		this.getResourceAttribute().removeAnnotation(index, JoinColumnAnnotation.ANNOTATION_NAME);
+		this.getResourceAttribute().removeAnnotation(index, JoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	@Override
 	protected void moveJoinColumnAnnotation(int targetIndex, int sourceIndex) {
-		this.getResourceAttribute().moveAnnotation(targetIndex, sourceIndex, JoinColumnAnnotation.ANNOTATION_NAME);
+		this.getResourceAttribute().moveAnnotation(targetIndex, sourceIndex, JoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	@Override

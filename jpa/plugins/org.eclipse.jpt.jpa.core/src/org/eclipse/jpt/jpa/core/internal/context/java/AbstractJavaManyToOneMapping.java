@@ -46,6 +46,6 @@ public abstract class AbstractJavaManyToOneMapping
 
 	@Override
 	protected String getAnnotationName() {
-		return ManyToOneAnnotation.ANNOTATION_NAME;
+		return ManyToOneAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 }

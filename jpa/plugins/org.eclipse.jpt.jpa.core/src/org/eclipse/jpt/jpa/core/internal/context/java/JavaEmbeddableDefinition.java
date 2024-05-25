@@ -44,7 +44,7 @@ public class JavaEmbeddableDefinition
 	}
 
 	public String getAnnotationName() {
-		return EmbeddableAnnotation.ANNOTATION_NAME;
+		return EmbeddableAnnotation.ANNOTATION_NAME.apply(ge);
 	}
 
 	public Iterable<String> getSupportingAnnotationNames() {

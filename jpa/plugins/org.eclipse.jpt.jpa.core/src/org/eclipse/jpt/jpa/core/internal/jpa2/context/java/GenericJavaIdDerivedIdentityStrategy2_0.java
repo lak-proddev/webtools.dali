@@ -86,7 +86,7 @@ public class GenericJavaIdDerivedIdentityStrategy2_0
 	}
 
 	protected String getAnnotationName() {
-		return IdAnnotation.ANNOTATION_NAME;
+		return IdAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 
 

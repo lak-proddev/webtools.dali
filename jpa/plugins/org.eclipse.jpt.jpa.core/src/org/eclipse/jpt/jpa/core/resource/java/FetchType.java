@@ -24,8 +24,8 @@ package org.eclipse.jpt.jpa.core.resource.java;
  */
 public enum FetchType {
 
-	EAGER(JPA.FETCH_TYPE__EAGER),
-	LAZY(JPA.FETCH_TYPE__LAZY);
+	EAGER(JPA.FETCH_TYPE__EAGER.apply(null)),
+	LAZY(JPA.FETCH_TYPE__LAZY.apply(null));
 
 
 	private String javaAnnotationValue;

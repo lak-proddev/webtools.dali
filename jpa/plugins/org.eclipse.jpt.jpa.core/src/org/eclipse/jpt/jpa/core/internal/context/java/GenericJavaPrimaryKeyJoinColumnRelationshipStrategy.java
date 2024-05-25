@@ -151,19 +151,19 @@ public class GenericJavaPrimaryKeyJoinColumnRelationshipStrategy
 	}
 
 	protected ListIterable<NestableAnnotation> getNestablePrimaryKeyJoinColumnAnnotations() {
-		return this.getResourceAttribute().getAnnotations(PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME);
+		return this.getResourceAttribute().getAnnotations(PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected PrimaryKeyJoinColumnAnnotation addPrimaryKeyJoinColumnAnnotation(int index) {
-		return (PrimaryKeyJoinColumnAnnotation) this.getResourceAttribute().addAnnotation(index, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME);
+		return (PrimaryKeyJoinColumnAnnotation) this.getResourceAttribute().addAnnotation(index, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected void removePrimaryKeyJoinColumnAnnotation(int index) {
-		this.getResourceAttribute().removeAnnotation(index, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME);
+		this.getResourceAttribute().removeAnnotation(index, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected void movePrimaryKeyJoinColumnAnnotation(int targetIndex, int sourceIndex) {
-		this.getResourceAttribute().moveAnnotation(targetIndex, sourceIndex, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME);
+		this.getResourceAttribute().moveAnnotation(targetIndex, sourceIndex, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 

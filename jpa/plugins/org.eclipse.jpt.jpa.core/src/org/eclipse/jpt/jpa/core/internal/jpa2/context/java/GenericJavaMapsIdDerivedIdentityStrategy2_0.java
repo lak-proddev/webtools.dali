@@ -164,7 +164,7 @@ public class GenericJavaMapsIdDerivedIdentityStrategy2_0
 	}
 	
 	protected String getAnnotationName() {
-		return MapsIdAnnotation2_0.ANNOTATION_NAME;
+		return MapsIdAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 	
 	

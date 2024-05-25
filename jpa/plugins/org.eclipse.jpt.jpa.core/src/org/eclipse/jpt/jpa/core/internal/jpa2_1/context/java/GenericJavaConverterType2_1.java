@@ -89,7 +89,7 @@ public class GenericJavaConverterType2_1
 	// ********** converter annotation **********
 
 	protected ConverterAnnotation2_1 getConverterAnnotation() {
-		return (ConverterAnnotation2_1) this.resourceType.getAnnotation(ConverterAnnotation2_1.ANNOTATION_NAME);
+		return (ConverterAnnotation2_1) this.resourceType.getAnnotation(ConverterAnnotation2_1.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 

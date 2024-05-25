@@ -47,7 +47,7 @@ public class JavaBasicMappingDefinition
 	}
 
 	public String getAnnotationName() {
-		return BasicAnnotation.ANNOTATION_NAME;
+		return BasicAnnotation.ANNOTATION_NAME.apply( g);
 	}
 
 	public boolean isSpecified(JavaSpecifiedPersistentAttribute persistentAttribute) {

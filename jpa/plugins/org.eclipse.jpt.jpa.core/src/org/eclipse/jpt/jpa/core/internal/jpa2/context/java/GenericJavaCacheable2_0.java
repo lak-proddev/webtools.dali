@@ -137,7 +137,7 @@ public class GenericJavaCacheable2_0
 	}
 
 	protected String getCacheableAnnotationName() {
-		return CacheableAnnotation2_0.ANNOTATION_NAME;
+		return CacheableAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 
 

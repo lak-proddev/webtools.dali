@@ -50,7 +50,7 @@ public class GenericJavaAttributeOverrideContainer
 
 	@Override
 	protected String getOverrideAnnotationName() {
-		return AttributeOverrideAnnotation.ANNOTATION_NAME;
+		return AttributeOverrideAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 
 	@Override

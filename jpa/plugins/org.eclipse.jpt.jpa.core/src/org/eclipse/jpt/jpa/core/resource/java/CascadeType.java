@@ -103,7 +103,7 @@ public enum CascadeType {
 	}
 
 	public static String toJavaAnnotationValue(CascadeType cascadeType) {
-		return (cascadeType == null) ? null : cascadeType.getJavaAnnotationValue();
+		return (cascadeType == null) ? null : cascadeType.getJavaAnnotationValue().apply(get);
 	}
 
 }

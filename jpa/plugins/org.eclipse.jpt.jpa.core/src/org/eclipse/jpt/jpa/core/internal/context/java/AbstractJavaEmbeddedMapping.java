@@ -149,7 +149,7 @@ public abstract class AbstractJavaEmbeddedMapping
 
 	@Override
 	protected String getAnnotationName() {
-		return EmbeddedAnnotation.ANNOTATION_NAME;
+		return EmbeddedAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 
 	@Override

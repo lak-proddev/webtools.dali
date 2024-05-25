@@ -47,7 +47,7 @@ public interface JavaLobConverter
 
 		@Override
 		protected String getAnnotationName() {
-			return LobAnnotation.ANNOTATION_NAME;
+			return LobAnnotation.ANNOTATION_NAME.apply(JavaLobConverter.this.getProjectFacetVersion());
 		}
 
 		public JavaConverter buildConverter(Annotation converterAnnotation, JavaAttributeMapping parent, JpaFactory factory) {

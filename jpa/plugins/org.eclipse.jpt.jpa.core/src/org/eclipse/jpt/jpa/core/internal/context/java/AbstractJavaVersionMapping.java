@@ -209,7 +209,7 @@ public abstract class AbstractJavaVersionMapping
 
 	@Override
 	protected String getAnnotationName() {
-		return VersionAnnotation.ANNOTATION_NAME;
+		return VersionAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 
 	@Override
@@ -225,11 +225,11 @@ public abstract class AbstractJavaVersionMapping
 	}
 
 	public ColumnAnnotation getColumnAnnotation() {
-		return (ColumnAnnotation) this.getResourceAttribute().getNonNullAnnotation(ColumnAnnotation.ANNOTATION_NAME);
+		return (ColumnAnnotation) this.getResourceAttribute().getNonNullAnnotation(ColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	public void removeColumnAnnotation() {
-		this.getResourceAttribute().removeAnnotation(ColumnAnnotation.ANNOTATION_NAME);
+		this.getResourceAttribute().removeAnnotation(ColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	public String getDefaultColumnName(NamedColumn col) {

@@ -165,7 +165,7 @@ public class GenericJavaIdClassReference
 	}
 
 	protected String getIdClassAnnotationName() {
-		return IdClassAnnotation.ANNOTATION_NAME;
+		return IdClassAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 
 

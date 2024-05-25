@@ -50,7 +50,7 @@ public class NamedQueryAnnotationDefinition2_0
 	}
 
 	public String getNestableAnnotationName() {
-		return JPA.NAMED_QUERY;
+		return JPA.NAMED_QUERY.apply(getClass());
 	}
 
 	public String getContainerAnnotationName() {

@@ -26,7 +26,7 @@ public final class NullMapKeyJoinColumnAnnotation2_0
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return ANNOTATION_NAME.;
 	}
 
 	// ***** referenced column name

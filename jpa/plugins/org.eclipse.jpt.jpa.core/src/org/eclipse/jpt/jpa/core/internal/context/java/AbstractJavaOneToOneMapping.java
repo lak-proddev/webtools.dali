@@ -82,6 +82,6 @@ public abstract class AbstractJavaOneToOneMapping
 
 	@Override
 	protected String getAnnotationName() {
-		return OneToOneAnnotation.ANNOTATION_NAME;
+		return OneToOneAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 }

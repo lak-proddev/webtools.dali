@@ -31,7 +31,7 @@ public final class BinaryManyToManyAnnotation
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return ANNOTATION_NAME.apply(get);
 	}
 
 	@Override

@@ -136,10 +136,6 @@ public abstract class AbstractJpaModel<P extends JpaModel>
 		return this.parent.getJpaProject();
 	}
 
-	public IProjectFacetVersion getProjectFacetVersion() {
-		return this.getJpaProject().getProjectFacetVersion();
-	}
-
 	public JpaProject.Manager getJpaProjectManager() {
 		return this.getJpaProject().getManager();
 	}

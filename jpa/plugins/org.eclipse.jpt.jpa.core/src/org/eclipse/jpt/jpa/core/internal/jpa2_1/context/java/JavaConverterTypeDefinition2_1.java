@@ -45,7 +45,7 @@ public class JavaConverterTypeDefinition2_1
 	}
 
 	public Iterable<String> getAnnotationNames(JpaProject jpaProject) {
-		return IterableTools.singletonIterable(ConverterAnnotation2_1.ANNOTATION_NAME);
+		return IterableTools.singletonIterable(ConverterAnnotation2_1.ANNOTATION_NAME.apply(getj));
 	}
 
 	public JavaConverterType2_1 buildContextManagedType(JpaContextModel parent, JavaResourceType jrt, JpaFactory factory) {

@@ -17,6 +17,7 @@ import org.eclipse.jpt.common.core.resource.java.AnnotationDefinition;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceAnnotatedElement;
 import org.eclipse.jpt.common.core.utility.jdt.AnnotatedElement;
 import org.eclipse.jpt.jpa.core.jpa2_1.resource.java.JPA2_1;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * <code>javax.persistence.NamedStoredProcedureQueries</code>
@@ -26,11 +27,13 @@ public final class NamedStoredProcedureQueriesAnnotationDefinition2_1
 {
 	// singleton
 	private static final AnnotationDefinition INSTANCE = new NamedStoredProcedureQueriesAnnotationDefinition2_1();
+	private static IProjectFacetVersion VERSION;
 
 	/**
 	 * Return the singleton.
 	 */
-	public static AnnotationDefinition instance() {
+	public static AnnotationDefinition instance(IProjectFacetVersion version) {
+		VERSION = version;
 		return INSTANCE;
 	}
 
@@ -54,6 +57,6 @@ public final class NamedStoredProcedureQueriesAnnotationDefinition2_1
 	}
 
 	public String getAnnotationName() {
-		return JPA2_1.NAMED_STORED_PROCEDURE_QUERIES;
+		return JPA2_1.NAMED_STORED_PROCEDURE_QUERIES.apply(VERSION);
 	}
 }

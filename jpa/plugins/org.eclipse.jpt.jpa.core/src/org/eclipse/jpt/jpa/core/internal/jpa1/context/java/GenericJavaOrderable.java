@@ -230,12 +230,12 @@ public class GenericJavaOrderable
 	}
 	
 	protected OrderByAnnotation addOrderByAnnotation() {
-		return (OrderByAnnotation) this.getResourceAttribute().addAnnotation(JPA.ORDER_BY);
+		return (OrderByAnnotation) this.getResourceAttribute().addAnnotation(JPA.ORDER_BY.apply(getProjectFacetVersion()));
 	}
 	
 	protected void removeOrderByAnnotation() {
-		if (getResourceAttribute().getAnnotation(JPA.ORDER_BY) != null) { 
-			getResourceAttribute().removeAnnotation(JPA.ORDER_BY);
+		if (getResourceAttribute().getAnnotation(JPA.ORDER_BY.apply(getProjectFacetVersion())) != null) { 
+			getResourceAttribute().removeAnnotation(JPA.ORDER_BY.apply(getProjectFacetVersion()));
 		}
 	}
 	

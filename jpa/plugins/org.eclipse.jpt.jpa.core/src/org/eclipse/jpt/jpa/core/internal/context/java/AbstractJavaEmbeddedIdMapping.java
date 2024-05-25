@@ -80,7 +80,7 @@ public abstract class AbstractJavaEmbeddedIdMapping
 
 	@Override
 	protected String getAnnotationName() {
-		return EmbeddedIdAnnotation.ANNOTATION_NAME;
+		return EmbeddedIdAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 
 	@Override

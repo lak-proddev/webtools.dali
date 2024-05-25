@@ -38,17 +38,17 @@ public class GenericJavaMappingJoinTableRelationshipStrategy
 	// ********** join table annotation **********
 
 	public JoinTableAnnotation getJoinTableAnnotation() {
-		return 	(JoinTableAnnotation) this.getResourceAttribute().getNonNullAnnotation(JoinTableAnnotation.ANNOTATION_NAME);
+		return 	(JoinTableAnnotation) this.getResourceAttribute().getNonNullAnnotation(JoinTableAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	@Override
 	protected JoinTableAnnotation addJoinTableAnnotation() {
-		return (JoinTableAnnotation) this.getResourceAttribute().addAnnotation(JoinTableAnnotation.ANNOTATION_NAME);
+		return (JoinTableAnnotation) this.getResourceAttribute().addAnnotation(JoinTableAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	@Override
 	protected void removeJoinTableAnnotation() {
-		this.getResourceAttribute().removeAnnotation(JoinTableAnnotation.ANNOTATION_NAME);
+		this.getResourceAttribute().removeAnnotation(JoinTableAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 

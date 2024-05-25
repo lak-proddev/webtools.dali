@@ -48,12 +48,12 @@ public class GenericJavaCollectionTable2_0
 
 	@Override
 	public CollectionTableAnnotation2_0 getTableAnnotation() {
-		return (CollectionTableAnnotation2_0) this.getElementCollectionMapping().getResourceAttribute().getNonNullAnnotation(CollectionTableAnnotation2_0.ANNOTATION_NAME);
+		return (CollectionTableAnnotation2_0) this.getElementCollectionMapping().getResourceAttribute().getNonNullAnnotation(CollectionTableAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	@Override
 	protected void removeTableAnnotation() {
-		this.getElementCollectionMapping().getResourceAttribute().removeAnnotation(CollectionTableAnnotation2_0.ANNOTATION_NAME);
+		this.getElementCollectionMapping().getResourceAttribute().removeAnnotation(CollectionTableAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 

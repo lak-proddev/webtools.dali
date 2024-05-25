@@ -45,7 +45,7 @@ public class JavaEmbeddedIdMappingDefinition
 	}
 
 	public String getAnnotationName() {
-		return EmbeddedIdAnnotation.ANNOTATION_NAME;
+		return EmbeddedIdAnnotation.ANNOTATION_NAME.apply(g);
 	}
 
 	public boolean isSpecified(JavaSpecifiedPersistentAttribute persistentAttribute) {

@@ -408,7 +408,7 @@ public abstract class AbstractJavaEntity
 	}
 
 	protected SecondaryTableAnnotation addSecondaryTableAnnotation(int index) {
-		return (SecondaryTableAnnotation) this.getJavaResourceType().addAnnotation(index, SecondaryTableAnnotation.ANNOTATION_NAME);
+		return (SecondaryTableAnnotation) this.getJavaResourceType().addAnnotation(index, SecondaryTableAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	public void removeSpecifiedSecondaryTable(SpecifiedSecondaryTable secondaryTable) {
@@ -416,12 +416,12 @@ public abstract class AbstractJavaEntity
 	}
 
 	public void removeSpecifiedSecondaryTable(int index) {
-		this.getJavaResourceType().removeAnnotation(index, SecondaryTableAnnotation.ANNOTATION_NAME);
+		this.getJavaResourceType().removeAnnotation(index, SecondaryTableAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 		this.specifiedSecondaryTableContainer.remove(index);
 	}
 
 	public void moveSpecifiedSecondaryTable(int targetIndex, int sourceIndex) {
-		this.getResourceAnnotatedElement().moveAnnotation(targetIndex, sourceIndex, SecondaryTableAnnotation.ANNOTATION_NAME);
+		this.getResourceAnnotatedElement().moveAnnotation(targetIndex, sourceIndex, SecondaryTableAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 		this.specifiedSecondaryTableContainer.move(targetIndex, sourceIndex);
 	}
 
@@ -442,7 +442,7 @@ public abstract class AbstractJavaEntity
 	}
 
 	protected ListIterable<NestableAnnotation> getNestableSecondaryTableAnnotations_() {
-		return this.getResourceAnnotatedElement().getAnnotations(SecondaryTableAnnotation.ANNOTATION_NAME);
+		return this.getResourceAnnotatedElement().getAnnotations(SecondaryTableAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected ContextListContainer<JavaSpecifiedSecondaryTable, SecondaryTableAnnotation> buildSpecifiedSecondaryTableContainer() {
@@ -510,7 +510,7 @@ public abstract class AbstractJavaEntity
 	}
 
 	protected PrimaryKeyJoinColumnAnnotation addPrimaryKeyJoinColumnAnnotation(int index) {
-		return (PrimaryKeyJoinColumnAnnotation) this.getJavaResourceType().addAnnotation(index, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME);
+		return (PrimaryKeyJoinColumnAnnotation) this.getJavaResourceType().addAnnotation(index, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	public void removeSpecifiedPrimaryKeyJoinColumn(SpecifiedPrimaryKeyJoinColumn joinColumn) {
@@ -531,18 +531,18 @@ public abstract class AbstractJavaEntity
 
 	public void clearSpecifiedPrimaryKeyJoinColumns() {
 		for (int index = this.getSpecifiedPrimaryKeyJoinColumnsSize(); --index >= 0; ) {
-			this.getJavaResourceType().removeAnnotation(index, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME);
+			this.getJavaResourceType().removeAnnotation(index, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 		}
 		this.specifiedPrimaryKeyJoinColumnContainer.clear();
 	}
 
 	public void removeSpecifiedPrimaryKeyJoinColumn(int index) {
-		this.getJavaResourceType().removeAnnotation(index, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME);
+		this.getJavaResourceType().removeAnnotation(index, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 		this.specifiedPrimaryKeyJoinColumnContainer.remove(index);
 	}
 
 	public void moveSpecifiedPrimaryKeyJoinColumn(int targetIndex, int sourceIndex) {
-		this.getJavaResourceType().moveAnnotation(targetIndex, sourceIndex, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME);
+		this.getJavaResourceType().moveAnnotation(targetIndex, sourceIndex, PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 		this.specifiedPrimaryKeyJoinColumnContainer.move(targetIndex, sourceIndex);
 	}
 
@@ -559,7 +559,7 @@ public abstract class AbstractJavaEntity
 	}
 
 	protected ListIterable<NestableAnnotation> getNestablePrimaryKeyJoinColumnAnnotations_() {
-		return this.getResourceAnnotatedElement().getAnnotations(PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME);
+		return this.getResourceAnnotatedElement().getAnnotations(PrimaryKeyJoinColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected PrimaryKeyJoinColumnParentAdapter buildPrimaryKeyJoinColumnParentAdapter() {
@@ -680,7 +680,7 @@ public abstract class AbstractJavaEntity
 	// ********** inheritance annotation **********
 
 	protected InheritanceAnnotation getInheritanceAnnotation() {
-		return (InheritanceAnnotation) this.getJavaResourceType().getNonNullAnnotation(InheritanceAnnotation.ANNOTATION_NAME);
+		return (InheritanceAnnotation) this.getJavaResourceType().getNonNullAnnotation(InheritanceAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected void removeInheritanceAnnotationIfUnset() {
@@ -690,7 +690,7 @@ public abstract class AbstractJavaEntity
 	}
 
 	protected void removeInheritanceAnnotation() {
-		this.getJavaResourceType().removeAnnotation(InheritanceAnnotation.ANNOTATION_NAME);
+		this.getJavaResourceType().removeAnnotation(InheritanceAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 
@@ -782,7 +782,7 @@ public abstract class AbstractJavaEntity
 	// ********** discriminator value annotation **********
 
 	protected DiscriminatorValueAnnotation getDiscriminatorValueAnnotation() {
-		return (DiscriminatorValueAnnotation) this.getJavaResourceType().getNonNullAnnotation(DiscriminatorValueAnnotation.ANNOTATION_NAME);
+		return (DiscriminatorValueAnnotation) this.getJavaResourceType().getNonNullAnnotation(DiscriminatorValueAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected void removeDiscriminatorValueAnnotationIfUnset() {
@@ -792,7 +792,7 @@ public abstract class AbstractJavaEntity
 	}
 
 	protected void removeDiscriminatorValueAnnotation() {
-		this.getJavaResourceType().removeAnnotation(DiscriminatorValueAnnotation.ANNOTATION_NAME);
+		this.getJavaResourceType().removeAnnotation(DiscriminatorValueAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 
@@ -843,11 +843,11 @@ public abstract class AbstractJavaEntity
 	// ********** discriminator value annotation **********
 
 	protected DiscriminatorColumnAnnotation getDiscriminatorColumnAnnotation() {
-		return (DiscriminatorColumnAnnotation) this.getJavaResourceType().getNonNullAnnotation(DiscriminatorColumnAnnotation.ANNOTATION_NAME);
+		return (DiscriminatorColumnAnnotation) this.getJavaResourceType().getNonNullAnnotation(DiscriminatorColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected void removeDiscriminatorColumnAnnotation() {
-		this.getJavaResourceType().removeAnnotation(DiscriminatorColumnAnnotation.ANNOTATION_NAME);
+		this.getJavaResourceType().removeAnnotation(DiscriminatorColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 

@@ -12,6 +12,7 @@ package org.eclipse.jpt.jpa.core.context.java;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceAttribute;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceField;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceMethod;
+import org.eclipse.jpt.jpa.core.JpaProject;
 import org.eclipse.jpt.jpa.core.context.CollectionMapping;
 import org.eclipse.jpt.jpa.core.context.SpecifiedPersistentAttribute;
 import org.eclipse.jpt.jpa.core.jpa2.resource.java.JPA2_0;
@@ -141,7 +142,7 @@ public interface JavaSpecifiedPersistentAttribute
 				return null;
 			}
 			public String getMetamodelContainerFieldTypeName() {
-				return JPA2_0.COLLECTION_ATTRIBUTE;
+				return JPA2_0.COLLECTION_ATTRIBUTE.apply(JpaProject.FACET_VERSION);
 			}
 			public String getMetamodelContainerFieldMapKeyTypeName(CollectionMapping mapping) {
 				return null;

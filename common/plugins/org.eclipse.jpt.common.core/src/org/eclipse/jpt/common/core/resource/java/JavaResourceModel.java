@@ -10,12 +10,15 @@
 package org.eclipse.jpt.common.core.resource.java;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jpt.common.core.AnnotationProvider;
 import org.eclipse.jpt.common.core.JptResourceModel;
 import org.eclipse.jpt.common.core.utility.TextRange;
 import org.eclipse.jpt.common.utility.internal.transformer.TransformerAdapter;
 import org.eclipse.jpt.common.utility.model.Model;
 import org.eclipse.jpt.common.utility.transformer.Transformer;
+import org.eclipse.wst.common.componentcore.internal.util.FacetedProjectUtilities;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * Common interface for Java resource nodes (source code or binary).
@@ -76,7 +79,16 @@ public interface JavaResourceModel
 		extends JavaResourceModel, JptResourceModel
 	{
 		/**
-		 * Return the root's Java resource "abstract" types.
+		 * Return the root
+		IProject project = getProject();
+		IProjectFacetVersion version = project != null
+				? FacetedProjectUtilities.getProjectFacetVersion(project, FACET_ID)
+				: null;
+		if (version == null) {
+			version = FACET_VERSION;
+		}
+		return version;
+	's Java resource "abstract" types.
 		 */
 		Iterable<JavaResourceAbstractType> getTypes();
 			String TYPES_COLLECTION = "types"; //$NON-NLS-1$

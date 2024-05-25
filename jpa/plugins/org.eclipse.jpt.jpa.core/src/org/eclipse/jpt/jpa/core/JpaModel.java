@@ -9,10 +9,13 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jpt.common.utility.internal.predicate.CriterionPredicate;
 import org.eclipse.jpt.common.utility.model.Model;
+import org.eclipse.wst.common.componentcore.internal.util.FacetedProjectUtilities;
+import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 
 /**
  * JPA-specific protocol. All JPA objects belong to a JPA project, are
@@ -87,5 +90,9 @@ public interface JpaModel
 		public boolean evaluate(JpaModel jpaModel) {
 			return jpaModel.getJpaProject().getJpaPlatform().getJpaVersion().isCompatibleWithJpaVersion(this.criterion);
 		}
+	}
+
+	default IProjectFacetVersion getProjectFacetVersion() {
+		return getJpaProject().getProjectFacetVersion();
 	}
 }

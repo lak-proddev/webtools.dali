@@ -130,7 +130,7 @@ public abstract class AbstractJavaPersistentType
 	}
 
 	protected String getAccessAnnotationName() {
-		return AccessAnnotation2_0.ANNOTATION_NAME;
+		return AccessAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 
 

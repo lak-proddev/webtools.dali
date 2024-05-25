@@ -159,14 +159,14 @@ public abstract class AbstractJavaIdMapping
 	}
 
 	protected GeneratedValueAnnotation buildGeneratedValueAnnotation() {
-		return (GeneratedValueAnnotation) this.getResourceAttribute().addAnnotation(GeneratedValueAnnotation.ANNOTATION_NAME);
+		return (GeneratedValueAnnotation) this.getResourceAttribute().addAnnotation(GeneratedValueAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	public void removeGeneratedValue() {
 		if (this.generatedValue == null) {
 			throw new IllegalStateException("generated value does not exist"); //$NON-NLS-1$
 		}
-		this.getResourceAttribute().removeAnnotation(GeneratedValueAnnotation.ANNOTATION_NAME);
+		this.getResourceAttribute().removeAnnotation(GeneratedValueAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 		this.setGeneratedValue(null);
 	}
 
@@ -176,7 +176,7 @@ public abstract class AbstractJavaIdMapping
 	}
 
 	protected GeneratedValueAnnotation getGeneratedValueAnnotation() {
-		return (GeneratedValueAnnotation) this.getResourceAttribute().getAnnotation(GeneratedValueAnnotation.ANNOTATION_NAME);
+		return (GeneratedValueAnnotation) this.getResourceAttribute().getAnnotation(GeneratedValueAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected JavaGeneratedValue buildGeneratedValue(GeneratedValueAnnotation generatedValueAnnotation) {
@@ -343,7 +343,7 @@ public abstract class AbstractJavaIdMapping
 
 	@Override
 	protected String getAnnotationName() {
-		return IdAnnotation.ANNOTATION_NAME;
+		return IdAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 
 	@Override
@@ -352,7 +352,7 @@ public abstract class AbstractJavaIdMapping
 	}
 
 	protected boolean columnIsSpecified() {
-		return this.getResourceAttribute().getAnnotation(ColumnAnnotation.ANNOTATION_NAME) != null;
+		return this.getResourceAttribute().getAnnotation(ColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion())) != null;
 	}
 
 	@Override
@@ -368,11 +368,11 @@ public abstract class AbstractJavaIdMapping
 	}
 
 	public ColumnAnnotation getColumnAnnotation() {
-		return (ColumnAnnotation) this.getResourceAttribute().getNonNullAnnotation(ColumnAnnotation.ANNOTATION_NAME);
+		return (ColumnAnnotation) this.getResourceAttribute().getNonNullAnnotation(ColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	public void removeColumnAnnotation() {
-		this.getResourceAttribute().removeAnnotation(ColumnAnnotation.ANNOTATION_NAME);
+		this.getResourceAttribute().removeAnnotation(ColumnAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	public String getDefaultColumnName(NamedColumn col) {

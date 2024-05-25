@@ -38,7 +38,7 @@ public final class BinaryConverterAnnotation2_1
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return ANNOTATION_NAME.apply(getParent());
 	}
 	
 	//************* Converter2_1Annotation implementation *************

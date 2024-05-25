@@ -77,14 +77,14 @@ public class GenericJavaGeneratorContainer
 	}
 
 	protected SequenceGeneratorAnnotation buildSequenceGeneratorAnnotation() {
-		return (SequenceGeneratorAnnotation) this.parent.getResourceAnnotatedElement().addAnnotation(SequenceGeneratorAnnotation.ANNOTATION_NAME);
+		return (SequenceGeneratorAnnotation) this.parent.getResourceAnnotatedElement().addAnnotation(SequenceGeneratorAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	public void removeSequenceGenerator() {
 		if (this.sequenceGenerator == null) {
 			throw new IllegalStateException("sequence generator does not exist"); //$NON-NLS-1$
 		}
-		this.parent.getResourceAnnotatedElement().removeAnnotation(SequenceGeneratorAnnotation.ANNOTATION_NAME);
+		this.parent.getResourceAnnotatedElement().removeAnnotation(SequenceGeneratorAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 		this.setSequenceGenerator(null);
 	}
 
@@ -94,7 +94,7 @@ public class GenericJavaGeneratorContainer
 	}
 
 	protected SequenceGeneratorAnnotation getSequenceGeneratorAnnotation() {
-		return (SequenceGeneratorAnnotation) this.parent.getResourceAnnotatedElement().getAnnotation(SequenceGeneratorAnnotation.ANNOTATION_NAME);
+		return (SequenceGeneratorAnnotation) this.parent.getResourceAnnotatedElement().getAnnotation(SequenceGeneratorAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected JavaSequenceGenerator buildSequenceGenerator(SequenceGeneratorAnnotation sequenceGeneratorAnnotation) {
@@ -142,14 +142,14 @@ public class GenericJavaGeneratorContainer
 	}
 
 	protected TableGeneratorAnnotation buildTableGeneratorAnnotation() {
-		return (TableGeneratorAnnotation) this.parent.getResourceAnnotatedElement().addAnnotation(TableGeneratorAnnotation.ANNOTATION_NAME);
+		return (TableGeneratorAnnotation) this.parent.getResourceAnnotatedElement().addAnnotation(TableGeneratorAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	public void removeTableGenerator() {
 		if (this.tableGenerator == null) {
 			throw new IllegalStateException("table generator does not exist"); //$NON-NLS-1$
 		}
-		this.parent.getResourceAnnotatedElement().removeAnnotation(TableGeneratorAnnotation.ANNOTATION_NAME);
+		this.parent.getResourceAnnotatedElement().removeAnnotation(TableGeneratorAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 		this.setTableGenerator(null);
 	}
 
@@ -159,7 +159,7 @@ public class GenericJavaGeneratorContainer
 	}
 
 	protected TableGeneratorAnnotation getTableGeneratorAnnotation() {
-		return (TableGeneratorAnnotation) this.parent.getResourceAnnotatedElement().getAnnotation(TableGeneratorAnnotation.ANNOTATION_NAME);
+		return (TableGeneratorAnnotation) this.parent.getResourceAnnotatedElement().getAnnotation(TableGeneratorAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected JavaTableGenerator buildTableGenerator(TableGeneratorAnnotation tableGeneratorAnnotation) {

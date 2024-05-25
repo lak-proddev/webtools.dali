@@ -77,7 +77,7 @@ public class GenericJavaAssociationOverrideContainer
 
 	@Override
 	protected String getOverrideAnnotationName() {
-		return AssociationOverrideAnnotation.ANNOTATION_NAME;
+		return AssociationOverrideAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion());
 	}
 
 	@Override

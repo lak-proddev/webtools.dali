@@ -358,7 +358,7 @@ public abstract class AbstractJavaMultiRelationshipMapping<A extends Relationshi
 	// ********** map key annotation **********
 
 	protected MapKeyAnnotation getMapKeyAnnotation() {
-		return (MapKeyAnnotation) this.getResourceAttribute().getAnnotation(MapKeyAnnotation.ANNOTATION_NAME);
+		return (MapKeyAnnotation) this.getResourceAttribute().getAnnotation(MapKeyAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected MapKeyAnnotation getMapKeyAnnotationForUpdate() {
@@ -367,11 +367,11 @@ public abstract class AbstractJavaMultiRelationshipMapping<A extends Relationshi
 	}
 
 	protected MapKeyAnnotation addMapKeyAnnotation() {
-		return (MapKeyAnnotation) this.getResourceAttribute().addAnnotation(MapKeyAnnotation.ANNOTATION_NAME);
+		return (MapKeyAnnotation) this.getResourceAttribute().addAnnotation(MapKeyAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected void removeMapKeyAnnotation() {
-		this.getResourceAttribute().removeAnnotation(MapKeyAnnotation.ANNOTATION_NAME);
+		this.getResourceAttribute().removeAnnotation(MapKeyAnnotation.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 
@@ -470,15 +470,15 @@ public abstract class AbstractJavaMultiRelationshipMapping<A extends Relationshi
 	}
 
 	protected MapKeyClassAnnotation2_0 getMapKeyClassAnnotation_() {
-		return (MapKeyClassAnnotation2_0) this.getResourceAttribute().getAnnotation(MapKeyClassAnnotation2_0.ANNOTATION_NAME);
+		return (MapKeyClassAnnotation2_0) this.getResourceAttribute().getAnnotation(MapKeyClassAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected MapKeyClassAnnotation2_0 addMapKeyClassAnnotation() {
-		return (MapKeyClassAnnotation2_0) this.getResourceAttribute().addAnnotation(MapKeyClassAnnotation2_0.ANNOTATION_NAME);
+		return (MapKeyClassAnnotation2_0) this.getResourceAttribute().addAnnotation(MapKeyClassAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected void removeMapKeyClassAnnotation() {
-		this.getResourceAttribute().removeAnnotation(MapKeyClassAnnotation2_0.ANNOTATION_NAME);
+		this.getResourceAttribute().removeAnnotation(MapKeyClassAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 
@@ -559,7 +559,7 @@ public abstract class AbstractJavaMultiRelationshipMapping<A extends Relationshi
 	}
 
 	protected MapKeyColumnAnnotation2_0 getMapKeyColumnAnnotation_() {
-		return (MapKeyColumnAnnotation2_0) this.getResourceAttribute().getNonNullAnnotation(MapKeyColumnAnnotation2_0.ANNOTATION_NAME);
+		return (MapKeyColumnAnnotation2_0) this.getResourceAttribute().getNonNullAnnotation(MapKeyColumnAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected void removeMapKeyColumnAnnotation() {
@@ -571,7 +571,7 @@ public abstract class AbstractJavaMultiRelationshipMapping<A extends Relationshi
 	}
 
 	protected void removeMapKeyColumnAnnotation_() {
-		this.getResourceAttribute().removeAnnotation(MapKeyColumnAnnotation2_0.ANNOTATION_NAME);
+		this.getResourceAttribute().removeAnnotation(MapKeyColumnAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 
@@ -823,19 +823,19 @@ public abstract class AbstractJavaMultiRelationshipMapping<A extends Relationshi
 	}
 
 	protected ListIterable<NestableAnnotation> getNestableMapKeyJoinColumnAnnotations() {
-		return this.getResourceAttribute().getAnnotations(MapKeyJoinColumnAnnotation2_0.ANNOTATION_NAME);
+		return this.getResourceAttribute().getAnnotations(MapKeyJoinColumnAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected MapKeyJoinColumnAnnotation2_0 addMapKeyJoinColumnAnnotation(int index) {
-		return (MapKeyJoinColumnAnnotation2_0) this.getResourceAttribute().addAnnotation(index, MapKeyJoinColumnAnnotation2_0.ANNOTATION_NAME);
+		return (MapKeyJoinColumnAnnotation2_0) this.getResourceAttribute().addAnnotation(index, MapKeyJoinColumnAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected void removeMapKeyJoinColumnAnnotation(int index) {
-		this.getResourceAttribute().removeAnnotation(index, MapKeyJoinColumnAnnotation2_0.ANNOTATION_NAME);
+		this.getResourceAttribute().removeAnnotation(index, MapKeyJoinColumnAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected void moveMapKeyJoinColumnAnnotation(int targetIndex, int sourceIndex) {
-		this.getResourceAttribute().moveAnnotation(targetIndex, sourceIndex, MapKeyJoinColumnAnnotation2_0.ANNOTATION_NAME);
+		this.getResourceAttribute().moveAnnotation(targetIndex, sourceIndex, MapKeyJoinColumnAnnotation2_0.ANNOTATION_NAME.apply(getProjectFacetVersion()));
 	}
 
 	protected MapKeyJoinColumnAnnotation2_0 buildNullMapKeyJoinColumnAnnotation() {

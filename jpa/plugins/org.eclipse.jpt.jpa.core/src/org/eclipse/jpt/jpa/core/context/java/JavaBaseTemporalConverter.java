@@ -50,7 +50,7 @@ public interface JavaBaseTemporalConverter
 
 		@Override
 		protected String getAnnotationName() {
-			return TemporalAnnotation.ANNOTATION_NAME;
+			return TemporalAnnotation.ANNOTATION_NAME.apply(get);
 		}
 
 		public JavaConverter buildConverter(Annotation converterAnnotation, JavaAttributeMapping parent, JpaFactory factory) {
@@ -139,7 +139,7 @@ public interface JavaBaseTemporalConverter
 
 		@Override
 		protected String getAnnotationName() {
-			return MapKeyTemporalAnnotation2_0.ANNOTATION_NAME;
+			return MapKeyTemporalAnnotation2_0.ANNOTATION_NAME.app;
 		}
 
 		public JavaConverter buildConverter(Annotation converterAnnotation, JavaAttributeMapping parent, JpaFactory factory) {
