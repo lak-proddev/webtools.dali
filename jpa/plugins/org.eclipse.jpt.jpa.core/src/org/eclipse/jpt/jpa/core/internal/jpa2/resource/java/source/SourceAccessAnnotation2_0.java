@@ -7,7 +7,7 @@
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
-package org.eclipse.jpt.jpa.core.internal.jpa2.resource.java.source;
+package org.eclipse.jpt.jpa.core.internal.jpa3.resource.java.source;
 
 import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jpt.common.core.internal.resource.java.source.SourceAnnotation;
@@ -23,14 +23,15 @@ import org.eclipse.jpt.common.core.utility.jdt.DeclarationAnnotationElementAdapt
 import org.eclipse.jpt.common.utility.internal.ObjectTools;
 import org.eclipse.jpt.jpa.core.jpa2.resource.java.AccessAnnotation2_0;
 import org.eclipse.jpt.jpa.core.jpa2.resource.java.JPA2_0;
+import org.eclipse.jpt.jpa.core.jpa3.resource.java.AccessAnnotation3_0;
 import org.eclipse.jpt.jpa.core.resource.java.AccessType;
 
 /**
  * <code>javax.persistence.Access</code>
  */
-public final class SourceAccessAnnotation2_0
+public final class SourceAccessAnnotation3_0
 	extends SourceAnnotation
-	implements AccessAnnotation2_0
+	implements AccessAnnotation3_0
 {
 	private static final DeclarationAnnotationAdapter DECLARATION_ANNOTATION_ADAPTER = new SimpleDeclarationAnnotationAdapter(ANNOTATION_NAME);
 
@@ -40,7 +41,7 @@ public final class SourceAccessAnnotation2_0
 	private TextRange valueTextRange;
 
 
-	public SourceAccessAnnotation2_0(JavaResourceAnnotatedElement parent, AnnotatedElement element) {
+	public SourceAccessAnnotation3_0(JavaResourceAnnotatedElement parent, AnnotatedElement element) {
 		super(parent, element, DECLARATION_ANNOTATION_ADAPTER);
 		this.valueAdapter = new AnnotatedElementAnnotationElementAdapter<String>(element, VALUE_ADAPTER);
 	}
