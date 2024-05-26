@@ -12,28 +12,29 @@ package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 import org.eclipse.jpt.common.utility.iterable.ListIterable;
 import org.eclipse.jpt.jpa.core.context.java.JavaAttributeOverrideContainer;
 import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedJoinColumn;
-import org.eclipse.jpt.jpa.core.jpa2.context.CollectionMapping2_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.CollectionMapping3_0;
 
 /**
  * Java collection mapping (e.g. 1:m, m:m, element collection)
  * <p>
- * Provisional API: This interface is part of an interim API that is still
- * under development and expected to change significantly before reaching
- * stability. It is available at this early stage to solicit feedback from
- * pioneering adopters on the understanding that any code that uses this API
- * will almost certainly be broken (repeatedly) as the API evolves.
+ * Provisional API: This interface is part of an interim API that is still under
+ * development and expected to change significantly before reaching stability.
+ * It is available at this early stage to solicit feedback from pioneering
+ * adopters on the understanding that any code that uses this API will almost
+ * certainly be broken (repeatedly) as the API evolves.
  * 
  * @version 3.3
  * @since 2.3
  */
-public interface JavaCollectionMapping3_0
-	extends CollectionMapping2_0, JavaConvertibleKeyMapping3_0
-{
+public interface JavaCollectionMapping3_0 extends CollectionMapping3_0, JavaConvertibleKeyMapping3_0 {
 	JavaAttributeOverrideContainer getMapKeyAttributeOverrideContainer();
-	
+
 	ListIterable<? extends JavaSpecifiedJoinColumn> getSpecifiedMapKeyJoinColumns();
+
 	JavaSpecifiedJoinColumn getSpecifiedMapKeyJoinColumn(int index);
+
 	JavaSpecifiedJoinColumn addSpecifiedMapKeyJoinColumn();
+
 	JavaSpecifiedJoinColumn addSpecifiedMapKeyJoinColumn(int index);
 
 	JavaSpecifiedJoinColumn getDefaultMapKeyJoinColumn();

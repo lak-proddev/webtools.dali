@@ -11,36 +11,31 @@ package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 
 import org.eclipse.jpt.jpa.core.context.NamedColumn;
 import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedNamedColumn;
-import org.eclipse.jpt.jpa.core.jpa2.context.SpecifiedOrderColumn2_0;
-import org.eclipse.jpt.jpa.core.jpa2.resource.java.OrderColumnAnnotation2_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.SpecifiedOrderColumn3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.OrderColumnAnnotation3_0;
 
 /**
  * Java specified order column
  * <p>
- * Provisional API: This interface is part of an interim API that is still
- * under development and expected to change significantly before reaching
- * stability. It is available at this early stage to solicit feedback from
- * pioneering adopters on the understanding that any code that uses this API
- * will almost certainly be broken (repeatedly) as the API evolves.
+ * Provisional API: This interface is part of an interim API that is still under
+ * development and expected to change significantly before reaching stability.
+ * It is available at this early stage to solicit feedback from pioneering
+ * adopters on the understanding that any code that uses this API will almost
+ * certainly be broken (repeatedly) as the API evolves.
  * 
  * @version 2.3
  * @since 2.3
  */
-public interface JavaSpecifiedOrderColumn3_0
-	extends SpecifiedOrderColumn2_0, JavaSpecifiedNamedColumn
-{
-	OrderColumnAnnotation2_0 getColumnAnnotation();
-
+public interface JavaSpecifiedOrderColumn3_0 extends SpecifiedOrderColumn3_0, JavaSpecifiedNamedColumn {
+	OrderColumnAnnotation3_0 getColumnAnnotation();
 
 	// ********** parent adapter **********
 
 	/**
 	 * interface allowing order columns to be used in multiple places
 	 */
-	interface ParentAdapter
-		extends NamedColumn.ParentAdapter
-	{
-		OrderColumnAnnotation2_0 getColumnAnnotation();
+	interface ParentAdapter extends NamedColumn.ParentAdapter {
+		OrderColumnAnnotation3_0 getColumnAnnotation();
 		void removeColumnAnnotation();
 	}
 }

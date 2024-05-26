@@ -10,6 +10,7 @@
 package org.eclipse.jpt.jpa.core.internal.jpa1.context.java;
 
 import java.util.List;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceAttribute;
 import org.eclipse.jpt.common.core.utility.TextRange;
@@ -20,12 +21,12 @@ import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedPersistentAttribute;
 import org.eclipse.jpt.jpa.core.internal.context.JpaValidator;
 import org.eclipse.jpt.jpa.core.internal.context.java.AbstractJavaContextModel;
 import org.eclipse.jpt.jpa.core.internal.jpa2.context.OrderColumnValidator;
-import org.eclipse.jpt.jpa.core.internal.jpa2.context.java.GenericJavaOrderColumn2_0;
-import org.eclipse.jpt.jpa.core.internal.jpa2.resource.java.OrderColumnAnnotationDefinition2_0;
-import org.eclipse.jpt.jpa.core.jpa2.context.SpecifiedOrderColumn2_0;
-import org.eclipse.jpt.jpa.core.jpa2.context.java.JavaOrderable2_0;
-import org.eclipse.jpt.jpa.core.jpa2.context.java.JavaSpecifiedOrderColumn2_0;
-import org.eclipse.jpt.jpa.core.jpa2.resource.java.OrderColumnAnnotation2_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaOrderColumn3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.resource.java.OrderColumnAnnotationDefinition3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.SpecifiedOrderColumn3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaOrderable3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaSpecifiedOrderColumn3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.OrderColumnAnnotation3_0;
 import org.eclipse.jpt.jpa.core.resource.java.JPA;
 import org.eclipse.jpt.jpa.core.resource.java.OrderByAnnotation;
 import org.eclipse.jpt.jpa.core.validation.JptJpaCoreValidationMessages;
@@ -37,51 +38,47 @@ import org.eclipse.wst.validation.internal.provisional.core.IReporter;
  * Java ordering
  * <p>
  * <strong>(JPA 2.0 only) NB:</strong> If both the "order by" and the "order
- * column" annotations are present (which is prohibited by the JPA spec),
- * order by is ignored (although the model is still there)
+ * column" annotations are present (which is prohibited by the JPA spec), order
+ * by is ignored (although the model is still there)
  */
-public class GenericJavaOrderable
-		extends AbstractJavaContextModel<JavaAttributeMapping>
-		implements JavaOrderable2_0 {
-	
-	protected final JavaOrderable2_0.ParentAdapter parentAdapter;
-	
+public class GenericJavaOrderable extends AbstractJavaContextModel<JavaAttributeMapping> implements JavaOrderable3_0 {
+
+	protected final JavaOrderable3_0.ParentAdapter parentAdapter;
+
 	protected boolean noOrdering = false;
-	
+
 	protected boolean orderByOrdering = false;
 	// never null
 	protected OrderBy orderBy;
-	
+
 	protected boolean orderColumnOrdering = false;
 	// never null
-	protected JavaSpecifiedOrderColumn2_0 orderColumn;
+	protected JavaSpecifiedOrderColumn3_0 orderColumn;
 	// JPA 1.0
-	protected OrderColumnAnnotation2_0 nullOrderColumnAnnotation;
-	
-	
+	protected OrderColumnAnnotation3_0 nullOrderColumnAnnotation;
+
 	/**
 	 * JPA 1.0
 	 */
 	public GenericJavaOrderable(JavaAttributeMapping parent) {
-		this(new JavaOrderable2_0.ParentAdapter.Null(parent));
+		this(new JavaOrderable3_0.ParentAdapter.Null(parent));
 	}
-	
+
 	/**
 	 * JPA 2.0
 	 */
-	public GenericJavaOrderable(JavaOrderable2_0.ParentAdapter parentAdapter) {
+	public GenericJavaOrderable(JavaOrderable3_0.ParentAdapter parentAdapter) {
 		super(parentAdapter.getOrderableParent());
-		
+
 		this.parentAdapter = parentAdapter;
-		
+
 		initNoOrdering();
 		initOrderBy();
 		initOrderColumn();
 	}
-	
-	
+
 	// ********** synchronize/update **********
-	
+
 	@Override
 	public void synchronizeWithResourceModel(IProgressMonitor monitor) {
 		super.synchronizeWithResourceModel(monitor);
@@ -96,123 +93,120 @@ public class GenericJavaOrderable
 		this.updateOrderBy(monitor);
 		this.updateOrderColumn(monitor);
 	}
-	
-	
+
 	// ****** no ordering *****
-	
+
 	public boolean isNoOrdering() {
 		return this.noOrdering;
 	}
-	
+
 	public void setNoOrdering() {
 		removeOrderColumnAnnotation();
 		removeOrderByAnnotation();
-		
+
 		setNoOrdering_(true);
 		this.orderBy.setKey(null);
 		setOrderByOrdering_(false);
 		setOrderColumnOrdering_(false);
 	}
-	
+
 	protected void setNoOrdering_(boolean noOrdering) {
 		boolean old = this.noOrdering;
 		this.noOrdering = noOrdering;
 		this.firePropertyChanged(NO_ORDERING_PROPERTY, old, noOrdering);
 	}
-	
+
 	protected void initNoOrdering() {
 		this.noOrdering = buildNoOrdering();
 	}
-	
+
 	protected void syncNoOrdering() {
 		setNoOrdering_(buildNoOrdering());
 	}
-	
+
 	protected boolean buildNoOrdering() {
-		return isJpa2_0Compatible() ? buildNoOrdering2_0() : buildNoOrdering1_0();
+		return isJpa3_0Compatible() ? buildNoOrdering3_0() : buildNoOrdering1_0();
 	}
-	
+
 	/**
 	 * both annotations are missing
 	 */
-	protected boolean buildNoOrdering2_0() {
+	protected boolean buildNoOrdering3_0() {
 		return getOrderByAnnotation() == null && getOrderColumnAnnotation() == null;
 	}
-	
+
 	/**
 	 * the order-by annotation is missing
 	 */
 	protected boolean buildNoOrdering1_0() {
 		return getOrderByAnnotation() == null;
 	}
-	
-	
+
 	// ***** order-by ordering *****
-	
+
 	public boolean isOrderByOrdering() {
 		return this.orderByOrdering;
 	}
-	
+
 	public void setOrderByOrdering() {
 		removeOrderColumnAnnotation();
 		if (getOrderByAnnotation() == null) {
 			addOrderByAnnotation();
 		}
-		
+
 		setNoOrdering_(false);
 		setOrderByOrdering_(true);
 		setOrderColumnOrdering_(false);
 	}
-	
+
 	protected void setOrderByOrdering_(boolean orderByOrdering) {
 		boolean old = this.orderByOrdering;
 		this.orderByOrdering = orderByOrdering;
 		firePropertyChanged(ORDER_BY_ORDERING_PROPERTY, old, orderByOrdering);
 	}
-	
+
 	public OrderBy getOrderBy() {
 		return this.orderBy;
 	}
-	
+
 	protected void initOrderBy() {
 		this.orderByOrdering = buildOrderByOrdering();
 		this.orderBy = buildOrderBy();
 	}
-	
+
 	protected void syncOrderBy(IProgressMonitor monitor) {
 		setOrderByOrdering_(buildOrderByOrdering());
 		this.orderBy.synchronizeWithResourceModel(monitor);
 	}
-	
+
 	protected void updateOrderBy(IProgressMonitor monitor) {
 		this.orderBy.update(monitor);
 	}
-	
+
 	protected boolean buildOrderByOrdering() {
-		return isJpa2_0Compatible() ? buildOrderByOrdering2_0() : buildOrderByOrdering1_0();
+		return isJpa3_0Compatible() ? buildOrderByOrdering3_0() : buildOrderByOrdering1_0();
 	}
-	
+
 	/**
 	 * OrderBy annotation is present, but OrderColumn is absent
 	 */
-	protected boolean buildOrderByOrdering2_0() {
+	protected boolean buildOrderByOrdering3_0() {
 		return getOrderByAnnotation() != null && getOrderColumnAnnotation() == null;
 	}
-	
+
 	/**
 	 * OrderBy annotation is present
 	 */
 	protected boolean buildOrderByOrdering1_0() {
 		return getOrderByAnnotation() != null;
 	}
-	
+
 	protected OrderBy buildOrderBy() {
 		return new GenericJavaOrderBy(this, new OrderByContext());
 	}
-	
-	protected class OrderByContext
-			implements GenericJavaOrderBy.Context {
-		
+
+	protected class OrderByContext implements GenericJavaOrderBy.Context {
+
 		public OrderByAnnotation getAnnotation(boolean addIfAbsent) {
 			OrderByAnnotation annotation = GenericJavaOrderable.this.getOrderByAnnotation();
 			if (annotation == null && addIfAbsent) {
@@ -221,37 +215,35 @@ public class GenericJavaOrderable
 			return annotation;
 		}
 	}
-	
-	
+
 	// ***** order by annotation *****
-	
+
 	protected OrderByAnnotation getOrderByAnnotation() {
 		return (OrderByAnnotation) this.getResourceAttribute().getAnnotation(JPA.ORDER_BY);
 	}
-	
+
 	protected OrderByAnnotation addOrderByAnnotation() {
 		return (OrderByAnnotation) this.getResourceAttribute().addAnnotation(JPA.ORDER_BY);
 	}
-	
+
 	protected void removeOrderByAnnotation() {
-		if (getResourceAttribute().getAnnotation(JPA.ORDER_BY) != null) { 
+		if (getResourceAttribute().getAnnotation(JPA.ORDER_BY) != null) {
 			getResourceAttribute().removeAnnotation(JPA.ORDER_BY);
 		}
 	}
-	
-	
+
 	// ***** order column ordering *****
-	
+
 	public boolean isOrderColumnOrdering() {
 		return this.orderColumnOrdering;
 	}
-	
+
 	public void setOrderColumnOrdering() {
 		removeOrderByAnnotation();
 		if (getOrderColumnAnnotation() == null) {
 			addOrderColumnAnnotation();
 		}
-		
+
 		setNoOrdering_(false);
 		setOrderByOrdering_(false);
 		this.orderBy.setKey(null);
@@ -263,198 +255,186 @@ public class GenericJavaOrderable
 		this.orderColumnOrdering = orderColumnOrdering;
 		this.firePropertyChanged(ORDER_COLUMN_ORDERING_PROPERTY, old, orderColumnOrdering);
 	}
-	
-	public JavaSpecifiedOrderColumn2_0 getOrderColumn() {
+
+	public JavaSpecifiedOrderColumn3_0 getOrderColumn() {
 		return this.orderColumn;
 	}
-	
+
 	protected void initOrderColumn() {
 		this.orderColumnOrdering = buildOrderColumnOrdering();
 		this.orderColumn = buildOrderColumn();
 	}
-	
+
 	protected void syncOrderColumn(IProgressMonitor monitor) {
 		setOrderColumnOrdering_(buildOrderColumnOrdering());
 		this.orderColumn.synchronizeWithResourceModel(monitor);
 	}
-	
+
 	protected void updateOrderColumn(IProgressMonitor monitor) {
 		this.orderColumn.update(monitor);
 	}
-	
+
 	/**
 	 * Only true if JPA 2.0 *and* annotation is present
 	 */
 	protected boolean buildOrderColumnOrdering() {
-		return isJpa2_0Compatible() ? getOrderColumnAnnotation() != null : false;
+		return isJpa3_0Compatible() ? getOrderColumnAnnotation() != null : false;
 	}
-	
-	protected JavaSpecifiedOrderColumn2_0 buildOrderColumn() {
-		JavaSpecifiedOrderColumn2_0.ParentAdapter columnParentAdapter = new OrderColumnParentAdapter();
-		return isJpa2_0Compatible() ?
-				getJpaFactory2_0().buildJavaOrderColumn(columnParentAdapter) :
-				new GenericJavaOrderColumn2_0(columnParentAdapter);
+
+	protected JavaSpecifiedOrderColumn3_0 buildOrderColumn() {
+		JavaSpecifiedOrderColumn3_0.ParentAdapter columnParentAdapter = new OrderColumnParentAdapter();
+		return isJpa3_0Compatible() ? getJpaFactory3_0().buildJavaOrderColumn(columnParentAdapter)
+				: new GenericJavaOrderColumn3_0(columnParentAdapter);
 	}
-	
-	
+
 	// ***** order column annotation *****
-	
-	protected OrderColumnAnnotation2_0 getOrderColumnAnnotation() {
-		return (OrderColumnAnnotation2_0) this.getResourceAttribute().getAnnotation(OrderColumnAnnotation2_0.ANNOTATION_NAME);
+
+	protected OrderColumnAnnotation3_0 getOrderColumnAnnotation() {
+		return (OrderColumnAnnotation3_0) this.getResourceAttribute()
+				.getAnnotation(OrderColumnAnnotation3_0.ANNOTATION_NAME);
 	}
-	
-	protected OrderColumnAnnotation2_0 addOrderColumnAnnotation() {
-		return (OrderColumnAnnotation2_0) this.getResourceAttribute().addAnnotation(OrderColumnAnnotation2_0.ANNOTATION_NAME);
+
+	protected OrderColumnAnnotation3_0 addOrderColumnAnnotation() {
+		return (OrderColumnAnnotation3_0) this.getResourceAttribute()
+				.addAnnotation(OrderColumnAnnotation3_0.ANNOTATION_NAME);
 	}
-	
+
 	protected void removeOrderColumnAnnotation() {
-		if (getResourceAttribute().getAnnotation(OrderColumnAnnotation2_0.ANNOTATION_NAME) != null) {
-			getResourceAttribute().removeAnnotation(OrderColumnAnnotation2_0.ANNOTATION_NAME);
+		if (getResourceAttribute().getAnnotation(OrderColumnAnnotation3_0.ANNOTATION_NAME) != null) {
+			getResourceAttribute().removeAnnotation(OrderColumnAnnotation3_0.ANNOTATION_NAME);
 		}
 	}
-	
+
 	/**
 	 * If we are in a JPA 1.0 project, return a <em>null</em> annotation.
 	 */
-	public OrderColumnAnnotation2_0 getNonNullOrderColumnAnnotation() {
+	public OrderColumnAnnotation3_0 getNonNullOrderColumnAnnotation() {
 		// hmmmm...
-		return this.isJpa2_0Compatible() ?
-				(OrderColumnAnnotation2_0) this.getResourceAttribute().getNonNullAnnotation(OrderColumnAnnotation2_0.ANNOTATION_NAME) :
-				this.getNullOrderColumnAnnotation();
+		return this.isJpa3_0Compatible()
+				? (OrderColumnAnnotation3_0) this.getResourceAttribute()
+						.getNonNullAnnotation(OrderColumnAnnotation3_0.ANNOTATION_NAME)
+				: this.getNullOrderColumnAnnotation();
 	}
-	
-	protected OrderColumnAnnotation2_0 getNullOrderColumnAnnotation() {
+
+	protected OrderColumnAnnotation3_0 getNullOrderColumnAnnotation() {
 		if (this.nullOrderColumnAnnotation == null) {
 			this.nullOrderColumnAnnotation = this.buildNullOrderColumnAnnotation();
 		}
 		return this.nullOrderColumnAnnotation;
 	}
-	
-	protected OrderColumnAnnotation2_0 buildNullOrderColumnAnnotation() {
+
+	protected OrderColumnAnnotation3_0 buildNullOrderColumnAnnotation() {
 		// hmmmm...
-		return (OrderColumnAnnotation2_0) OrderColumnAnnotationDefinition2_0.instance().buildNullAnnotation(this.getResourceAttribute());
+		return (OrderColumnAnnotation3_0) OrderColumnAnnotationDefinition3_0.instance()
+				.buildNullAnnotation(this.getResourceAttribute());
 	}
-	
-	
+
 	// ***** misc *****
-	
+
 	protected JavaAttributeMapping getAttributeMapping() {
 		return this.parent;
 	}
-	
+
 	protected JavaSpecifiedPersistentAttribute getPersistentAttribute() {
 		return this.getAttributeMapping().getPersistentAttribute();
 	}
-	
+
 	public JavaResourceAttribute getResourceAttribute() {
 		return this.getPersistentAttribute().getResourceAttribute();
 	}
-	
+
 	// JPA 2.0 only
 	public String getDefaultTableName() {
 		return this.parentAdapter.getTableName();
 	}
-	
+
 	// JPA 2.0 only
 	protected Table resolveDbTable(String tableName) {
 		return this.parentAdapter.resolveDbTable(tableName);
 	}
-	
-	
+
 	// ***** content assist *****
-	
+
 	@Override
 	public Iterable<String> getCompletionProposals(int pos) {
 		Iterable<String> result = super.getCompletionProposals(pos);
 		if (result != null) {
 			return result;
 		}
-		
+
 		return this.orderColumn.getCompletionProposals(pos);
 	}
-	
-	
+
 	// ***** validation *****
-	
+
 	public TextRange getValidationTextRange() {
 		TextRange textRange = this.getOrderByAnnotationTextRange();
 		return (textRange != null) ? textRange : this.getAttributeMapping().getValidationTextRange();
 	}
-	
+
 	protected TextRange getOrderByAnnotationTextRange() {
 		OrderByAnnotation orderByAnnotation = this.getOrderByAnnotation();
 		return (orderByAnnotation == null) ? null : orderByAnnotation.getTextRange();
 	}
-	
+
 	@Override
 	public void validate(List<IMessage> messages, IReporter reporter) {
 		super.validate(messages, reporter);
 		if ((getOrderColumnAnnotation() != null) && (getOrderByAnnotation() != null)) {
 			if (this.getPersistentAttribute().isVirtual()) {
-				messages.add(
-						this.buildValidationMessage(
-							this.getAttributeMapping(),
-							this.getPersistentAttribute().getValidationTextRange(),
-							JptJpaCoreValidationMessages.ORDER_COLUMN_AND_ORDER_BY_BOTH_SPECIFIED,
-							this.getPersistentAttribute().getName()
-						)
-					);
-			}
-			else {
-				messages.add(
-					this.buildValidationMessage(
-						this.getAttributeMapping(),
-						this.getOrderByAnnotationTextRange(),
+				messages.add(this.buildValidationMessage(this.getAttributeMapping(),
+						this.getPersistentAttribute().getValidationTextRange(),
 						JptJpaCoreValidationMessages.ORDER_COLUMN_AND_ORDER_BY_BOTH_SPECIFIED,
-						this.getPersistentAttribute().getName()
-					)
-				);
+						this.getPersistentAttribute().getName()));
+			} else {
+				messages.add(
+						this.buildValidationMessage(this.getAttributeMapping(), this.getOrderByAnnotationTextRange(),
+								JptJpaCoreValidationMessages.ORDER_COLUMN_AND_ORDER_BY_BOTH_SPECIFIED,
+								this.getPersistentAttribute().getName()));
 			}
 		}
 		if (this.orderColumnOrdering) {
-			//TODO validation message if type is not List
+			// TODO validation message if type is not List
 			this.orderColumn.validate(messages, reporter);
 		}
 	}
-	
-	
+
 	// ***** order column parent adapter (JPA 2.0) *****
-	
-	public class OrderColumnParentAdapter
-			implements JavaSpecifiedOrderColumn2_0.ParentAdapter {
-		
-		public JavaOrderable2_0 getColumnParent() {
+
+	public class OrderColumnParentAdapter implements JavaSpecifiedOrderColumn3_0.ParentAdapter {
+
+		public JavaOrderable3_0 getColumnParent() {
 			return GenericJavaOrderable.this;
 		}
-		
+
 		public String getDefaultTableName() {
 			return GenericJavaOrderable.this.getDefaultTableName();
 		}
-		
+
 		public Table resolveDbTable(String tableName) {
 			return GenericJavaOrderable.this.resolveDbTable(tableName);
 		}
-		
+
 		public String getDefaultColumnName(NamedColumn column) {
 			return this.getPersistentAttribute().getName() + "_ORDER"; //$NON-NLS-1$
 		}
-		
+
 		public TextRange getValidationTextRange() {
 			return GenericJavaOrderable.this.getValidationTextRange();
 		}
-		
+
 		public JpaValidator buildColumnValidator(NamedColumn column) {
-			return new OrderColumnValidator(this.getPersistentAttribute(), (SpecifiedOrderColumn2_0) column);
+			return new OrderColumnValidator(this.getPersistentAttribute(), (SpecifiedOrderColumn3_0) column);
 		}
-		
-		public OrderColumnAnnotation2_0 getColumnAnnotation() {
+
+		public OrderColumnAnnotation3_0 getColumnAnnotation() {
 			return GenericJavaOrderable.this.getNonNullOrderColumnAnnotation();
 		}
-		
+
 		public void removeColumnAnnotation() {
 			GenericJavaOrderable.this.removeOrderColumnAnnotation();
 		}
-		
+
 		protected JavaSpecifiedPersistentAttribute getPersistentAttribute() {
 			return GenericJavaOrderable.this.getPersistentAttribute();
 		}

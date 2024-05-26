@@ -1,0 +1,35 @@
+/*******************************************************************************
+ * Copyright (c) 2009, 2013 Oracle. All rights reserved.
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0, which accompanies this distribution
+ * and is available at https://www.eclipse.org/legal/epl-2.0/.
+ * 
+ * Contributors:
+ *     Oracle - initial API and implementation
+ ******************************************************************************/
+package org.eclipse.jpt.jpa.core.internal.jpa3_0.resource.java;
+
+import org.eclipse.jpt.jpa.core.internal.resource.java.NullJoinTableAnnotation;
+import org.eclipse.jpt.jpa.core.jpa2.resource.java.AssociationOverrideAnnotation2_0;
+import org.eclipse.jpt.jpa.core.resource.java.JoinTableAnnotation;
+
+/**
+ * <code>javax.persistence.JoinTable</code> found in a
+ * <code>javax.persistence.AssociationOverride</code> annotation
+ */
+public final class NullAssociationOverrideJoinTableAnnotation3_0
+	extends NullJoinTableAnnotation
+{
+	public NullAssociationOverrideJoinTableAnnotation3_0(AssociationOverrideAnnotation2_0 parent) {
+		super(parent);
+	}
+
+	private AssociationOverrideAnnotation2_0 getAssociationOverride2_0Annotation() {
+		return (AssociationOverrideAnnotation2_0) this.parent;
+	}
+
+	@Override
+	protected JoinTableAnnotation addAnnotation() {
+		return this.getAssociationOverride2_0Annotation().addJoinTable();
+	}
+}

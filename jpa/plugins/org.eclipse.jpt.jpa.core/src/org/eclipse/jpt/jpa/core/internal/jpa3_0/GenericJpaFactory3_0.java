@@ -30,8 +30,17 @@ import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedPersistentAttribute;
 import org.eclipse.jpt.jpa.core.internal.jpa1.GenericJpaFactory;
 import org.eclipse.jpt.jpa.core.internal.jpa1.context.java.GenericJavaColumn;
 import org.eclipse.jpt.jpa.core.internal.jpa1.context.java.GenericJavaOrderable;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaCacheable3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaCollectionTable3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaConverterType3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaDerivedIdentity3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaElementCollectionMapping3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaEmbeddable3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaNamedStoredProcedureQuery3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaOrderColumn3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaOrphanRemoval3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaPersistentType3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaSequenceGenerator3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaStoredProcedureParameter3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.JpaFactory3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.JpaProject3_0;
@@ -51,6 +60,7 @@ import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaSingleRelationshipMappin
 import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaSpecifiedOrderColumn3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaStoredProcedureParameter3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.NamedStoredProcedureQueryAnnotation3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.SequenceGeneratorAnnotation3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.StoredProcedureParameterAnnotation3_0;
 import org.eclipse.jpt.jpa.core.resource.java.EmbeddableAnnotation;
 import org.eclipse.jpt.jpa.core.resource.java.SequenceGeneratorAnnotation;
@@ -61,7 +71,7 @@ import org.eclipse.jpt.jpa.db.DatabaseIdentifierAdapter;
  * various Dali interfaces.
  */
 public class GenericJpaFactory3_0 extends GenericJpaFactory implements JpaFactory3_0 {
-	
+
 	// ********** Core Model **********
 
 	@Override
