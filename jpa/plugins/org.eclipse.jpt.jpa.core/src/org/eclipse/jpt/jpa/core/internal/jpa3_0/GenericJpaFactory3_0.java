@@ -15,17 +15,18 @@ package org.eclipse.jpt.jpa.core.internal.jpa3_0;
 
 import org.eclipse.jpt.common.core.resource.java.JavaResourceType;
 import org.eclipse.jpt.jpa.core.context.JpaContextModel;
+import org.eclipse.jpt.jpa.core.internal.jpa2_1.context.java.GenericJavaStoredProcedureParameter2_1;
+import org.eclipse.jpt.jpa.core.internal.jpa2_2.GenericJpaFactory2_2;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaConverterType3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaNamedStoredProcedureQuery3_0;
-import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaStoredProcedureParameter2_1;
-import org.eclipse.jpt.jpa.core.internal.jpa2_2.GenericJpaFactory2_2;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaStoredProcedureParameter3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.JpaFactory3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaConverterType3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaNamedStoredProcedureQuery3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaQueryContainer3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaStoredProcedureParameter3_0;
-import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.NamedStoredProcedureQueryAnnotation2_1;
-import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.StoredProcedureParameterAnnotation2_1;
-import org.eclipse.jpt.jpa.core.jpa3_0.JpaFactory3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.NamedStoredProcedureQueryAnnotation3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.StoredProcedureParameterAnnotation3_0;
 
 /**
  * Central class that allows extenders to easily replace implementations of
@@ -38,12 +39,12 @@ public class GenericJpaFactory3_0 extends GenericJpaFactory2_2 implements JpaFac
 	}
 
 	public JavaNamedStoredProcedureQuery3_0 buildJavaNamedStoredProcedureQuery(JavaQueryContainer3_0 parent,
-			NamedStoredProcedureQueryAnnotation2_1 namedStoredProcedureQueryAnnotation) {
+			NamedStoredProcedureQueryAnnotation3_0 namedStoredProcedureQueryAnnotation) {
 		return new GenericJavaNamedStoredProcedureQuery3_0(parent, namedStoredProcedureQueryAnnotation);
 	}
 
 	public JavaStoredProcedureParameter3_0 buildJavaStoredProcedureParameter(JavaNamedStoredProcedureQuery3_0 parent,
-			StoredProcedureParameterAnnotation2_1 parameterAnnotation) {
-		return new GenericJavaStoredProcedureParameter2_1(parent, parameterAnnotation);
+			StoredProcedureParameterAnnotation3_0 parameterAnnotation) {
+		return new GenericJavaStoredProcedureParameter3_0(parent, parameterAnnotation);
 	}
 }

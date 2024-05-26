@@ -9,32 +9,28 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.resource.java;
 
-
 /**
- * Corresponds to the JPA 2.1 enum
- * javax.persistence.ParameterMode
+ * Corresponds to the JPA 2.1 enum javax.persistence.ParameterMode
  * <p>
- * Provisional API: This interface is part of an interim API that is still
- * under development and expected to change significantly before reaching
- * stability. It is available at this early stage to solicit feedback from
- * pioneering adopters on the understanding that any code that uses this API
- * will almost certainly be broken (repeatedly) as the API evolves.
+ * Provisional API: This interface is part of an interim API that is still under
+ * development and expected to change significantly before reaching stability.
+ * It is available at this early stage to solicit feedback from pioneering
+ * adopters on the understanding that any code that uses this API will almost
+ * certainly be broken (repeatedly) as the API evolves.
  * 
  * @version 3.3
  * @since 3.3
  */
-public enum ParameterMode_2_1
-{
+public enum ParameterMode_3_0 {
 
-	IN(JPA2_1.PARAMETER_MODE__IN),
-	INOUT(JPA2_1.PARAMETER_MODE__INOUT),
-	OUT(JPA2_1.PARAMETER_MODE__OUT),
-	REF_CURSOR(JPA2_1.PARAMETER_MODE__REF_CURSOR);
-
+	IN(JPA3_0.PARAMETER_MODE__IN), 
+	INOUT(JPA3_0.PARAMETER_MODE__INOUT), 
+	OUT(JPA3_0.PARAMETER_MODE__OUT),
+	REF_CURSOR(JPA3_0.PARAMETER_MODE__REF_CURSOR);
 
 	private String javaAnnotationValue;
 
-	ParameterMode_2_1(String javaAnnotationValue) {
+	ParameterMode_3_0(String javaAnnotationValue) {
 		if (javaAnnotationValue == null) {
 			throw new NullPointerException();
 		}
@@ -45,15 +41,14 @@ public enum ParameterMode_2_1
 		return this.javaAnnotationValue;
 	}
 
-
 	// ********** static methods **********
 
-	public static ParameterMode_2_1 fromJavaAnnotationValue(Object javaAnnotationValue) {
+	public static ParameterMode_3_0 fromJavaAnnotationValue(Object javaAnnotationValue) {
 		return (javaAnnotationValue == null) ? null : fromJavaAnnotationValue_(javaAnnotationValue);
 	}
 
-	private static ParameterMode_2_1 fromJavaAnnotationValue_(Object javaAnnotationValue) {
-		for (ParameterMode_2_1 parameterMode : ParameterMode_2_1.values()) {
+	private static ParameterMode_3_0 fromJavaAnnotationValue_(Object javaAnnotationValue) {
+		for (ParameterMode_3_0 parameterMode : ParameterMode_3_0.values()) {
 			if (parameterMode.getJavaAnnotationValue().equals(javaAnnotationValue)) {
 				return parameterMode;
 			}
@@ -61,7 +56,7 @@ public enum ParameterMode_2_1
 		return null;
 	}
 
-	public static String toJavaAnnotationValue(ParameterMode_2_1 parameterMode) {
+	public static String toJavaAnnotationValue(ParameterMode_3_0 parameterMode) {
 		return (parameterMode == null) ? null : parameterMode.getJavaAnnotationValue();
 	}
 }

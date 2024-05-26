@@ -21,7 +21,7 @@ import org.eclipse.jpt.jpa.core.context.persistence.PersistenceUnitProperties;
  * @version 2.3
  * @since 2.3
  */
-public interface Connection2_0
+public interface Connection3_0
 	extends PersistenceUnitProperties
 {		
 	String getDefaultDriver();

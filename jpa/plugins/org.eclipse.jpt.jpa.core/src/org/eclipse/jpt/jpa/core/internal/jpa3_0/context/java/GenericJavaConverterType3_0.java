@@ -15,12 +15,10 @@ import org.eclipse.jpt.jpa.core.context.JpaContextModel;
 import org.eclipse.jpt.jpa.core.internal.context.java.AbstractJavaManagedType;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.ConverterType3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaConverterType3_0;
-import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.ConverterAnnotation2_1;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.ConverterAnnotation3_0;
 
-public class GenericJavaConverterType3_0
-	extends AbstractJavaManagedType<JpaContextModel>
-	implements JavaConverterType3_0
-{
+public class GenericJavaConverterType3_0 extends AbstractJavaManagedType<JpaContextModel>
+		implements JavaConverterType3_0 {
 
 	protected boolean autoApply;
 
@@ -43,7 +41,6 @@ public class GenericJavaConverterType3_0
 	public void update(IProgressMonitor monitor) {
 		super.update(monitor);
 	}
-
 
 	// ********** auto apply **********
 
@@ -81,17 +78,15 @@ public class GenericJavaConverterType3_0
 	}
 
 	protected Boolean buildSpecifiedAutoApply() {
-		ConverterAnnotation2_1 converterAnnotation = this.getConverterAnnotation();
+		ConverterAnnotation3_0 converterAnnotation = this.getConverterAnnotation();
 		return converterAnnotation != null ? converterAnnotation.getAutoApply() : null;
 	}
 
-
 	// ********** converter annotation **********
 
-	protected ConverterAnnotation2_1 getConverterAnnotation() {
-		return (ConverterAnnotation2_1) this.resourceType.getAnnotation(ConverterAnnotation2_1.ANNOTATION_NAME);
+	protected ConverterAnnotation3_0 getConverterAnnotation() {
+		return (ConverterAnnotation3_0) this.resourceType.getAnnotation(ConverterAnnotation3_0.ANNOTATION_NAME);
 	}
-
 
 	// ********** ManagedType implementation **********
 

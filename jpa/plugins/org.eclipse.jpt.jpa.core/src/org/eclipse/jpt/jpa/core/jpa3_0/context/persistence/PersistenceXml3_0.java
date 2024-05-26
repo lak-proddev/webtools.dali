@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 Oracle. All rights reserved.
+ * Copyright (c) 2009, 2013 Oracle. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
@@ -9,11 +9,11 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.persistence;
 
-import org.eclipse.jpt.jpa.core.jpa2.context.persistence.PersistenceUnit2_0;
-import org.eclipse.jpt.jpa.core.jpa2_1.context.persistence.schemagen.SchemaGeneration2_1;
+import org.eclipse.jpt.jpa.core.context.persistence.PersistenceXml;
+import org.eclipse.jpt.jpa.core.jpa2.JpaMetamodelSynchronizer2_0;
 
 /**
- * JPA 2.1 <code>persistence-unit</code>
+ * JPA 2.0 <code>persistence.xml</code> file.
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -21,13 +21,11 @@ import org.eclipse.jpt.jpa.core.jpa2_1.context.persistence.schemagen.SchemaGener
  * pioneering adopters on the understanding that any code that uses this API
  * will almost certainly be broken (repeatedly) as the API evolves.
  * 
- * @version 3.3
- * @since 3.3
+ * @version 2.3
+ * @since 2.3
  */
-public interface PersistenceUnit2_1
-	extends PersistenceUnit2_0
+public interface PersistenceXml3_0
+	extends PersistenceXml, JpaMetamodelSynchronizer2_0
 {
-	// ********** properties **********
-
-	SchemaGeneration2_1 getSchemaGeneration();
+	// combine interfaces
 }

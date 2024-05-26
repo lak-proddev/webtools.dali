@@ -24,7 +24,7 @@ import org.eclipse.jpt.jpa.core.context.persistence.PersistenceUnitProperties;
  * @version 2.3
  * @since 2.3
  */
-public interface Options2_0
+public interface Options3_0
 	extends PersistenceUnitProperties
 {
 	Integer getDefaultLockTimeout();

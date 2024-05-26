@@ -9,11 +9,11 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.persistence;
 
-import org.eclipse.jpt.jpa.core.context.persistence.PersistenceXml;
+import org.eclipse.jpt.jpa.core.context.persistence.Persistence;
 import org.eclipse.jpt.jpa.core.jpa2.JpaMetamodelSynchronizer2_0;
 
 /**
- * JPA 2.0 <code>persistence.xml</code> file.
+ * The <code>persistence</code> element in the JPA 2.0 <code>persistence.xml</code> file.
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -24,8 +24,8 @@ import org.eclipse.jpt.jpa.core.jpa2.JpaMetamodelSynchronizer2_0;
  * @version 2.3
  * @since 2.3
  */
-public interface PersistenceXml2_0
-	extends PersistenceXml, JpaMetamodelSynchronizer2_0
+public interface Persistence3_0
+	extends Persistence, JpaMetamodelSynchronizer2_0
 {
 	// combine interfaces
 }
