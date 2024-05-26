@@ -7,7 +7,7 @@
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
-package org.eclipse.jpt.jpa.core.jpa2.resource.java;
+package org.eclipse.jpt.jpa.core.jpa3_0.resource.java;
 
 import org.eclipse.jpt.common.core.resource.java.Annotation;
 import org.eclipse.jpt.common.core.utility.TextRange;
@@ -26,7 +26,7 @@ import org.eclipse.jpt.jpa.core.resource.java.FetchType;
  * @version 2.3
  * @since 2.3
  */
-public interface ElementCollectionAnnotation2_0 
+public interface ElementCollectionAnnotation3_0 
 	extends Annotation
 {
 	String ANNOTATION_NAME = JPA3_0.ELEMENT_COLLECTION;

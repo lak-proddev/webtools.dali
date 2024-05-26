@@ -7,13 +7,13 @@
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
-package org.eclipse.jpt.jpa.core.jpa2.resource.java;
+package org.eclipse.jpt.jpa.core.jpa3_0.resource.java;
 
-import org.eclipse.jpt.jpa.core.resource.java.ReferenceTableAnnotation;
+import org.eclipse.jpt.jpa.core.resource.java.CompleteJoinColumnAnnotation;
 
 /**
- * Corresponds to the JPA 2.0 annotation
- * <code>javax.persistence.CollectionTable</code>
+ * Corresponds to the JPA annotation
+ * <code>javax.persistence.MapKeyJoinColumn</code>
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -21,11 +21,11 @@ import org.eclipse.jpt.jpa.core.resource.java.ReferenceTableAnnotation;
  * pioneering adopters on the understanding that any code that uses this API
  * will almost certainly be broken (repeatedly) as the API evolves.
  * 
- * @version 2.3
+ * @version 3.1
  * @since 2.3
  */
-public interface CollectionTableAnnotation2_0 
-	extends ReferenceTableAnnotation
+public interface MapKeyJoinColumnAnnotation3_0
+	extends CompleteJoinColumnAnnotation
 {
-	String ANNOTATION_NAME = JPA3_0.COLLECTION_TABLE;
+	String ANNOTATION_NAME = JPA3_0.MAP_KEY_JOIN_COLUMN;
 }

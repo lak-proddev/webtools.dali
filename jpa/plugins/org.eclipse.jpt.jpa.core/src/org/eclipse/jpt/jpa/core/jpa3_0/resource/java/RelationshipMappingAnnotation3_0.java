@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2013 Oracle. All rights reserved.
+ * Copyright (c) 2010, 2013 Oracle. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
@@ -7,14 +7,17 @@
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
-package org.eclipse.jpt.jpa.core.jpa2.resource.java;
+package org.eclipse.jpt.jpa.core.jpa3_0.resource.java;
 
-import org.eclipse.jpt.jpa.core.resource.java.ReferenceTableAnnotation;
+import org.eclipse.jpt.jpa.core.resource.java.RelationshipMappingAnnotation;
 
 /**
- * Corresponds to the JPA 2.0 annotation
- * <code>javax.persistence.CollectionTable</code>
- * <p>
+ * Common protocol among the following JPA 2.0 relationship mappings:<code><ul>
+ * <li>javax.persistence.ManyToOne
+ * <li>javax.persistence.ManyToMany
+ * <li>javax.persistence.OneToMany
+ * <li>javax.persistence.OneToOne
+ * </ul></code>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
  * stability. It is available at this early stage to solicit feedback from
@@ -24,8 +27,17 @@ import org.eclipse.jpt.jpa.core.resource.java.ReferenceTableAnnotation;
  * @version 2.3
  * @since 2.3
  */
-public interface CollectionTableAnnotation2_0 
-	extends ReferenceTableAnnotation
+public interface RelationshipMappingAnnotation3_0
+	extends RelationshipMappingAnnotation
 {
-	String ANNOTATION_NAME = JPA3_0.COLLECTION_TABLE;
+	/**
+	 * Corresponds to the 'cascade' element of the relationship annotations.
+	 */
+	boolean isCascadeDetach();	
+		String CASCADE_DETACH_PROPERTY = "cascadeDetach"; //$NON-NLS-1$
+
+	/**
+	 * Corresponds to the 'cascade' element of the relationship annotations.
+	 */
+	void setCascadeDetach(boolean detach);
 }

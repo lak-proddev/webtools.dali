@@ -7,13 +7,15 @@
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
-package org.eclipse.jpt.jpa.core.jpa2.resource.java;
+package org.eclipse.jpt.jpa.core.jpa3_0.resource.java;
 
-import org.eclipse.jpt.jpa.core.resource.java.ReferenceTableAnnotation;
+import org.eclipse.jpt.common.core.resource.java.Annotation;
+import org.eclipse.jpt.common.core.utility.TextRange;
+import org.eclipse.jpt.jpa.core.resource.java.AccessType;
 
 /**
  * Corresponds to the JPA 2.0 annotation
- * <code>javax.persistence.CollectionTable</code>
+ * <code>javax.persistence.Access</code>
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -24,8 +26,27 @@ import org.eclipse.jpt.jpa.core.resource.java.ReferenceTableAnnotation;
  * @version 2.3
  * @since 2.3
  */
-public interface CollectionTableAnnotation2_0 
-	extends ReferenceTableAnnotation
+public interface AccessAnnotation3_0
+	extends Annotation
 {
-	String ANNOTATION_NAME = JPA3_0.COLLECTION_TABLE;
+	String ANNOTATION_NAME = JPA3_0.ACCESS;
+	
+	/**
+	 * Corresponds to the 'value' element of the Access annotation.
+	 * Returns null if the element does not exist in Java.
+	 */
+	AccessType getValue();
+		String VALUE_PROPERTY = "value"; //$NON-NLS-1$
+	
+	/**
+	 * Corresponds to the 'value' element of the Access annotation.
+	 * Set to null to remove the element.
+	 */
+	void setValue(AccessType access);
+	
+	/**
+	 * Return the {@link TextRange} for the 'value' element.  If the element 
+	 * does not exist return the {@link TextRange} for the Access annotation.
+	 */
+	TextRange getValueTextRange();
 }

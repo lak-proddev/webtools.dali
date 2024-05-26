@@ -7,7 +7,7 @@
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
-package org.eclipse.jpt.jpa.core.jpa2.resource.java;
+package org.eclipse.jpt.jpa.core.jpa3_0.resource.java;
 
 import org.eclipse.jpt.jpa.core.resource.java.ReferenceTableAnnotation;
 
@@ -24,7 +24,7 @@ import org.eclipse.jpt.jpa.core.resource.java.ReferenceTableAnnotation;
  * @version 2.3
  * @since 2.3
  */
-public interface CollectionTableAnnotation2_0 
+public interface CollectionTableAnnotation3_0 
 	extends ReferenceTableAnnotation
 {
 	String ANNOTATION_NAME = JPA3_0.COLLECTION_TABLE;
