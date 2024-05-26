@@ -11,15 +11,12 @@
  *     Lakshminarayana Nekkanti - initial API and implementation
  *
  *******************************************************************************/
-package org.eclipse.jpt.jpa.core.internal.jpa3_0.context.persistence.schemagen;
+package org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.schemagen;
 
-import org.eclipse.jpt.jpa.core.context.persistence.PersistenceUnit;
-import org.eclipse.jpt.jpa.core.internal.jpa2_2.context.persistence.schemagen.GenericSchemaGeneration2_2;
-import org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.schemagen.SchemaGeneration3_0;
+import org.eclipse.jpt.jpa.core.jpa2_2.context.persistence.schemagen.SchemaGeneration2_2;
 
-public class GenericSchemaGeneration3_0 extends GenericSchemaGeneration2_2 implements SchemaGeneration3_0 {
-
-	public GenericSchemaGeneration3_0(PersistenceUnit parent) {
-		super(parent);
-	}
+/**
+ * JPA 3.0 schema generation
+ */
+public interface SchemaGeneration3_0 extends SchemaGeneration2_2 {
 }

@@ -13,7 +13,7 @@
  *******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_1.context.persistence.schemagen;
 
-import org.eclipse.jpt.jpa.core.jpa3_0_1.context.persistence.schemagen.SchemaGeneration3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.schemagen.SchemaGeneration3_0;
 
 /**
  * JPA 3.1 schema generation
