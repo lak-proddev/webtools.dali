@@ -14,11 +14,11 @@
 package org.eclipse.jpt.jpa.core.internal.jpa3_0;
 
 import org.eclipse.jpt.jpa.core.internal.jpa2_2.GenericJpaFactory2_2;
-import org.eclipse.jpt.jpa.core.jpa2_2.JpaFactory2_2;
+import org.eclipse.jpt.jpa.core.jpa3_0.JpaFactory3_0;
 
 /**
  * Central class that allows extenders to easily replace implementations of
  * various Dali interfaces.
  */
-public class GenericJpaFactory3_0 extends GenericJpaFactory2_2 implements JpaFactory2_2 {
+public class GenericJpaFactory3_0 extends GenericJpaFactory2_2 implements JpaFactory3_0 {
 }

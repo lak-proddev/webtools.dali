@@ -15,7 +15,7 @@ package org.eclipse.jpt.jpa.core.internal.jpa3_0.context.persistence.schemagen;
 
 import org.eclipse.jpt.jpa.core.context.persistence.PersistenceUnit;
 import org.eclipse.jpt.jpa.core.internal.jpa2_2.context.persistence.schemagen.GenericSchemaGeneration2_2;
-import org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.schemagen.SchemaGeneration3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0_1.context.persistence.schemagen.SchemaGeneration3_0;
 
 public class GenericSchemaGeneration3_0 extends GenericSchemaGeneration2_2 implements SchemaGeneration3_0 {
 

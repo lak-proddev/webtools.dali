@@ -11,7 +11,7 @@
  *     Lakshminarayana Nekkanti - initial API and implementation
  *
  *******************************************************************************/
-package org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.schemagen;
+package org.eclipse.jpt.jpa.core.jpa3_0_1.context.persistence.schemagen;
 
 import org.eclipse.jpt.jpa.core.jpa2_2.context.persistence.schemagen.SchemaGeneration2_2;
 

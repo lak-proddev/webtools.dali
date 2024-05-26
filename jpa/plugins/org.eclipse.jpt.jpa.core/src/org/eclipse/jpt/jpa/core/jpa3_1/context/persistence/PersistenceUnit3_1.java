@@ -13,7 +13,7 @@
  *******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_1.context.persistence;
 
-import org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.PersistenceUnit3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0_1.context.persistence.PersistenceUnit3_0;
 import org.eclipse.jpt.jpa.core.jpa3_1.context.persistence.schemagen.SchemaGeneration3_1;
 
 /**

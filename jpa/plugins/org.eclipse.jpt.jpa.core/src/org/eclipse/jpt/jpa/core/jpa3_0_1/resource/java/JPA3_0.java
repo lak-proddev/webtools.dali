@@ -7,7 +7,7 @@
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
-package org.eclipse.jpt.jpa.core.jpa3_0.resource.java;
+package org.eclipse.jpt.jpa.core.jpa3_0_1.resource.java;
 
 /**
  * JPA 3.0 Java-related stuff (annotations etc.)

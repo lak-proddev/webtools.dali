@@ -16,8 +16,8 @@ package org.eclipse.jpt.jpa.core.internal.jpa3_0.context.persistence;
 import org.eclipse.jpt.jpa.core.context.persistence.PersistenceUnit;
 import org.eclipse.jpt.jpa.core.internal.jpa2_2.context.persistence.GenericPersistenceXmlContextModelFactory2_2;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.persistence.schemagen.GenericSchemaGeneration3_0;
-import org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.PersistenceXmlContextModelFactory3_0;
-import org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.schemagen.SchemaGeneration3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0_1.context.persistence.PersistenceXmlContextModelFactory3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0_1.context.persistence.schemagen.SchemaGeneration3_0;
 
 public class GenericPersistenceXmlContextModelFactory3_0 extends GenericPersistenceXmlContextModelFactory2_2
 		implements PersistenceXmlContextModelFactory3_0 {

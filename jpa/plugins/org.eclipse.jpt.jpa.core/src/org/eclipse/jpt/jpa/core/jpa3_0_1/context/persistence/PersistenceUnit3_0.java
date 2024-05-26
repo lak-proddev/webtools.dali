@@ -11,14 +11,13 @@
  *     Lakshminarayana Nekkanti - initial API and implementation
  *
  *******************************************************************************/
-package org.eclipse.jpt.jpa.core.jpa3_0.context.persistence;
+package org.eclipse.jpt.jpa.core.jpa3_0_1.context.persistence;
 
-import org.eclipse.jpt.jpa.core.context.persistence.PersistenceUnit;
-import org.eclipse.jpt.jpa.core.jpa2_2.context.persistence.PersistenceXmlContextModelFactory2_2;
-import org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.schemagen.SchemaGeneration3_0;
+import org.eclipse.jpt.jpa.core.jpa2_1.context.persistence.PersistenceUnit2_1;
+import org.eclipse.jpt.jpa.core.jpa3_0_1.context.persistence.schemagen.SchemaGeneration3_0;
 
 /**
- * JPA 3.0 <code>persistence.xml</code> factory
+ * JPA 3.0 <code>persistence-unit</code>
  * <p>
  * Provisional API: This interface is part of an interim API that is still under
  * development and expected to change significantly before reaching stability.
@@ -26,7 +25,8 @@ import org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.schemagen.SchemaGener
  * adopters on the understanding that any code that uses this API will almost
  * certainly be broken (repeatedly) as the API evolves.
  */
-public interface PersistenceXmlContextModelFactory3_0 extends PersistenceXmlContextModelFactory2_2 {
+public interface PersistenceUnit3_0 extends PersistenceUnit2_1 {
+	// ********** properties **********
 
-	SchemaGeneration3_0 buildSchemaGeneration(PersistenceUnit parent);
+	SchemaGeneration3_0 getSchemaGeneration();
 }
