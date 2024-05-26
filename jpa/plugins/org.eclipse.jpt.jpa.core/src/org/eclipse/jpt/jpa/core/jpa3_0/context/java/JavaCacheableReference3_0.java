@@ -1,20 +1,19 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2011 Oracle. All rights reserved.
+ * Copyright (c) 2009, 2013 Oracle. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
- *
+ * 
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 
-import org.eclipse.jpt.jpa.core.context.java.JavaMappingJoinTableRelationship;
-import org.eclipse.jpt.jpa.core.context.java.JavaOneToOneRelationship;
-import org.eclipse.jpt.jpa.core.jpa2.context.OneToOneRelationship2_0;
+import org.eclipse.jpt.common.core.resource.java.JavaResourceType;
+import org.eclipse.jpt.jpa.core.jpa2.context.CacheableReference2_0;
 
 /**
- * JPA 2.0 Java 1:1 relationship
+ * Java cacheable reference
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -22,13 +21,11 @@ import org.eclipse.jpt.jpa.core.jpa2.context.OneToOneRelationship2_0;
  * pioneering adopters on the understanding that any code that uses this API
  * will almost certainly be broken (repeatedly) as the API evolves.
  * 
- * @version 2.3
+ * @version 3.3
  * @since 2.3
  */
-public interface JavaOneToOneRelationship2_0
-	extends OneToOneRelationship2_0,
-		JavaOneToOneRelationship,
-		JavaMappingJoinTableRelationship
+public interface JavaCacheableReference3_0
+	extends CacheableReference2_0
 {
-	// combine various interfaces
+	JavaResourceType getJavaResourceType();
 }

@@ -1,20 +1,21 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2011 Oracle. All rights reserved.
+ * Copyright (c) 2009, 2013 Oracle. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
- * 
+ *
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 
-import org.eclipse.jpt.jpa.core.context.java.JavaAssociationOverrideContainer;
-import org.eclipse.jpt.jpa.core.context.java.JavaEmbeddedMapping;
-import org.eclipse.jpt.jpa.core.jpa2.context.EmbeddedMapping2_0;
+import org.eclipse.jpt.jpa.core.context.java.JavaJoinTableRelationship;
+import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedJoinTableRelationshipStrategy;
+import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedOverrideRelationship;
+import org.eclipse.jpt.jpa.core.jpa2.context.SpecifiedOverrideRelationship2_0;
 
 /**
- * JPA 2.0 Java embedded mapping
+ * JPA 2.0 Java association override relationship
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -25,8 +26,10 @@ import org.eclipse.jpt.jpa.core.jpa2.context.EmbeddedMapping2_0;
  * @version 2.3
  * @since 2.3
  */
-public interface JavaEmbeddedMapping2_0
-	extends EmbeddedMapping2_0, JavaEmbeddedMapping
+public interface JavaSpecifiedOverrideRelationship3_0 
+	extends SpecifiedOverrideRelationship2_0,
+			JavaSpecifiedOverrideRelationship,
+			JavaJoinTableRelationship
 {
-	JavaAssociationOverrideContainer getAssociationOverrideContainer();
+	JavaSpecifiedJoinTableRelationshipStrategy getJoinTableStrategy();
 }

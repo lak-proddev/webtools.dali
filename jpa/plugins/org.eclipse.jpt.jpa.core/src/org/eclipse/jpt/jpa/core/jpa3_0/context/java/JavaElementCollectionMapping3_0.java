@@ -9,13 +9,15 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 
-import org.eclipse.jpt.jpa.core.context.java.JavaJoinTableRelationship;
-import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedJoinTableRelationshipStrategy;
-import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedOverrideRelationship;
-import org.eclipse.jpt.jpa.core.jpa2.context.SpecifiedOverrideRelationship2_0;
+import org.eclipse.jpt.jpa.core.context.java.JavaAssociationOverrideContainer;
+import org.eclipse.jpt.jpa.core.context.java.JavaAttributeOverrideContainer;
+import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedColumn;
+import org.eclipse.jpt.jpa.core.context.java.JavaConvertibleMapping;
+import org.eclipse.jpt.jpa.core.jpa2.context.ElementCollectionMapping2_0;
+import org.eclipse.jpt.jpa.core.jpa2.resource.java.ElementCollectionAnnotation2_0;
 
 /**
- * JPA 2.0 Java association override relationship
+ * Java element collection mapping
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -26,10 +28,16 @@ import org.eclipse.jpt.jpa.core.jpa2.context.SpecifiedOverrideRelationship2_0;
  * @version 2.3
  * @since 2.3
  */
-public interface JavaSpecifiedOverrideRelationship2_0 
-	extends SpecifiedOverrideRelationship2_0,
-			JavaSpecifiedOverrideRelationship,
-			JavaJoinTableRelationship
+public interface JavaElementCollectionMapping3_0
+	extends ElementCollectionMapping2_0, JavaCollectionMapping3_0, JavaConvertibleMapping
 {
-	JavaSpecifiedJoinTableRelationshipStrategy getJoinTableStrategy();
+	ElementCollectionAnnotation2_0 getMappingAnnotation();
+
+	JavaCollectionTable3_0 getCollectionTable();
+	
+	JavaSpecifiedColumn getValueColumn();
+
+	JavaAttributeOverrideContainer getValueAttributeOverrideContainer();
+	
+	JavaAssociationOverrideContainer getValueAssociationOverrideContainer();
 }

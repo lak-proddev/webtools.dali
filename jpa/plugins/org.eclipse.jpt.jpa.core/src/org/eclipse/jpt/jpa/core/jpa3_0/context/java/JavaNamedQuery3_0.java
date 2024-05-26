@@ -25,7 +25,7 @@ import org.eclipse.jpt.jpa.core.jpa2.context.NamedQuery2_0;
  * @version 2.3
  * @since 2.3
  */
-public interface JavaNamedQuery2_0
+public interface JavaNamedQuery3_0
 	extends NamedQuery2_0, JavaNamedQuery
 {
 	// combine 2 interfaces

@@ -25,12 +25,12 @@ import org.eclipse.jpt.jpa.core.jpa2.context.Orderable2_0;
  * @version 3.3
  * @since 2.3
  */
-public interface JavaOrderable2_0
+public interface JavaOrderable3_0
 	extends Orderable2_0
 {
 	JavaResourceAttribute getResourceAttribute();
 
-	JavaSpecifiedOrderColumn2_0 getOrderColumn();
+	JavaSpecifiedOrderColumn3_0 getOrderColumn();
 
 
 	// ************ parent adapter ************

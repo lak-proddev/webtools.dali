@@ -21,7 +21,7 @@ import org.eclipse.jpt.jpa.core.context.java.JavaOverrideContainer;
  * pioneering adopters on the understanding that any code that uses this API
  * will almost certainly be broken (repeatedly) as the API evolves.
  */
-public interface JavaOverrideContainer2_0
+public interface JavaOverrideContainer3_0
 	extends JavaOverrideContainer
 {
 	/**
@@ -49,12 +49,12 @@ public interface JavaOverrideContainer2_0
 		extends JavaOverrideContainer.ParentAdapter
 	{
 		/**
-		 * @see JavaOverrideContainer2_0#getPossiblePrefix()
+		 * @see JavaOverrideContainer3_0#getPossiblePrefix()
 		 */
 		String getPossiblePrefix();
 
 		/**
-		 * @see JavaOverrideContainer2_0#getWritePrefix()
+		 * @see JavaOverrideContainer3_0#getWritePrefix()
 		 */
 		String getWritePrefix();
 

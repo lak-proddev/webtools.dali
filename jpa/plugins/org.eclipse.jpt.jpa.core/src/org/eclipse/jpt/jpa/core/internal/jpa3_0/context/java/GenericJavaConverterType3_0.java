@@ -14,12 +14,12 @@ import org.eclipse.jpt.common.core.resource.java.JavaResourceType;
 import org.eclipse.jpt.jpa.core.context.JpaContextModel;
 import org.eclipse.jpt.jpa.core.internal.context.java.AbstractJavaManagedType;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.ConverterType3_0;
-import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaConverterType2_1;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaConverterType3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.ConverterAnnotation2_1;
 
 public class GenericJavaConverterType3_0
 	extends AbstractJavaManagedType<JpaContextModel>
-	implements JavaConverterType2_1
+	implements JavaConverterType3_0
 {
 
 	protected boolean autoApply;

@@ -15,17 +15,15 @@ import org.eclipse.jpt.jpa.core.jpa2_1.context.ConverterType2_1;
 /**
  * Context converter type.
  * <p>
- * Provisional API: This interface is part of an interim API that is still
- * under development and expected to change significantly before reaching
- * stability. It is available at this early stage to solicit feedback from
- * pioneering adopters on the understanding that any code that uses this API
- * will almost certainly be broken (repeatedly) as the API evolves.
+ * Provisional API: This interface is part of an interim API that is still under
+ * development and expected to change significantly before reaching stability.
+ * It is available at this early stage to solicit feedback from pioneering
+ * adopters on the understanding that any code that uses this API will almost
+ * certainly be broken (repeatedly) as the API evolves.
  * 
  * @version 3.3
  * @since 3.3
  */
-public interface JavaConverterType2_1
-	extends ConverterType2_1, JavaManagedType
-{
+public interface JavaConverterType3_0 extends ConverterType2_1, JavaManagedType {
 	// combine interfaces
 }

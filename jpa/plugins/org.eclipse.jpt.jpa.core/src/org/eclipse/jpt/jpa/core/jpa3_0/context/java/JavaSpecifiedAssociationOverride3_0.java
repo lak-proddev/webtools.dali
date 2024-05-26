@@ -22,7 +22,7 @@ import org.eclipse.jpt.jpa.core.jpa2.context.AssociationOverride2_0;
  * pioneering adopters on the understanding that any code that uses this API
  * will almost certainly be broken (repeatedly) as the API evolves.
  */
-public interface JavaSpecifiedAssociationOverride2_0
+public interface JavaSpecifiedAssociationOverride3_0
 	extends JavaSpecifiedAssociationOverride, AssociationOverride2_0
 {
 	// combine interfaces

@@ -1,21 +1,20 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2013 Oracle. All rights reserved.
+ * Copyright (c) 2010, 2011 Oracle. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
- * 
+ *
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 
-import org.eclipse.jpt.jpa.core.context.Table;
-import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedReferenceTable;
-import org.eclipse.jpt.jpa.core.jpa2.context.CollectionTable2_0;
-import org.eclipse.jpt.jpa.core.jpa2.resource.java.CollectionTableAnnotation2_0;
+import org.eclipse.jpt.jpa.core.context.java.JavaMappingJoinColumnRelationship;
+import org.eclipse.jpt.jpa.core.context.java.JavaOneToManyRelationship;
+import org.eclipse.jpt.jpa.core.jpa2.context.OneToManyRelationship2_0;
 
 /**
- * Java collection table
+ * JPA 2.0 Java 1:m relationship
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -26,17 +25,10 @@ import org.eclipse.jpt.jpa.core.jpa2.resource.java.CollectionTableAnnotation2_0;
  * @version 2.3
  * @since 2.3
  */
-public interface JavaCollectionTable2_0
-	extends CollectionTable2_0, JavaSpecifiedReferenceTable
+public interface JavaOneToManyRelationship3_0
+	extends OneToManyRelationship2_0,
+		JavaOneToManyRelationship,
+		JavaMappingJoinColumnRelationship
 {
-	CollectionTableAnnotation2_0 getTableAnnotation();
-
-
-	// ********** parent adapter **********
-
-	interface ParentAdapter
-		extends Table.ParentAdapter<JavaElementCollectionMapping2_0>
-	{
-		// specify generic argument
-	}
+	// combine various interfaces
 }

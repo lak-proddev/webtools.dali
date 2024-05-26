@@ -3,21 +3,19 @@
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
- *
+ * 
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 
-import org.eclipse.jpt.jpa.core.context.java.JavaAssociationOverrideContainer;
-import org.eclipse.jpt.jpa.core.context.java.JavaAttributeOverrideContainer;
-import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedColumn;
-import org.eclipse.jpt.jpa.core.context.java.JavaConvertibleMapping;
-import org.eclipse.jpt.jpa.core.jpa2.context.ElementCollectionMapping2_0;
-import org.eclipse.jpt.jpa.core.jpa2.resource.java.ElementCollectionAnnotation2_0;
+import org.eclipse.jpt.jpa.core.context.Table;
+import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedReferenceTable;
+import org.eclipse.jpt.jpa.core.jpa2.context.CollectionTable2_0;
+import org.eclipse.jpt.jpa.core.jpa2.resource.java.CollectionTableAnnotation2_0;
 
 /**
- * Java element collection mapping
+ * Java collection table
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -28,16 +26,17 @@ import org.eclipse.jpt.jpa.core.jpa2.resource.java.ElementCollectionAnnotation2_
  * @version 2.3
  * @since 2.3
  */
-public interface JavaElementCollectionMapping2_0
-	extends ElementCollectionMapping2_0, JavaCollectionMapping2_0, JavaConvertibleMapping
+public interface JavaCollectionTable3_0
+	extends CollectionTable2_0, JavaSpecifiedReferenceTable
 {
-	ElementCollectionAnnotation2_0 getMappingAnnotation();
+	CollectionTableAnnotation2_0 getTableAnnotation();
 
-	JavaCollectionTable2_0 getCollectionTable();
-	
-	JavaSpecifiedColumn getValueColumn();
 
-	JavaAttributeOverrideContainer getValueAttributeOverrideContainer();
-	
-	JavaAssociationOverrideContainer getValueAssociationOverrideContainer();
+	// ********** parent adapter **********
+
+	interface ParentAdapter
+		extends Table.ParentAdapter<JavaElementCollectionMapping3_0>
+	{
+		// specify generic argument
+	}
 }
