@@ -9,11 +9,13 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.orm;
 
-import org.eclipse.jpt.jpa.core.context.orm.OrmAttributeMapping;
-import org.eclipse.jpt.jpa.core.jpa2.context.Orderable2_0;
+import org.eclipse.jpt.jpa.core.context.NamedColumn;
+import org.eclipse.jpt.jpa.core.context.orm.OrmSpecifiedNamedColumn;
+import org.eclipse.jpt.jpa.core.jpa2.context.SpecifiedOrderColumn2_0;
+import org.eclipse.jpt.jpa.core.resource.orm.XmlOrderColumn;
 
 /**
- * JPA 2.0 <code>orm.xml</code> ordering
+ * <code>orm.xml</code> specified order column
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -24,30 +26,22 @@ import org.eclipse.jpt.jpa.core.jpa2.context.Orderable2_0;
  * @version 3.3
  * @since 2.3
  */
-public interface OrmOrderable2_0
-	extends Orderable2_0
+public interface OrmSpecifiedOrderColumn3_0
+	extends SpecifiedOrderColumn2_0, OrmSpecifiedNamedColumn
 {
-	OrmSpecifiedOrderColumn2_0 getOrderColumn();
+	XmlOrderColumn getXmlColumn();
 
 
-	// ************ parent adapter ************
+	// ********** parent adapter **********
 
 	/**
-	 * interface allowing ordering in multiple places
-	 * (i.e. multi-value relationship and element collection mappings)
+	 * interface allowing order columns to be used in multiple places
 	 */
 	interface ParentAdapter
-		extends Orderable2_0.ParentAdapter<OrmAttributeMapping>
+		extends NamedColumn.ParentAdapter
 	{
-		// specify generic argument
-		class Null
-			extends Orderable2_0.ParentAdapter.Null<OrmAttributeMapping>
-			implements ParentAdapter
-		{
-			public Null(OrmAttributeMapping parent) {
-				super(parent);
-			}
-		}
-
+		XmlOrderColumn getXmlColumn();
+		XmlOrderColumn buildXmlColumn();
+		void removeXmlColumn();
 	}
 }

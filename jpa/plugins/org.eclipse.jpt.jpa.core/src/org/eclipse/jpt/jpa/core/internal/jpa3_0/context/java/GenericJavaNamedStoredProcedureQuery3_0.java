@@ -11,6 +11,7 @@ package org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java;
 
 import java.util.ArrayList;
 import java.util.Vector;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jpt.common.utility.internal.ObjectTools;
 import org.eclipse.jpt.common.utility.internal.collection.ListTools;
@@ -27,18 +28,13 @@ import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaStoredProcedureParameter
 import org.eclipse.jpt.jpa.core.jpa3_0.context.orm.OrmQueryContainer3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.NamedStoredProcedureQueryAnnotation3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.StoredProcedureParameterAnnotation3_0;
-import org.eclipse.jpt.jpa.core.jpa3_0.context.StoredProcedureParameter3_0;
-import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaNamedStoredProcedureQuery3_0;
-import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaStoredProcedureParameter3_0;
-import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.NamedStoredProcedureQueryAnnotation3_0;
 
 /**
  * <code>orm.xml</code> named stored procedure query
  */
 public class GenericJavaNamedStoredProcedureQuery3_0
-	extends AbstractJavaQuery<JavaQueryContainer2_1, NamedStoredProcedureQueryAnnotation3_0>
-	implements JavaNamedStoredProcedureQuery3_0
-{
+		extends AbstractJavaQuery<JavaQueryContainer3_0, NamedStoredProcedureQueryAnnotation3_0>
+		implements JavaNamedStoredProcedureQuery3_0 {
 	protected String procedureName;
 
 	protected final ContextListContainer<JavaStoredProcedureParameter3_0, StoredProcedureParameterAnnotation3_0> parameterContainer;
@@ -47,15 +43,14 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 
 	protected final Vector<String> resultSetMappings = new Vector<String>();
 
-
-	public GenericJavaNamedStoredProcedureQuery3_0(JavaQueryContainer3_0 parent, NamedStoredProcedureQueryAnnotation3_0 queryAnnotation) {
+	public GenericJavaNamedStoredProcedureQuery3_0(JavaQueryContainer3_0 parent,
+			NamedStoredProcedureQueryAnnotation3_0 queryAnnotation) {
 		super(parent, queryAnnotation);
 		this.procedureName = queryAnnotation.getProcedureName();
 		this.parameterContainer = this.buildParameterContainer();
 		this.initializeResultClasses();
 		this.initializeResultSetMappings();
 	}
-
 
 	// ********** synchronize/update **********
 
@@ -74,7 +69,6 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 		this.updateModels(this.getParameters(), monitor);
 	}
 
-
 	// ********* procedure name ********
 
 	public String getProcedureName() {
@@ -85,7 +79,7 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 		this.queryAnnotation.setProcedureName(procedureName);
 		this.setProcedureName_(procedureName);
 	}
-	
+
 	protected void setProcedureName_(String procedureName) {
 		String old = this.procedureName;
 		this.procedureName = procedureName;
@@ -101,7 +95,7 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 	public int getParametersSize() {
 		return this.parameterContainer.size();
 	}
-	
+
 	public JavaStoredProcedureParameter3_0 addParameter() {
 		return this.addParameter(this.getParametersSize());
 	}
@@ -129,7 +123,8 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 		return this.parameterContainer.get(index);
 	}
 
-	protected JavaStoredProcedureParameter3_0 buildParameter(StoredProcedureParameterAnnotation3_0 parameterAnnotation) {
+	protected JavaStoredProcedureParameter3_0 buildParameter(
+			StoredProcedureParameterAnnotation3_0 parameterAnnotation) {
 		return this.getJpaFactory3_0().buildJavaStoredProcedureParameter(this, parameterAnnotation);
 	}
 
@@ -149,19 +144,21 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 	 * parameter container adapter
 	 */
 	public class ParameterContainerAdapter
-		extends AbstractContainerAdapter<JavaStoredProcedureParameter3_0, StoredProcedureParameterAnnotation3_0>
-	{
-		public JavaStoredProcedureParameter3_0 buildContextElement(StoredProcedureParameterAnnotation3_0 resourceElement) {
+			extends AbstractContainerAdapter<JavaStoredProcedureParameter3_0, StoredProcedureParameterAnnotation3_0> {
+		public JavaStoredProcedureParameter3_0 buildContextElement(
+				StoredProcedureParameterAnnotation3_0 resourceElement) {
 			return GenericJavaNamedStoredProcedureQuery3_0.this.buildParameter(resourceElement);
 		}
+
 		public ListIterable<StoredProcedureParameterAnnotation3_0> getResourceElements() {
 			return GenericJavaNamedStoredProcedureQuery3_0.this.getParameterAnnotations();
 		}
-		public StoredProcedureParameterAnnotation3_0 extractResourceElement(JavaStoredProcedureParameter3_0 contextElement) {
+
+		public StoredProcedureParameterAnnotation3_0 extractResourceElement(
+				JavaStoredProcedureParameter3_0 contextElement) {
 			return contextElement.getStoredProcedureParameter3_0Annotation();
 		}
 	}
-
 
 	// *********** result classes **********
 
@@ -172,15 +169,15 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 	public int getResultClassesSize() {
 		return this.resultClasses.size();
 	}
-	
+
 	public String getResultClass(int index) {
 		return this.resultClasses.get(index);
 	}
-	
+
 	public void addResultClass(String resultClass) {
 		this.addResultClass(this.resultClasses.size(), resultClass);
 	}
-	
+
 	public void addResultClass(int index, String resultClass) {
 		this.queryAnnotation.addResultClass(index, resultClass);
 		this.addItemToList(index, resultClass, this.resultClasses, RESULT_CLASSES_LIST);
@@ -199,7 +196,7 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 		this.queryAnnotation.moveResultClass(targetIndex, sourceIndex);
 		this.moveItemInList(targetIndex, sourceIndex, this.resultClasses, RESULT_CLASSES_LIST);
 	}
-	
+
 	protected void initializeResultClasses() {
 		for (String resultClass : this.getResourceResultClasses()) {
 			this.resultClasses.add(resultClass);
@@ -214,7 +211,6 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 		return this.queryAnnotation.getResultClasses();
 	}
 
-
 	// *********** result set mappings *********
 
 	public ListIterable<String> getResultSetMappings() {
@@ -224,15 +220,15 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 	public int getResultSetMappingsSize() {
 		return this.resultSetMappings.size();
 	}
-	
+
 	public String getResultSetMapping(int index) {
 		return this.resultSetMappings.get(index);
 	}
-	
+
 	public void addResultSetMapping(String resultSetMapping) {
 		this.addResultSetMapping(this.resultSetMappings.size(), resultSetMapping);
 	}
-	
+
 	public void addResultSetMapping(int index, String resultSetMapping) {
 		this.queryAnnotation.addResultSetMapping(index, resultSetMapping);
 		this.addItemToList(index, resultSetMapping, this.resultSetMappings, RESULT_SET_MAPPINGS_LIST);
@@ -251,7 +247,7 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 		this.queryAnnotation.moveResultSetMapping(targetIndex, sourceIndex);
 		this.moveItemInList(targetIndex, sourceIndex, this.resultSetMappings, RESULT_SET_MAPPINGS_LIST);
 	}
-	
+
 	protected void initializeResultSetMappings() {
 		for (String resultSetMapping : this.getResourceResultSetMappings()) {
 			this.resultSetMappings.add(resultSetMapping);
@@ -272,9 +268,8 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 		sb.append(this.resultSetMappings);
 	}
 
-
 	// ********** metadata conversion *********
-	
+
 	public void convertTo(OrmQueryContainer queryContainer) {
 		((OrmQueryContainer3_0) queryContainer).addNamedStoredProcedureQuery().convertFrom(this);
 	}
@@ -283,20 +278,17 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 		this.parent.removeNamedStoredProcedureQuery(this);
 	}
 
-
 	// ********** validation **********
 
 	@Override
 	protected boolean isEquivalentTo_(Query other) {
-		return super.isEquivalentTo_(other)
-				&& this.isEquivalentTo_((NamedStoredProcedureQuery3_0) other);
+		return super.isEquivalentTo_(other) && this.isEquivalentTo_((NamedStoredProcedureQuery3_0) other);
 	}
 
 	protected boolean isEquivalentTo_(NamedStoredProcedureQuery3_0 other) {
-		return ObjectTools.equals(this.procedureName, other.getProcedureName()) &&
-				this.parametersAreEquivalentTo(other) &&
-				IterableTools.elementsAreEqual(this.getResultClasses(), other.getResultClasses()) &&
-				IterableTools.elementsAreEqual(this.getResultSetMappings(), other.getResultSetMappings());
+		return ObjectTools.equals(this.procedureName, other.getProcedureName()) && this.parametersAreEquivalentTo(other)
+				&& IterableTools.elementsAreEqual(this.getResultClasses(), other.getResultClasses())
+				&& IterableTools.elementsAreEqual(this.getResultSetMappings(), other.getResultSetMappings());
 	}
 
 	protected boolean parametersAreEquivalentTo(NamedStoredProcedureQuery3_0 other) {
@@ -307,7 +299,7 @@ public class GenericJavaNamedStoredProcedureQuery3_0
 			return false;
 		}
 		for (int i = 0; i < parameter1.size(); i++) {
-			if ( ! parameter1.get(i).isEquivalentTo(parameter2.get(i))) {
+			if (!parameter1.get(i).isEquivalentTo(parameter2.get(i))) {
 				return false;
 			}
 		}

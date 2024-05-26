@@ -3,21 +3,17 @@
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
- *
+ * 
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.orm;
 
-import org.eclipse.jpt.jpa.core.context.orm.OrmAssociationOverrideContainer;
-import org.eclipse.jpt.jpa.core.context.orm.OrmAttributeOverrideContainer;
-import org.eclipse.jpt.jpa.core.context.orm.OrmSpecifiedColumn;
-import org.eclipse.jpt.jpa.core.context.orm.OrmConvertibleMapping;
-import org.eclipse.jpt.jpa.core.jpa2.context.ElementCollectionMapping2_0;
-import org.eclipse.jpt.jpa.core.resource.orm.XmlElementCollection;
+import org.eclipse.jpt.jpa.core.context.orm.OrmAttributeMapping;
+import org.eclipse.jpt.jpa.core.jpa2.context.Orderable2_0;
 
 /**
- * <code>orm.xml</code> element collection mapping
+ * JPA 2.0 <code>orm.xml</code> ordering
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -25,19 +21,33 @@ import org.eclipse.jpt.jpa.core.resource.orm.XmlElementCollection;
  * pioneering adopters on the understanding that any code that uses this API
  * will almost certainly be broken (repeatedly) as the API evolves.
  * 
- * @version 2.3
+ * @version 3.3
  * @since 2.3
  */
-public interface OrmElementCollectionMapping2_0
-	extends ElementCollectionMapping2_0, OrmCollectionMapping2_0, OrmConvertibleMapping
+public interface OrmOrderable3_0
+	extends Orderable2_0
 {
-	XmlElementCollection getXmlAttributeMapping();
+	OrmSpecifiedOrderColumn3_0 getOrderColumn();
 
-	OrmCollectionTable2_0 getCollectionTable();
 
-	OrmSpecifiedColumn getValueColumn();
+	// ************ parent adapter ************
 
-	OrmAttributeOverrideContainer getValueAttributeOverrideContainer();
+	/**
+	 * interface allowing ordering in multiple places
+	 * (i.e. multi-value relationship and element collection mappings)
+	 */
+	interface ParentAdapter
+		extends Orderable2_0.ParentAdapter<OrmAttributeMapping>
+	{
+		// specify generic argument
+		class Null
+			extends Orderable2_0.ParentAdapter.Null<OrmAttributeMapping>
+			implements ParentAdapter
+		{
+			public Null(OrmAttributeMapping parent) {
+				super(parent);
+			}
+		}
 
-	OrmAssociationOverrideContainer getValueAssociationOverrideContainer();
+	}
 }

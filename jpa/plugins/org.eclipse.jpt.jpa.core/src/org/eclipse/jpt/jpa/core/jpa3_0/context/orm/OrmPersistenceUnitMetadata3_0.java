@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2011 Oracle. All rights reserved.
+ * Copyright (c) 2010, 2011 Oracle. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
@@ -9,24 +9,26 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.orm;
 
-import org.eclipse.jpt.jpa.core.context.orm.OrmAssociationOverrideContainer;
-import org.eclipse.jpt.jpa.core.context.orm.OrmEmbeddedMapping;
-import org.eclipse.jpt.jpa.core.jpa2.context.EmbeddedMapping2_0;
+import org.eclipse.jpt.jpa.core.context.orm.OrmPersistenceUnitMetadata;
+import org.eclipse.jpt.jpa.core.jpa2.context.MappingFilePersistenceUnitMetadata2_0;
 
 /**
- * JPA 2.0 <code>orm.xml</code> embedded mapping
+ * JPA 2.0
+ * Context <code>orm.xml</code> persistence unit metadata.
+ * Context model corresponding to the
+ * XML resource model {@link org.eclipse.jpt.jpa.core.resource.orm.XmlPersistenceUnitMetadata},
+ * which corresponds to the <code>persistence-unit-metadata</code> element
+ * in the <code>orm.xml</code> file.
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
  * stability. It is available at this early stage to solicit feedback from
  * pioneering adopters on the understanding that any code that uses this API
  * will almost certainly be broken (repeatedly) as the API evolves.
- * 
- * @version 2.3
- * @since 2.3
  */
-public interface OrmEmbeddedMapping2_0
-	extends EmbeddedMapping2_0, OrmEmbeddedMapping
+public interface OrmPersistenceUnitMetadata3_0
+	extends MappingFilePersistenceUnitMetadata2_0, OrmPersistenceUnitMetadata
 {
-	OrmAssociationOverrideContainer getAssociationOverrideContainer();
+	void setDescription(String description);
+		String DESCRIPTION_PROPERTY = "description"; //$NON-NLS-1$
 }

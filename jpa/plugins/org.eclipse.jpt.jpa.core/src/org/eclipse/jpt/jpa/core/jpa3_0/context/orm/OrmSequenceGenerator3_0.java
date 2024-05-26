@@ -25,7 +25,7 @@ import org.eclipse.jpt.jpa.core.jpa2.context.SequenceGenerator2_0;
  * @version 2.3
  * @since 2.3
  */
-public interface OrmSequenceGenerator2_0
+public interface OrmSequenceGenerator3_0
 	extends SequenceGenerator2_0, OrmSequenceGenerator
 {
 	// combine interfaces

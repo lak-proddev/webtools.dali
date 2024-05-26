@@ -24,9 +24,8 @@ import org.eclipse.jpt.jpa.core.context.Query;
  * @version 3.3
  * @since 3.3
  */
-public interface NamedStoredProcedureQuery3_0
-	extends Query
-{
+public interface NamedStoredProcedureQuery3_0 extends Query {
+
 	Class<NamedStoredProcedureQuery3_0> getQueryType();
 
 	// ********** procedure name **********

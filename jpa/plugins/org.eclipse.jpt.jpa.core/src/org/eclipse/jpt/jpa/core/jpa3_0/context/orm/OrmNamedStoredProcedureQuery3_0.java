@@ -11,8 +11,8 @@ package org.eclipse.jpt.jpa.core.jpa3_0.context.orm;
 
 import org.eclipse.jpt.common.utility.iterable.ListIterable;
 import org.eclipse.jpt.jpa.core.context.orm.OrmQuery;
-import org.eclipse.jpt.jpa.core.jpa2_1.context.NamedStoredProcedureQuery2_1;
-import org.eclipse.jpt.jpa.core.jpa2_1.context.java.JavaNamedStoredProcedureQuery2_1;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.NamedStoredProcedureQuery3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaNamedStoredProcedureQuery3_0;
 import org.eclipse.jpt.jpa.core.resource.orm.XmlNamedStoredProcedureQuery;
 
 /**
@@ -28,24 +28,21 @@ import org.eclipse.jpt.jpa.core.resource.orm.XmlNamedStoredProcedureQuery;
  * @version 3.3
  * @since 3.3
  */
-public interface OrmNamedStoredProcedureQuery2_1
-	extends OrmQuery, NamedStoredProcedureQuery2_1
-{
+public interface OrmNamedStoredProcedureQuery3_0 extends OrmQuery, NamedStoredProcedureQuery3_0 {
 	XmlNamedStoredProcedureQuery getXmlQuery();
-	
+
 	// *********** parameters ************
-	
-	ListIterable<OrmStoredProcedureParameter2_1> getParameters();
 
-	OrmStoredProcedureParameter2_1 addParameter();
+	ListIterable<OrmStoredProcedureParameter3_0> getParameters();
 
-	OrmStoredProcedureParameter2_1 addParameter(int index);
+	OrmStoredProcedureParameter3_0 addParameter();
+
+	OrmStoredProcedureParameter3_0 addParameter(int index);
 
 	// ********** metadata conversion *********
-	
+
 	/**
-	 * Build up a mapping file query from
-	 * the given Java query
+	 * Build up a mapping file query from the given Java query
 	 */
-	void convertFrom(JavaNamedStoredProcedureQuery2_1 javaQuery);
+	void convertFrom(JavaNamedStoredProcedureQuery3_0 javaQuery);
 }

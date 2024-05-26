@@ -26,9 +26,7 @@ import org.eclipse.jpt.jpa.core.context.QueryContainer;
  * @version 3.3
  * @since 3.3
  */
-public interface QueryContainer3_0
-	extends QueryContainer
-{
+public interface QueryContainer3_0 extends QueryContainer {
 
 	// ********** named stored procedure queries **********
 

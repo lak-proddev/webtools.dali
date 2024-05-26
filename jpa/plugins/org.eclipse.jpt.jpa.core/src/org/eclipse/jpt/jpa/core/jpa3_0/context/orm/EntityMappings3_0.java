@@ -27,12 +27,12 @@ import org.eclipse.jpt.jpa.core.resource.orm.XmlEntityMappings;
  * @version 3.3
  * @since 3.3
 */
-public interface EntityMappings2_1
+public interface EntityMappings3_0
 	extends EntityMappings
 {
 
-	Iterable<OrmConverterType2_1> getConverterTypes();
-	OrmConverterType2_1 getConverterType(String className);
-	OrmConverterType2_1 addConverterType(String className);
+	Iterable<OrmConverterType3_0> getConverterTypes();
+	OrmConverterType3_0 getConverterType(String className);
+	OrmConverterType3_0 addConverterType(String className);
 	boolean containsConverterType(String className);
 }

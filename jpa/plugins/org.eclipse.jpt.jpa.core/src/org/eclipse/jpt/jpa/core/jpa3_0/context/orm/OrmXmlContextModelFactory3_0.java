@@ -28,20 +28,20 @@ import org.eclipse.jpt.jpa.core.resource.orm.XmlElementCollection;
  * @version 3.3
  * @since 2.3
  */
-public interface OrmXmlContextModelFactory2_0
+public interface OrmXmlContextModelFactory3_0
 	extends OrmXmlContextModelFactory
 {
-	OrmDerivedIdentity2_0 buildOrmDerivedIdentity(OrmSingleRelationshipMapping2_0 parent);
+	OrmDerivedIdentity3_0 buildOrmDerivedIdentity(OrmSingleRelationshipMapping3_0 parent);
 	
-	OrmElementCollectionMapping2_0 buildOrmElementCollectionMapping(OrmSpecifiedPersistentAttribute parent, XmlElementCollection resourceMapping);
+	OrmElementCollectionMapping3_0 buildOrmElementCollectionMapping(OrmSpecifiedPersistentAttribute parent, XmlElementCollection resourceMapping);
 	
-	Cacheable2_0 buildOrmCacheable(OrmCacheableReference2_0 parent);
+	Cacheable2_0 buildOrmCacheable(OrmCacheableReference3_0 parent);
 	
 	OrphanRemovable2_0 buildOrmOrphanRemoval(OrphanRemovalMapping2_0 parent);
 	
-	OrmOrderable2_0 buildOrmOrderable(OrmOrderable2_0.ParentAdapter parentAdapter);
+	OrmOrderable3_0 buildOrmOrderable(OrmOrderable3_0.ParentAdapter parentAdapter);
 	
-	OrmSpecifiedOrderColumn2_0 buildOrmOrderColumn(OrmSpecifiedOrderColumn2_0.ParentAdapter parentAdapter);
+	OrmSpecifiedOrderColumn3_0 buildOrmOrderColumn(OrmSpecifiedOrderColumn3_0.ParentAdapter parentAdapter);
 	
-	OrmCollectionTable2_0 buildOrmCollectionTable(OrmCollectionTable2_0.ParentAdapter parentAdapter);
+	OrmCollectionTable3_0 buildOrmCollectionTable(OrmCollectionTable3_0.ParentAdapter parentAdapter);
 }

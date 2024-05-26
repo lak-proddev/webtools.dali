@@ -10,7 +10,7 @@
 package org.eclipse.jpt.jpa.core.jpa3_0.context;
 
 import org.eclipse.jpt.jpa.core.context.JpaContextModel;
-import org.eclipse.jpt.jpa.core.jpa2_1.ParameterMode2_1;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.ParameterMode3_0;
 
 /**
  * stored procedure parameter
@@ -24,9 +24,7 @@ import org.eclipse.jpt.jpa.core.jpa2_1.ParameterMode2_1;
  * @version 3.3
  * @since 3.3
  */
-public interface StoredProcedureParameter3_0
-	extends JpaContextModel
-{
+public interface StoredProcedureParameter3_0 extends JpaContextModel {
 
 	// ********* name **********
 	String getName();
@@ -41,11 +39,11 @@ public interface StoredProcedureParameter3_0
 	 * Return the specified mode if present, 
 	 * otherwise return the default lock mode.
 	 */
-	ParameterMode2_1 getMode();
-	ParameterMode2_1 getSpecifiedMode();
-	void setSpecifiedMode(ParameterMode2_1 mode);
+	ParameterMode3_0 getMode();
+	ParameterMode3_0 getSpecifiedMode();
+	void setSpecifiedMode(ParameterMode3_0 mode);
 		String SPECIFIED_MODE_PROPERTY = "specifiedParameterMode"; //$NON-NLS-1$
-	ParameterMode2_1 getDefaultMode();
+	ParameterMode3_0 getDefaultMode();
 		String DEFAULT_MODE_PROPERTY = "defaultParameterMode";  //$NON-NLS-1$
 
 

@@ -11,7 +11,7 @@ package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 
 import org.eclipse.jpt.common.utility.iterable.ListIterable;
 import org.eclipse.jpt.jpa.core.context.java.JavaQueryContainer;
-import org.eclipse.jpt.jpa.core.jpa2_1.context.QueryContainer2_1;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.QueryContainer3_0;
 
 /**
  * JPA 2.1
@@ -26,9 +26,7 @@ import org.eclipse.jpt.jpa.core.jpa2_1.context.QueryContainer2_1;
  * @version 3.3
  * @since 3.3
  */
-public interface JavaQueryContainer3_0
-	extends QueryContainer2_1, JavaQueryContainer
-{
+public interface JavaQueryContainer3_0 extends QueryContainer3_0, JavaQueryContainer {
 	// ********** named stored procedure queries **********
 
 	ListIterable<JavaNamedStoredProcedureQuery3_0> getNamedStoredProcedureQueries();

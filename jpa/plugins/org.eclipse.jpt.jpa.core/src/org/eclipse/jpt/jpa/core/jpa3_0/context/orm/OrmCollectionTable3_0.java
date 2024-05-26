@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 Oracle. All rights reserved.
+ * Copyright (c) 2009, 2013 Oracle. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
@@ -9,12 +9,12 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.orm;
 
-import org.eclipse.jpt.jpa.core.context.orm.OrmManagedType;
-import org.eclipse.jpt.jpa.core.jpa2_1.context.ConverterType2_1;
-import org.eclipse.jpt.jpa.core.resource.orm.XmlConverter;
+import org.eclipse.jpt.jpa.core.context.Table;
+import org.eclipse.jpt.jpa.core.context.orm.OrmSpecifiedReferenceTable;
+import org.eclipse.jpt.jpa.core.jpa2.context.CollectionTable2_0;
 
 /**
- * Context converter type.
+ * <code>orm.xml</code> collection table
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -22,13 +22,20 @@ import org.eclipse.jpt.jpa.core.resource.orm.XmlConverter;
  * pioneering adopters on the understanding that any code that uses this API
  * will almost certainly be broken (repeatedly) as the API evolves.
  * 
- * @version 3.3
- * @since 3.3
+ * @version 2.3
+ * @since 2.3
  */
-public interface OrmConverterType2_1
-	extends ConverterType2_1, OrmManagedType
+public interface OrmCollectionTable3_0
+	extends CollectionTable2_0, OrmSpecifiedReferenceTable
 {
-	XmlConverter getXmlConverter();
+	void initializeFrom(OrmCollectionTable3_0 oldTable);
 
-	XmlConverter getXmlManagedType();
+
+	// ********** parent adapter **********
+
+	interface ParentAdapter
+		extends Table.ParentAdapter<OrmElementCollectionMapping3_0>
+	{
+		// specify generic argument
+	}
 }

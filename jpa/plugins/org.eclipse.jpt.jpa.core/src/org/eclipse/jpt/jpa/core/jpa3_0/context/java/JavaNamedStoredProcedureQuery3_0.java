@@ -11,8 +11,8 @@ package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 
 import org.eclipse.jpt.common.utility.iterable.ListIterable;
 import org.eclipse.jpt.jpa.core.context.java.JavaQuery;
-import org.eclipse.jpt.jpa.core.jpa2_1.context.NamedStoredProcedureQuery2_1;
-import org.eclipse.jpt.jpa.core.jpa2_1.resource.java.NamedStoredProcedureQueryAnnotation2_1;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.NamedStoredProcedureQuery3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.NamedStoredProcedureQueryAnnotation3_0;
 
 /**
  * JPA 2.1
@@ -27,13 +27,11 @@ import org.eclipse.jpt.jpa.core.jpa2_1.resource.java.NamedStoredProcedureQueryAn
  * @version 3.3
  * @since 3.3
  */
-public interface JavaNamedStoredProcedureQuery3_0
-	extends NamedStoredProcedureQuery2_1, JavaQuery
-{
-	NamedStoredProcedureQueryAnnotation2_1 getQueryAnnotation();
+public interface JavaNamedStoredProcedureQuery3_0 extends NamedStoredProcedureQuery3_0, JavaQuery {
+	NamedStoredProcedureQueryAnnotation3_0 getQueryAnnotation();
 
 	// *********** parameters ************
-	
+
 	ListIterable<JavaStoredProcedureParameter3_0> getParameters();
 
 	JavaStoredProcedureParameter3_0 addParameter();

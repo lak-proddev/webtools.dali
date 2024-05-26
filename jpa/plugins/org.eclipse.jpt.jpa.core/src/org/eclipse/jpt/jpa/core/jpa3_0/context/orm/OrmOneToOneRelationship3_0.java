@@ -1,20 +1,20 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2013 Oracle. All rights reserved.
+ * Copyright (c) 2010, 2011 Oracle. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
- * 
+ *
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.orm;
 
-import org.eclipse.jpt.jpa.core.context.Table;
-import org.eclipse.jpt.jpa.core.context.orm.OrmSpecifiedReferenceTable;
-import org.eclipse.jpt.jpa.core.jpa2.context.CollectionTable2_0;
+import org.eclipse.jpt.jpa.core.context.orm.OrmMappingJoinTableRelationship;
+import org.eclipse.jpt.jpa.core.context.orm.OrmOneToOneRelationship;
+import org.eclipse.jpt.jpa.core.jpa2.context.OneToOneRelationship2_0;
 
 /**
- * <code>orm.xml</code> collection table
+ * JPA 2.0 <code>orm.xml</code> 1:1 relationship
  * <p>
  * Provisional API: This interface is part of an interim API that is still
  * under development and expected to change significantly before reaching
@@ -25,17 +25,10 @@ import org.eclipse.jpt.jpa.core.jpa2.context.CollectionTable2_0;
  * @version 2.3
  * @since 2.3
  */
-public interface OrmCollectionTable2_0
-	extends CollectionTable2_0, OrmSpecifiedReferenceTable
+public interface OrmOneToOneRelationship3_0
+	extends OneToOneRelationship2_0,
+		OrmOneToOneRelationship,
+		OrmMappingJoinTableRelationship
 {
-	void initializeFrom(OrmCollectionTable2_0 oldTable);
-
-
-	// ********** parent adapter **********
-
-	interface ParentAdapter
-		extends Table.ParentAdapter<OrmElementCollectionMapping2_0>
-	{
-		// specify generic argument
-	}
+	// combine various interfaces
 }

@@ -9,8 +9,8 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 
-import org.eclipse.jpt.jpa.core.jpa2_1.context.StoredProcedureParameter2_1;
-import org.eclipse.jpt.jpa.core.jpa2_1.resource.java.StoredProcedureParameterAnnotation2_1;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.StoredProcedureParameter3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.StoredProcedureParameterAnnotation3_0;
 
 /**
  * JPA 2.1
@@ -25,8 +25,6 @@ import org.eclipse.jpt.jpa.core.jpa2_1.resource.java.StoredProcedureParameterAnn
  * @version 3.3
  * @since 3.3
  */
-public interface JavaStoredProcedureParameter3_0
-	extends StoredProcedureParameter2_1
-{
-	StoredProcedureParameterAnnotation2_1 getStoredProcedureParameter2_1Annotation();
+public interface JavaStoredProcedureParameter3_0 extends StoredProcedureParameter3_0 {
+	StoredProcedureParameterAnnotation3_0 getStoredProcedureParameter3_0Annotation();
 }
