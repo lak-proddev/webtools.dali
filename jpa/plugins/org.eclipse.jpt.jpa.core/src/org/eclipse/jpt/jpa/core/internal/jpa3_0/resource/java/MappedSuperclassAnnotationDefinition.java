@@ -7,24 +7,25 @@
  * Contributors:
  *     Oracle - initial API and implementation
  ******************************************************************************/
-package org.eclipse.jpt.jpa.core.internal.jpa3.resource.java;
+package org.eclipse.jpt.jpa.core.internal.jpa3_0.resource.java;
 
 import org.eclipse.jdt.core.IAnnotation;
-import org.eclipse.jpt.common.core.internal.resource.java.binary.BinaryNamedAnnotation;
-import org.eclipse.jpt.common.core.internal.resource.java.source.SourceNamedAnnotation;
 import org.eclipse.jpt.common.core.resource.java.Annotation;
 import org.eclipse.jpt.common.core.resource.java.AnnotationDefinition;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceAnnotatedElement;
 import org.eclipse.jpt.common.core.utility.jdt.AnnotatedElement;
-import org.eclipse.jpt.jpa.core.resource.java.JPA;
-import org.eclipse.jpt.jpa.core.resource.persistence.v3_0.JPA3_0;
+import org.eclipse.jpt.jpa.core.internal.resource.java.binary.BinaryMappedSuperclassAnnotation;
+import org.eclipse.jpt.jpa.core.internal.resource.java.source.SourceMappedSuperclassAnnotation;
+import org.eclipse.jpt.jpa.core.resource.java.MappedSuperclassAnnotation;
 
 /**
- * javax.persistence.AttributeOverrides
+ * javax.persistence.MappedSuperclass
  */
-public final class AttributeOverridesAnnotationDefinition3_0 implements AnnotationDefinition {
+public final class MappedSuperclassAnnotationDefinition
+	implements AnnotationDefinition
+{
 	// singleton
-	private static final AnnotationDefinition INSTANCE = new AttributeOverridesAnnotationDefinition3_0();
+	private static final AnnotationDefinition INSTANCE = new MappedSuperclassAnnotationDefinition();
 
 	/**
 	 * Return the singleton.
@@ -36,12 +37,12 @@ public final class AttributeOverridesAnnotationDefinition3_0 implements Annotati
 	/**
 	 * Ensure single instance.
 	 */
-	private AttributeOverridesAnnotationDefinition3_0() {
+	private MappedSuperclassAnnotationDefinition() {
 		super();
 	}
 
 	public Annotation buildAnnotation(JavaResourceAnnotatedElement parent, AnnotatedElement annotatedElement) {
-		return new SourceNamedAnnotation(parent, annotatedElement, getAnnotationName());
+		return new SourceMappedSuperclassAnnotation(parent, annotatedElement);
 	}
 
 	public Annotation buildNullAnnotation(JavaResourceAnnotatedElement parent) {
@@ -49,10 +50,10 @@ public final class AttributeOverridesAnnotationDefinition3_0 implements Annotati
 	}
 
 	public Annotation buildAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
-		return new BinaryNamedAnnotation(parent, jdtAnnotation, getAnnotationName());
+		return new BinaryMappedSuperclassAnnotation(parent, jdtAnnotation);
 	}
 
 	public String getAnnotationName() {
-		return JPA3_0.ATTRIBUTE_OVERRIDES;
+		return MappedSuperclassAnnotation.ANNOTATION_NAME;
 	}
 }

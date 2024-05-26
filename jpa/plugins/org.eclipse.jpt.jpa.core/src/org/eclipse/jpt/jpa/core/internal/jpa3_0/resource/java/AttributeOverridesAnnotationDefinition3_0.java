@@ -1,4 +1,13 @@
-package org.eclipse.jpt.jpa.core.internal.jpa3.resource.java;
+/*******************************************************************************
+ * Copyright (c) 2009, 2011 Oracle. All rights reserved.
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0, which accompanies this distribution
+ * and is available at https://www.eclipse.org/legal/epl-2.0/.
+ * 
+ * Contributors:
+ *     Oracle - initial API and implementation
+ ******************************************************************************/
+package org.eclipse.jpt.jpa.core.internal.jpa3_0.resource.java;
 
 import org.eclipse.jdt.core.IAnnotation;
 import org.eclipse.jpt.common.core.internal.resource.java.binary.BinaryNamedAnnotation;
@@ -7,16 +16,15 @@ import org.eclipse.jpt.common.core.resource.java.Annotation;
 import org.eclipse.jpt.common.core.resource.java.AnnotationDefinition;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceAnnotatedElement;
 import org.eclipse.jpt.common.core.utility.jdt.AnnotatedElement;
-import org.eclipse.jpt.jpa.core.internal.resource.java.AssociationOverridesAnnotationDefinition;
 import org.eclipse.jpt.jpa.core.resource.java.JPA;
 import org.eclipse.jpt.jpa.core.resource.persistence.v3_0.JPA3_0;
 
 /**
- * javax.persistence.AssociationOverrides
+ * javax.persistence.AttributeOverrides
  */
-public final class AssociationOverridesAnnotationDefinition3_0 implements AnnotationDefinition {
+public final class AttributeOverridesAnnotationDefinition3_0 implements AnnotationDefinition {
 	// singleton
-	private static final AnnotationDefinition INSTANCE = new AssociationOverridesAnnotationDefinition3_0();
+	private static final AnnotationDefinition INSTANCE = new AttributeOverridesAnnotationDefinition3_0();
 
 	/**
 	 * Return the singleton.
@@ -28,7 +36,7 @@ public final class AssociationOverridesAnnotationDefinition3_0 implements Annota
 	/**
 	 * Ensure single instance.
 	 */
-	private AssociationOverridesAnnotationDefinition3_0() {
+	private AttributeOverridesAnnotationDefinition3_0() {
 		super();
 	}
 
@@ -45,6 +53,6 @@ public final class AssociationOverridesAnnotationDefinition3_0 implements Annota
 	}
 
 	public String getAnnotationName() {
-		return JPA3_0.ASSOCIATION_OVERRIDES;
+		return JPA3_0.ATTRIBUTE_OVERRIDES;
 	}
 }

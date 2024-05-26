@@ -36,9 +36,9 @@ import org.eclipse.jpt.jpa.core.internal.jpa2.resource.java.StaticMetamodelAnnot
 import org.eclipse.jpt.jpa.core.internal.jpa2_1.resource.java.ConverterAnnotationDefinition2_1;
 import org.eclipse.jpt.jpa.core.internal.jpa2_1.resource.java.NamedStoredProcedureQueriesAnnotationDefinition2_1;
 import org.eclipse.jpt.jpa.core.internal.jpa2_1.resource.java.NamedStoredProcedureQueryAnnotationDefinition2_1;
-import org.eclipse.jpt.jpa.core.internal.jpa3.resource.java.AccessAnnotationDefinition3_0;
-import org.eclipse.jpt.jpa.core.internal.jpa3.resource.java.AssociationOverridesAnnotationDefinition3_0;
-import org.eclipse.jpt.jpa.core.internal.jpa3.resource.java.AttributeOverridesAnnotationDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.resource.java.AccessAnnotationDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.resource.java.AssociationOverridesAnnotationDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.resource.java.AttributeOverridesAnnotationDefinition3_0;
 import org.eclipse.jpt.jpa.core.internal.resource.java.AssociationOverridesAnnotationDefinition;
 import org.eclipse.jpt.jpa.core.internal.resource.java.AttributeOverrideAnnotationDefinition;
 import org.eclipse.jpt.jpa.core.internal.resource.java.AttributeOverridesAnnotationDefinition;
