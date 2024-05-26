@@ -54,14 +54,14 @@ public interface StoredProcedureParameterAnnotation3_0 extends NestableAnnotatio
 	 * Corresponds to the 'mode' element of the StoredProcedureParameter annotation.
 	 * Return null if the element does not exist in the annotation
 	 */
-	ParameterMode3_0 getMode();
+	ParameterMode_3_0 getMode();
 		String MODE_PROPERTY = "mode"; //$NON-NLS-1$
 
 	/**
 	 * Corresponds to the 'mode' element of the StoredProcedureParameter annotation.
 	 * Setting to null will remove the element.
 	 */
-	void setMode(ParameterMode3_0 mode);
+	void setMode(ParameterMode_3_0 mode);
 
 	/**
 	 * Return the {@link TextRange} for the 'mode' element. If the element 

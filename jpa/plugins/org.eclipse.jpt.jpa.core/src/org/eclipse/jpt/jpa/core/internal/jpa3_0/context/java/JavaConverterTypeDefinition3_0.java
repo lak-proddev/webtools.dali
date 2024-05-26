@@ -20,9 +20,7 @@ import org.eclipse.jpt.jpa.core.jpa3_0.context.ConverterType3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaConverterType3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.ConverterAnnotation3_0;
 
-public class JavaConverterTypeDefinition3_0
-	implements JavaManagedTypeDefinition
-{
+public class JavaConverterTypeDefinition3_0 implements JavaManagedTypeDefinition {
 	// singleton
 	private static final JavaManagedTypeDefinition INSTANCE = new JavaConverterTypeDefinition3_0();
 
@@ -48,7 +46,8 @@ public class JavaConverterTypeDefinition3_0
 		return IterableTools.singletonIterable(ConverterAnnotation3_0.ANNOTATION_NAME);
 	}
 
-	public JavaConverterType3_0 buildContextManagedType(JpaContextModel parent, JavaResourceType jrt, JpaFactory factory) {
+	public JavaConverterType3_0 buildContextManagedType(JpaContextModel parent, JavaResourceType jrt,
+			JpaFactory factory) {
 		return ((JpaFactory3_0) factory).buildJavaConverterType(parent, jrt);
 	}
 }

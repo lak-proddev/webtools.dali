@@ -10,7 +10,7 @@
 package org.eclipse.jpt.jpa.core.jpa3_0.context;
 
 import org.eclipse.jpt.jpa.core.context.JpaContextModel;
-import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.ParameterMode3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.ParameterMode3_0;
 
 /**
  * stored procedure parameter
@@ -24,7 +24,9 @@ import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.ParameterMode3_0;
  * @version 3.3
  * @since 3.3
  */
-public interface StoredProcedureParameter3_0 extends JpaContextModel {
+public interface StoredProcedureParameter3_0
+	extends JpaContextModel
+{
 
 	// ********* name **********
 	String getName();
