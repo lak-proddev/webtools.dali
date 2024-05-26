@@ -15,16 +15,16 @@ import org.eclipse.jpt.jpa.core.JpaFactory;
 import org.eclipse.jpt.jpa.core.JpaProject;
 import org.eclipse.jpt.jpa.core.context.JpaContextModel;
 import org.eclipse.jpt.jpa.core.context.java.JavaManagedTypeDefinition;
-import org.eclipse.jpt.jpa.core.jpa2_1.JpaFactory2_1;
-import org.eclipse.jpt.jpa.core.jpa2_1.context.ConverterType2_1;
-import org.eclipse.jpt.jpa.core.jpa2_1.context.java.JavaConverterType2_1;
-import org.eclipse.jpt.jpa.core.jpa2_1.resource.java.ConverterAnnotation2_1;
+import org.eclipse.jpt.jpa.core.jpa3_0.JpaFactory3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.ConverterType3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaConverterType3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.ConverterAnnotation3_0;
 
-public class JavaConverterTypeDefinition2_1
+public class JavaConverterTypeDefinition3_0
 	implements JavaManagedTypeDefinition
 {
 	// singleton
-	private static final JavaManagedTypeDefinition INSTANCE = new JavaConverterTypeDefinition2_1();
+	private static final JavaManagedTypeDefinition INSTANCE = new JavaConverterTypeDefinition3_0();
 
 	/**
 	 * Return the singleton.
@@ -36,19 +36,19 @@ public class JavaConverterTypeDefinition2_1
 	/**
 	 * Enforce singleton usage
 	 */
-	private JavaConverterTypeDefinition2_1() {
+	private JavaConverterTypeDefinition3_0() {
 		super();
 	}
 
-	public Class<ConverterType2_1> getManagedTypeType() {
-		return ConverterType2_1.class;
+	public Class<ConverterType3_0> getManagedTypeType() {
+		return ConverterType3_0.class;
 	}
 
 	public Iterable<String> getAnnotationNames(JpaProject jpaProject) {
-		return IterableTools.singletonIterable(ConverterAnnotation2_1.ANNOTATION_NAME);
+		return IterableTools.singletonIterable(ConverterAnnotation3_0.ANNOTATION_NAME);
 	}
 
-	public JavaConverterType2_1 buildContextManagedType(JpaContextModel parent, JavaResourceType jrt, JpaFactory factory) {
-		return ((JpaFactory2_1) factory).buildJavaConverterType(parent, jrt);
+	public JavaConverterType3_0 buildContextManagedType(JpaContextModel parent, JavaResourceType jrt, JpaFactory factory) {
+		return ((JpaFactory3_0) factory).buildJavaConverterType(parent, jrt);
 	}
 }

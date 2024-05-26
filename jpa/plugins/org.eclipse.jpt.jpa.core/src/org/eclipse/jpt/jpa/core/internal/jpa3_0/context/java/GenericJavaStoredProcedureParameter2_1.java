@@ -13,31 +13,31 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jpt.common.core.utility.TextRange;
 import org.eclipse.jpt.common.utility.internal.ObjectTools;
 import org.eclipse.jpt.jpa.core.internal.context.java.AbstractJavaContextModel;
-import org.eclipse.jpt.jpa.core.jpa2_1.ParameterMode2_1;
-import org.eclipse.jpt.jpa.core.jpa2_1.context.StoredProcedureParameter2_1;
-import org.eclipse.jpt.jpa.core.jpa2_1.context.java.JavaNamedStoredProcedureQuery2_1;
-import org.eclipse.jpt.jpa.core.jpa2_1.context.java.JavaStoredProcedureParameter2_1;
-import org.eclipse.jpt.jpa.core.jpa2_1.resource.java.StoredProcedureParameterAnnotation2_1;
+import org.eclipse.jpt.jpa.core.jpa3_0.ParameterMode3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.StoredProcedureParameter3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaNamedStoredProcedureQuery3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaStoredProcedureParameter3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.StoredProcedureParameterAnnotation3_0;
 
 /**
  * Java stored procedure parameter
  */
-public class GenericJavaStoredProcedureParameter2_1
-	extends AbstractJavaContextModel<JavaNamedStoredProcedureQuery2_1>
-	implements JavaStoredProcedureParameter2_1
+public class GenericJavaStoredProcedureParameter3_0
+	extends AbstractJavaContextModel<JavaNamedStoredProcedureQuery3_0>
+	implements JavaStoredProcedureParameter3_0
 {
-	protected final StoredProcedureParameterAnnotation2_1 parameterAnnotation;
+	protected final StoredProcedureParameterAnnotation3_0 parameterAnnotation;
 
 	protected String name;
 	
-	protected ParameterMode2_1 specifiedMode;
-	protected ParameterMode2_1 defaultMode;
+	protected ParameterMode3_0 specifiedMode;
+	protected ParameterMode3_0 defaultMode;
 	
 	protected String typeName;
 	protected String fullyQualifiedTypeName;
 
 
-	public GenericJavaStoredProcedureParameter2_1(JavaNamedStoredProcedureQuery2_1 parent, StoredProcedureParameterAnnotation2_1 parameterAnnotation) {
+	public GenericJavaStoredProcedureParameter3_0(JavaNamedStoredProcedureQuery3_0 parent, StoredProcedureParameterAnnotation3_0 parameterAnnotation) {
 		super(parent);
 		this.parameterAnnotation = parameterAnnotation;
 		this.name = parameterAnnotation.getName();
@@ -83,41 +83,41 @@ public class GenericJavaStoredProcedureParameter2_1
 
 	// ********** mode **********
 
-	public ParameterMode2_1 getMode() {
+	public ParameterMode3_0 getMode() {
 		return (this.specifiedMode != null) ? this.specifiedMode : this.defaultMode;
 	}
 
-	public ParameterMode2_1 getSpecifiedMode() {
+	public ParameterMode3_0 getSpecifiedMode() {
 		return this.specifiedMode;
 	}
 
-	public void setSpecifiedMode(ParameterMode2_1 mode) {
-		this.parameterAnnotation.setMode(ParameterMode2_1.toJavaResourceModel(mode));
+	public void setSpecifiedMode(ParameterMode3_0 mode) {
+		this.parameterAnnotation.setMode(ParameterMode3_0.toJavaResourceModel(mode));
 		this.setSpecifiedMode_(mode);
 	}
 
-	protected void setSpecifiedMode_(ParameterMode2_1 mode) {
-		ParameterMode2_1 old = this.specifiedMode;
+	protected void setSpecifiedMode_(ParameterMode3_0 mode) {
+		ParameterMode3_0 old = this.specifiedMode;
 		this.specifiedMode = mode;
 		this.firePropertyChanged(SPECIFIED_MODE_PROPERTY, old, mode);
 	}
 
-	protected ParameterMode2_1 buildSpecifiedMode() {
-		return 	ParameterMode2_1.fromJavaResourceModel(this.parameterAnnotation.getMode());
+	protected ParameterMode3_0 buildSpecifiedMode() {
+		return 	ParameterMode3_0.fromJavaResourceModel(this.parameterAnnotation.getMode());
 	}
 
-	public ParameterMode2_1 getDefaultMode() {
+	public ParameterMode3_0 getDefaultMode() {
 		return this.defaultMode;
 	}
 
-	protected void setDefaultMode(ParameterMode2_1 mode) {
-		ParameterMode2_1 old = this.defaultMode;
+	protected void setDefaultMode(ParameterMode3_0 mode) {
+		ParameterMode3_0 old = this.defaultMode;
 		this.defaultMode = mode;
 		this.firePropertyChanged(DEFAULT_MODE_PROPERTY, old, mode);
 	}
 
-	protected ParameterMode2_1 buildDefaultMode() {
-		return ParameterMode2_1.IN;
+	protected ParameterMode3_0 buildDefaultMode() {
+		return ParameterMode3_0.IN;
 	}
 
 
@@ -164,7 +164,7 @@ public class GenericJavaStoredProcedureParameter2_1
 		return (textRange != null) ? textRange : this.getQuery().getValidationTextRange();
 	}
 
-	public boolean isEquivalentTo(StoredProcedureParameter2_1 parameter) {
+	public boolean isEquivalentTo(StoredProcedureParameter3_0 parameter) {
 		return ObjectTools.equals(this.name, parameter.getName()) &&
 				ObjectTools.equals(this.specifiedMode, parameter.getMode()) &&
 				ObjectTools.equals(this.typeName, parameter.getTypeName()) ;
@@ -173,11 +173,11 @@ public class GenericJavaStoredProcedureParameter2_1
 
 	// ********** misc **********
 
-	protected JavaNamedStoredProcedureQuery2_1 getQuery() {
+	protected JavaNamedStoredProcedureQuery3_0 getQuery() {
 		return this.parent;
 	}
 
-	public StoredProcedureParameterAnnotation2_1 getStoredProcedureParameter2_1Annotation() {
+	public StoredProcedureParameterAnnotation3_0 getStoredProcedureParameter3_0Annotation() {
 		return this.parameterAnnotation;
 	}
 }
