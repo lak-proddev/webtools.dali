@@ -1,0 +1,77 @@
+/*******************************************************************************
+ * Copyright (c) 2009, 2013 Oracle. All rights reserved.
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0, which accompanies this distribution
+ * and is available at https://www.eclipse.org/legal/epl-2.0/.
+ * 
+ * Contributors:
+ *     Oracle - initial API and implementation
+ ******************************************************************************/
+package org.eclipse.jpt.jpa.core.internal.jpa3_0;
+
+import java.util.Iterator;
+
+import org.eclipse.jpt.common.utility.internal.ObjectTools;
+import org.eclipse.jpt.jpa.core.JpaDataSource;
+import org.eclipse.jpt.jpa.core.context.JpaContextRoot;
+import org.eclipse.jpt.jpa.core.context.persistence.Persistence;
+import org.eclipse.jpt.jpa.core.context.persistence.PersistenceUnit;
+import org.eclipse.jpt.jpa.core.context.persistence.PersistenceXml;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.PersistenceUnit3_0;
+import org.eclipse.jpt.jpa.db.DatabaseIdentifierAdapter;
+
+/**
+ * Conversions are determined by the <code>delimited-identifiers</code> flag in
+ * <code>orm.xml</code>.
+ * <p>
+ * Assume we are in a JPA 2.0-compatible project.
+ */
+public class GenericJpaDatabaseIdentifierAdapter3_0 implements DatabaseIdentifierAdapter {
+	private final JpaDataSource dataSource;
+
+	public GenericJpaDatabaseIdentifierAdapter3_0(JpaDataSource dataSource) {
+		super();
+		this.dataSource = dataSource;
+	}
+
+	/**
+	 * If the flag is set, "identifiers" are treated as "names".
+	 */
+	public boolean treatIdentifiersAsDelimited() {
+		return this.getDefaultDelimitedIdentifiers();
+	}
+
+	protected boolean getDefaultDelimitedIdentifiers() {
+		PersistenceUnit3_0 pu = this.getPersistenceUnit();
+		return (pu != null) && pu.getDefaultDelimitedIdentifiers();
+	}
+
+	protected PersistenceUnit3_0 getPersistenceUnit() {
+		Persistence p = this.getPersistence();
+		if (p == null) {
+			return null;
+		}
+		Iterator<PersistenceUnit> units = this.getPersistence().getPersistenceUnits().iterator();
+		return (PersistenceUnit3_0) (units.hasNext() ? units.next() : null);
+	}
+
+	protected Persistence getPersistence() {
+		PersistenceXml pxml = this.getPersistenceXml();
+		return (pxml == null) ? null : pxml.getRoot();
+	}
+
+	protected PersistenceXml getPersistenceXml() {
+		// TODO this null check can be removed if the data source is moved to the
+		// persistence unit;
+		// the root context node can be null during construction;
+		// this shouldn't be a problem since the default-delimiters flag
+		// is recalculated during the initial, post-project construction, "update"
+		JpaContextRoot root = this.dataSource.getJpaProject().getContextRoot();
+		return (root == null) ? null : root.getPersistenceXml();
+	}
+
+	@Override
+	public String toString() {
+		return ObjectTools.toString(this, Boolean.valueOf(this.treatIdentifiersAsDelimited()));
+	}
+}
