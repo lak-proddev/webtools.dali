@@ -10,29 +10,26 @@
 package org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java;
 
 import java.util.List;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceAttribute;
 import org.eclipse.jpt.common.core.utility.TextRange;
 import org.eclipse.jpt.jpa.core.internal.context.java.AbstractJavaContextModel;
-import org.eclipse.jpt.jpa.core.jpa2.context.IdDerivedIdentityStrategy2_0;
-import org.eclipse.jpt.jpa.core.jpa2.context.java.JavaDerivedIdentity2_0;
-import org.eclipse.jpt.jpa.core.jpa2.context.java.JavaSingleRelationshipMapping2_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.IdDerivedIdentityStrategy3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaDerivedIdentity3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaSingleRelationshipMapping3_0;
 import org.eclipse.jpt.jpa.core.resource.java.IdAnnotation;
 import org.eclipse.wst.validation.internal.provisional.core.IMessage;
 import org.eclipse.wst.validation.internal.provisional.core.IReporter;
 
-public class GenericJavaIdDerivedIdentityStrategy3_0
-	extends AbstractJavaContextModel<JavaDerivedIdentity2_0>
-	implements IdDerivedIdentityStrategy2_0
-{
+public class GenericJavaIdDerivedIdentityStrategy3_0 extends AbstractJavaContextModel<JavaDerivedIdentity3_0>
+		implements IdDerivedIdentityStrategy3_0 {
 	protected boolean value;
 
-
-	public GenericJavaIdDerivedIdentityStrategy3_0(JavaDerivedIdentity2_0 parent) {
+	public GenericJavaIdDerivedIdentityStrategy3_0(JavaDerivedIdentity3_0 parent) {
 		super(parent);
 		this.value = this.buildValue();
 	}
-
 
 	// ********** synchronize/update **********
 
@@ -41,7 +38,6 @@ public class GenericJavaIdDerivedIdentityStrategy3_0
 		super.synchronizeWithResourceModel(monitor);
 		this.setValue_(this.buildValue());
 	}
-
 
 	// ********** value **********
 
@@ -70,7 +66,6 @@ public class GenericJavaIdDerivedIdentityStrategy3_0
 		return this.getAnnotation() != null;
 	}
 
-
 	// ********** annotation **********
 
 	protected IdAnnotation getAnnotation() {
@@ -89,14 +84,13 @@ public class GenericJavaIdDerivedIdentityStrategy3_0
 		return IdAnnotation.ANNOTATION_NAME;
 	}
 
-
 	// ********** misc **********
 
-	protected JavaDerivedIdentity2_0 getDerivedIdentity() {
+	protected JavaDerivedIdentity3_0 getDerivedIdentity() {
 		return this.parent;
 	}
 
-	protected JavaSingleRelationshipMapping2_0 getMapping() {
+	protected JavaSingleRelationshipMapping3_0 getMapping() {
 		return this.getDerivedIdentity().getMapping();
 	}
 
@@ -115,7 +109,6 @@ public class GenericJavaIdDerivedIdentityStrategy3_0
 	public void removeStrategy() {
 		this.setValue(false);
 	}
-
 
 	// ********** validation **********
 

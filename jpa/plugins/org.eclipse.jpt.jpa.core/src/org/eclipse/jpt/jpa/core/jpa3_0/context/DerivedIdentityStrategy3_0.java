@@ -14,28 +14,26 @@ import org.eclipse.jpt.jpa.core.context.JpaContextModel;
 /**
  * Derived identity strategy
  * <p>
- * Provisional API: This interface is part of an interim API that is still
- * under development and expected to change significantly before reaching
- * stability. It is available at this early stage to solicit feedback from
- * pioneering adopters on the understanding that any code that uses this API
- * will almost certainly be broken (repeatedly) as the API evolves.
+ * Provisional API: This interface is part of an interim API that is still under
+ * development and expected to change significantly before reaching stability.
+ * It is available at this early stage to solicit feedback from pioneering
+ * adopters on the understanding that any code that uses this API will almost
+ * certainly be broken (repeatedly) as the API evolves.
  * 
  * @version 2.3
  * @since 2.3
  */
-public interface DerivedIdentityStrategy3_0
-	extends JpaContextModel
-{
+public interface DerivedIdentityStrategy3_0 extends JpaContextModel {
 	/**
 	 * Return whether the strategy is specified on the resource model.
 	 */
 	boolean isSpecified();
-	
+
 	/**
 	 * Add this strategy to the relationship reference.
 	 */
 	void addStrategy();
-	
+
 	/**
 	 * Remove this strategy from the relationship reference.
 	 */

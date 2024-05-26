@@ -11,42 +11,35 @@ package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 
 import org.eclipse.jpt.common.core.resource.java.JavaResourceAttribute;
 import org.eclipse.jpt.jpa.core.context.java.JavaAttributeMapping;
-import org.eclipse.jpt.jpa.core.jpa2.context.Orderable2_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.Orderable3_0;
 
 /**
  * JPA 2.0 Java ordering
  * <p>
- * Provisional API: This interface is part of an interim API that is still
- * under development and expected to change significantly before reaching
- * stability. It is available at this early stage to solicit feedback from
- * pioneering adopters on the understanding that any code that uses this API
- * will almost certainly be broken (repeatedly) as the API evolves.
+ * Provisional API: This interface is part of an interim API that is still under
+ * development and expected to change significantly before reaching stability.
+ * It is available at this early stage to solicit feedback from pioneering
+ * adopters on the understanding that any code that uses this API will almost
+ * certainly be broken (repeatedly) as the API evolves.
  * 
  * @version 3.3
  * @since 2.3
  */
-public interface JavaOrderable3_0
-	extends Orderable2_0
-{
+public interface JavaOrderable3_0 extends Orderable3_0 {
+	
 	JavaResourceAttribute getResourceAttribute();
 
 	JavaSpecifiedOrderColumn3_0 getOrderColumn();
 
-
 	// ************ parent adapter ************
 
 	/**
-	 * interface allowing ordering in multiple places
-	 * (i.e. multi-value relationship and element collection mappings)
+	 * interface allowing ordering in multiple places (i.e. multi-value relationship
+	 * and element collection mappings)
 	 */
-	interface ParentAdapter
-		extends Orderable2_0.ParentAdapter<JavaAttributeMapping>
-	{
+	interface ParentAdapter extends Orderable3_0.ParentAdapter<JavaAttributeMapping> {
 		// specify generic argument
-		class Null
-			extends Orderable2_0.ParentAdapter.Null<JavaAttributeMapping>
-			implements ParentAdapter
-		{
+		class Null extends Orderable3_0.ParentAdapter.Null<JavaAttributeMapping> implements ParentAdapter {
 			public Null(JavaAttributeMapping parent) {
 				super(parent);
 			}

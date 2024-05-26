@@ -10,6 +10,7 @@
 package org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java;
 
 import java.util.List;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceAttribute;
 import org.eclipse.jpt.common.core.utility.TextRange;
@@ -29,96 +30,93 @@ import org.eclipse.jpt.jpa.core.context.Entity;
 import org.eclipse.jpt.jpa.core.context.SpecifiedPersistentAttribute;
 import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedPersistentAttribute;
 import org.eclipse.jpt.jpa.core.internal.context.java.AbstractJavaContextModel;
-import org.eclipse.jpt.jpa.core.jpa2.context.MapsIdDerivedIdentityStrategy2_0;
-import org.eclipse.jpt.jpa.core.jpa2.context.java.JavaDerivedIdentity2_0;
-import org.eclipse.jpt.jpa.core.jpa2.context.java.JavaSingleRelationshipMapping2_0;
-import org.eclipse.jpt.jpa.core.jpa2.resource.java.MapsIdAnnotation2_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.MapsIdDerivedIdentityStrategy3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaDerivedIdentity3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.java.JavaSingleRelationshipMapping3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.MapsIdAnnotation3_0;
 import org.eclipse.jpt.jpa.core.validation.JptJpaCoreValidationArgumentMessages;
 import org.eclipse.jpt.jpa.core.validation.JptJpaCoreValidationMessages;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.wst.validation.internal.provisional.core.IMessage;
 import org.eclipse.wst.validation.internal.provisional.core.IReporter;
 
-public class GenericJavaMapsIdDerivedIdentityStrategy3_0
-		extends AbstractJavaContextModel<JavaDerivedIdentity2_0>
-		implements MapsIdDerivedIdentityStrategy2_0 {
-			
+public class GenericJavaMapsIdDerivedIdentityStrategy3_0 extends AbstractJavaContextModel<JavaDerivedIdentity3_0>
+		implements MapsIdDerivedIdentityStrategy3_0 {
+
 	protected String specifiedIdAttributeName;
-	
+
 	protected String defaultIdAttributeName;
-	
-	
-	public GenericJavaMapsIdDerivedIdentityStrategy3_0(JavaDerivedIdentity2_0 parent) {
+
+	public GenericJavaMapsIdDerivedIdentityStrategy3_0(JavaDerivedIdentity3_0 parent) {
 		super(parent);
 		this.specifiedIdAttributeName = buildSpecifiedIdAttributeName();
 	}
-	
-	
+
 	// ********** synchronize/update **********
-	
+
 	@Override
 	public void synchronizeWithResourceModel(IProgressMonitor monitor) {
 		super.synchronizeWithResourceModel(monitor);
 		this.setSpecifiedIdAttributeName_(this.buildSpecifiedIdAttributeName());
 	}
-	
+
 	@Override
 	public void update(IProgressMonitor monitor) {
 		super.update(monitor);
 		this.setDefaultIdAttributeName(this.buildDefaultIdAttributeName());
 	}
-	
-	
+
 	// ********** ID attribute name **********
-	
+
 	public String getIdAttributeName() {
 		return (this.specifiedIdAttributeName != null) ? this.specifiedIdAttributeName : this.defaultIdAttributeName;
 	}
-	
+
 	public String getSpecifiedIdAttributeName() {
 		return this.specifiedIdAttributeName;
 	}
-	
+
 	public void setSpecifiedIdAttributeName(String idAttributeName) {
 		if (ObjectTools.notEquals(idAttributeName, this.specifiedIdAttributeName)) {
 			getAnnotation().setValue(idAttributeName);
 			setSpecifiedIdAttributeName_(idAttributeName);
 		}
 	}
-	
+
 	protected void setSpecifiedIdAttributeName_(String idAttributeName) {
 		String old = this.specifiedIdAttributeName;
 		this.specifiedIdAttributeName = idAttributeName;
 		firePropertyChanged(SPECIFIED_ID_ATTRIBUTE_NAME_PROPERTY, old, idAttributeName);
 	}
-	
+
 	protected String buildSpecifiedIdAttributeName() {
 		return getAnnotation().getValue();
 	}
-	
+
 	public String getDefaultIdAttributeName() {
 		return this.defaultIdAttributeName;
 	}
-	
+
 	protected void setDefaultIdAttributeName(String idAttributeName) {
 		String old = this.defaultIdAttributeName;
 		this.defaultIdAttributeName = idAttributeName;
 		firePropertyChanged(DEFAULT_ID_ATTRIBUTE_NAME_PROPERTY, old, idAttributeName);
 	}
-	
+
 	protected String buildDefaultIdAttributeName() {
 		AttributeMapping mapping = getPersistentAttribute().getDeclaringTypeMapping().getIdAttributeMapping();
 		if (mapping == null) {
 			return null;
 		}
-		
+
 		// if id mapping is embedded id ...
 		if (ObjectTools.equals(MappingKeys.EMBEDDED_ID_ATTRIBUTE_MAPPING_KEY, mapping.getKey())) {
-			// ... if embedded id and target entity have same primary key return embedded id name
+			// ... if embedded id and target entity have same primary key return embedded id
+			// name
 			EmbeddedIdMapping embeddedId = (EmbeddedIdMapping) mapping;
 			Entity targetEntity = getMapping().getResolvedTargetEntity();
-			if (targetEntity != null &&
-					ObjectTools.equals(embeddedId.getTargetEmbeddableName(), targetEntity.getPrimaryKeyClassName())) {
+			if (targetEntity != null && ObjectTools.equals(embeddedId.getTargetEmbeddableName(),
+					targetEntity.getPrimaryKeyClassName())) {
 				return embeddedId.getName();
 			}
 			// ... otherwise use name of the mapping itself
@@ -130,113 +128,108 @@ public class GenericJavaMapsIdDerivedIdentityStrategy3_0
 		else if (ObjectTools.equals(MappingKeys.ID_ATTRIBUTE_MAPPING_KEY, mapping.getKey())) {
 			return mapping.getName();
 		}
-		
-		return null;  // empty
+
+		return null; // empty
 	}
-	
+
 	public boolean defaultIdAttributeNameIsPossible() {
 		return true;
 	}
-	
-	
+
 	// ********** annotation **********
-	
+
 	/**
 	 * Do <em>not</em> return <code>null</code>.
 	 */
-	protected MapsIdAnnotation2_0 getAnnotation() {
-		return (MapsIdAnnotation2_0) getResourceAttribute().getNonNullAnnotation(getAnnotationName());
+	protected MapsIdAnnotation3_0 getAnnotation() {
+		return (MapsIdAnnotation3_0) getResourceAttribute().getNonNullAnnotation(getAnnotationName());
 	}
-	
+
 	/**
 	 * Return <code>null</code> if the annotation is not present.
 	 */
-	protected MapsIdAnnotation2_0 getAnnotationOrNull() {
-		return (MapsIdAnnotation2_0) getResourceAttribute().getAnnotation(getAnnotationName());
+	protected MapsIdAnnotation3_0 getAnnotationOrNull() {
+		return (MapsIdAnnotation3_0) getResourceAttribute().getAnnotation(getAnnotationName());
 	}
-	
+
 	protected void addAnnotation() {
 		getResourceAttribute().addAnnotation(getAnnotationName());
 	}
-	
+
 	protected void removeAnnotation() {
 		getResourceAttribute().removeAnnotation(getAnnotationName());
 	}
-	
+
 	protected String getAnnotationName() {
-		return MapsIdAnnotation2_0.ANNOTATION_NAME;
+		return MapsIdAnnotation3_0.ANNOTATION_NAME;
 	}
-	
-	
+
 	// ********** misc **********
-	
-	protected JavaDerivedIdentity2_0 getDerivedIdentity() {
+
+	protected JavaDerivedIdentity3_0 getDerivedIdentity() {
 		return this.parent;
 	}
-	
-	protected JavaSingleRelationshipMapping2_0 getMapping() {
+
+	protected JavaSingleRelationshipMapping3_0 getMapping() {
 		return getDerivedIdentity().getMapping();
 	}
-	
+
 	protected JavaSpecifiedPersistentAttribute getPersistentAttribute() {
 		return getMapping().getPersistentAttribute();
 	}
-	
+
 	protected JavaResourceAttribute getResourceAttribute() {
 		return getPersistentAttribute().getResourceAttribute();
 	}
-	
+
 	protected Iterable<AttributeMapping> getAllAttributeMappings() {
 		return getPersistentAttribute().getDeclaringTypeMapping().getAllAttributeMappings();
 	}
-	
+
 	public Iterable<String> getSortedCandidateIdAttributeNames() {
 		return IterableTools.sort(getAllAttributeMappingChoiceNames());
 	}
-	
+
 	protected Iterable<String> getAllAttributeMappingChoiceNames() {
 		return IterableTools.transform(getAllAttributeMappingChoices(), AttributeMapping.NAME_TRANSFORMER);
 	}
-	
+
 	protected Iterable<AttributeMapping> getAllAttributeMappingChoices() {
 		return buildAttributeMappingChoices(getAllAttributeMappings());
 	}
-	
+
 	/**
 	 * @see #getEmbeddedIdMappingChoiceIterable(EmbeddedIdMapping)
 	 */
 	protected Iterable<AttributeMapping> buildAttributeMappingChoices(Iterable<AttributeMapping> attributeMappings) {
 		return IterableTools.children(attributeMappings, new AttributeMappingTransformer());
 	}
-	
-	public class AttributeMappingTransformer
-			extends TransformerAdapter<AttributeMapping, Iterable<AttributeMapping>> {
-		
+
+	public class AttributeMappingTransformer extends TransformerAdapter<AttributeMapping, Iterable<AttributeMapping>> {
+
 		@Override
 		public Iterable<AttributeMapping> transform(AttributeMapping mapping) {
-			return (ObjectTools.equals(mapping.getKey(), MappingKeys.EMBEDDED_ID_ATTRIBUTE_MAPPING_KEY)) ?
-					GenericJavaMapsIdDerivedIdentityStrategy3_0.this.getEmbeddedIdMappingChoiceIterable((EmbeddedIdMapping) mapping) :
-					new SingleElementIterable<AttributeMapping>(mapping);
+			return (ObjectTools.equals(mapping.getKey(), MappingKeys.EMBEDDED_ID_ATTRIBUTE_MAPPING_KEY))
+					? GenericJavaMapsIdDerivedIdentityStrategy3_0.this
+							.getEmbeddedIdMappingChoiceIterable((EmbeddedIdMapping) mapping)
+					: new SingleElementIterable<AttributeMapping>(mapping);
 		}
 	}
-	
+
 	/**
-	 * Convert the specified mapping into a collection of its "mappings".
-	 * Typically, this collection will include just the mapping itself;
-	 * but, if the mapping is an embedded ID, this collection will include
-	 * the mapping itself plus all the mappings of its target embeddable.
+	 * Convert the specified mapping into a collection of its "mappings". Typically,
+	 * this collection will include just the mapping itself; but, if the mapping is
+	 * an embedded ID, this collection will include the mapping itself plus all the
+	 * mappings of its target embeddable.
 	 */
 	protected Iterable<AttributeMapping> getEmbeddedIdMappingChoiceIterable(EmbeddedIdMapping mapping) {
 		Embeddable embeddable = mapping.getTargetEmbeddable();
 		if (embeddable == null) {
 			return new SingleElementIterable<AttributeMapping>(mapping);
 		}
-		return IterableTools.insert(
-				mapping,
-				embeddable.getAllAttributeMappings()
-			);
+		return IterableTools.insert(mapping, embeddable.getAllAttributeMappings());
 	}
-	
+
 	public AttributeMapping getDerivedIdAttributeMapping() {
 		String idAttributeName = getIdAttributeName();
 		if (idAttributeName != null) {
@@ -248,26 +241,25 @@ public class GenericJavaMapsIdDerivedIdentityStrategy3_0
 		}
 		return null;
 	}
-	
+
 	public boolean isSpecified() {
 		return getAnnotationOrNull() != null;
 	}
-	
+
 	public void addStrategy() {
 		if (getAnnotationOrNull() == null) {
 			addAnnotation();
 		}
 	}
-	
+
 	public void removeStrategy() {
 		if (getAnnotationOrNull() != null) {
 			removeAnnotation();
 		}
 	}
-	
-	
+
 	// ********** Java completion proposals **********
-	
+
 	@Override
 	public Iterable<String> getCompletionProposals(int pos) {
 		Iterable<String> result = super.getCompletionProposals(pos);
@@ -279,27 +271,26 @@ public class GenericJavaMapsIdDerivedIdentityStrategy3_0
 		}
 		return result;
 	}
-	
+
 	protected Iterable<String> getSortedJavaValueChoices() {
 		return new TransformationIterable<String, String>(getSortedCandidateIdAttributeNames(),
 				StringTools.JAVA_STRING_LITERAL_CONTENT_TRANSFORMER);
 	}
-	
-	
+
 	// ********** validation **********
-	
+
 	@Override
 	public void validate(List<IMessage> messages, IReporter reporter) {
 		super.validate(messages, reporter);
 		validateMapsId(messages);
 	}
-	
+
 	protected void validateMapsId(List<IMessage> messages) {
 		if (getDerivedIdentity().usesMapsIdDerivedIdentityStrategy()) {
 			validateMapsId_(messages);
 		}
 	}
-	
+
 	protected void validateMapsId_(List<IMessage> messages) {
 		// test whether id attribute name can be resolved
 		AttributeMapping attributeMapping = getDerivedIdAttributeMapping();
@@ -308,38 +299,38 @@ public class GenericJavaMapsIdDerivedIdentityStrategy3_0
 			if (this.specifiedIdAttributeName == null) {
 				messages.add(buildMessage(JptJpaCoreValidationMessages.MAPS_ID_VALUE_NOT_SPECIFIED));
 			} else {
-				messages.add(buildMessage(JptJpaCoreValidationMessages.MAPS_ID_VALUE_NOT_RESOLVED, getIdAttributeName()));
+				messages.add(
+						buildMessage(JptJpaCoreValidationMessages.MAPS_ID_VALUE_NOT_RESOLVED, getIdAttributeName()));
 			}
 		} else {
 			// test whether attribute mapping is allowable
-			if ( ! IterableTools.contains(getValidAttributeMappingChoices(), attributeMapping)) {
+			if (!IterableTools.contains(getValidAttributeMappingChoices(), attributeMapping)) {
 				messages.add(buildMessage(JptJpaCoreValidationMessages.MAPS_ID_VALUE_INVALID, getIdAttributeName()));
 			}
 		}
 	}
-	
+
 	protected Iterable<AttributeMapping> getValidAttributeMappingChoices() {
-		return this.buildAttributeMappingChoices(getPersistentAttribute().getDeclaringTypeMapping().getIdAttributeMappings());
+		return this.buildAttributeMappingChoices(
+				getPersistentAttribute().getDeclaringTypeMapping().getIdAttributeMappings());
 	}
-	
+
 	protected IMessage buildMessage(ValidationMessage msg, Object... args) {
 		SpecifiedPersistentAttribute attribute = getPersistentAttribute();
-		String attributeDescription = attribute.isVirtual() ?
-				JptJpaCoreValidationArgumentMessages.VIRTUAL_ATTRIBUTE_DESC :
-				JptJpaCoreValidationArgumentMessages.ATTRIBUTE_DESC;
+		String attributeDescription = attribute.isVirtual()
+				? JptJpaCoreValidationArgumentMessages.VIRTUAL_ATTRIBUTE_DESC
+				: JptJpaCoreValidationArgumentMessages.ATTRIBUTE_DESC;
 		attributeDescription = NLS.bind(attributeDescription, attribute.getName());
 		args = ArrayTools.add(args, 0, attributeDescription);
-		TextRange textRange = attribute.isVirtual() ? 
-				attribute.getValidationTextRange() :
-				getValidationTextRange();
+		TextRange textRange = attribute.isVirtual() ? attribute.getValidationTextRange() : getValidationTextRange();
 		return buildValidationMessage(textRange, msg, args);
 	}
-	
+
 	public TextRange getValidationTextRange() {
 		TextRange textRange = getAnnotationTextRange();
 		return (textRange != null) ? textRange : getDerivedIdentity().getValidationTextRange();
 	}
-	
+
 	protected TextRange getAnnotationTextRange() {
 		return getAnnotation().getTextRange();
 	}

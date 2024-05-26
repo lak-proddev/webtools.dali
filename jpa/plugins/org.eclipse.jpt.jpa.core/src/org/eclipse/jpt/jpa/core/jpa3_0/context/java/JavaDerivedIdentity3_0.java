@@ -9,22 +9,21 @@
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.java;
 
-import org.eclipse.jpt.jpa.core.jpa2.context.DerivedIdentity2_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.context.DerivedIdentity3_0;
 
 /**
  * Java derived identity
  * <p>
- * Provisional API: This interface is part of an interim API that is still
- * under development and expected to change significantly before reaching
- * stability. It is available at this early stage to solicit feedback from
- * pioneering adopters on the understanding that any code that uses this API
- * will almost certainly be broken (repeatedly) as the API evolves.
+ * Provisional API: This interface is part of an interim API that is still under
+ * development and expected to change significantly before reaching stability.
+ * It is available at this early stage to solicit feedback from pioneering
+ * adopters on the understanding that any code that uses this API will almost
+ * certainly be broken (repeatedly) as the API evolves.
  * 
  * @version 3.3
  * @since 2.3
  */
-public interface JavaDerivedIdentity3_0
-	extends DerivedIdentity2_0
-{
+public interface JavaDerivedIdentity3_0 extends DerivedIdentity3_0 {
+	
 	JavaSingleRelationshipMapping3_0 getMapping();
 }
