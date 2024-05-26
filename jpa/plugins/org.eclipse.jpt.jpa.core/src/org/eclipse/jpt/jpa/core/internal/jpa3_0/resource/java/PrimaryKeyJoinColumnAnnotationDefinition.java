@@ -14,7 +14,7 @@ import org.eclipse.jpt.common.core.resource.java.JavaResourceAnnotatedElement;
 import org.eclipse.jpt.common.core.resource.java.NestableAnnotation;
 import org.eclipse.jpt.common.core.resource.java.NestableAnnotationDefinition;
 import org.eclipse.jpt.common.core.utility.jdt.AnnotatedElement;
-import org.eclipse.jpt.jpa.core.internal.resource.java.binary.BinaryPrimaryKeyJoinColumnAnnotation;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.resource.java.binary.BinaryPrimaryKeyJoinColumnAnnotation;
 import org.eclipse.jpt.jpa.core.internal.resource.java.source.SourcePrimaryKeyJoinColumnAnnotation;
 import org.eclipse.jpt.jpa.core.resource.java.JPA;
 
