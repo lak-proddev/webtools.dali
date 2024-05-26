@@ -72,7 +72,6 @@ import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedPersistentAttribute;
 import org.eclipse.jpt.jpa.core.internal.context.JpaValidator;
 import org.eclipse.jpt.jpa.core.internal.context.MappingTools;
 import org.eclipse.jpt.jpa.core.internal.context.NullJpaValidator;
-import org.eclipse.jpt.jpa.core.internal.context.java.AbstractJavaAttributeMapping;
 import org.eclipse.jpt.jpa.core.internal.jpa1.context.AssociationOverrideJoinColumnValidator;
 import org.eclipse.jpt.jpa.core.internal.jpa1.context.AssociationOverrideValidator;
 import org.eclipse.jpt.jpa.core.internal.jpa1.context.AttributeOverrideColumnValidator;
@@ -114,7 +113,7 @@ import org.eclipse.wst.validation.internal.provisional.core.IReporter;
  * JPA 2.0 Frankenstein mapping
  */
 public abstract class AbstractJavaElementCollectionMapping3_0 extends
-		AbstractJavaAttributeMapping<ElementCollectionAnnotation3_0> implements JavaElementCollectionMapping3_0 {
+		AbstractJavaAttributeMapping3_0<ElementCollectionAnnotation3_0> implements JavaElementCollectionMapping3_0 {
 	protected String specifiedTargetClass;
 	protected String defaultTargetClass;
 	protected String fullyQualifiedTargetClass;

@@ -15,8 +15,8 @@ import org.eclipse.jpt.jpa.core.internal.jpa1.context.AbstractNamedColumnValidat
 import org.eclipse.jpt.jpa.core.jpa3_0.context.SpecifiedOrderColumn3_0;
 import org.eclipse.jpt.jpa.core.validation.JptJpaCoreValidationMessages;
 
-public class OrderColumnValidator extends AbstractNamedColumnValidator<SpecifiedOrderColumn3_0> {
-	public OrderColumnValidator(PersistentAttribute persistentAttribute, SpecifiedOrderColumn3_0 column) {
+public class OrderColumnValidator3_0 extends AbstractNamedColumnValidator<SpecifiedOrderColumn3_0> {
+	public OrderColumnValidator3_0(PersistentAttribute persistentAttribute, SpecifiedOrderColumn3_0 column) {
 		super(persistentAttribute, column);
 	}
 

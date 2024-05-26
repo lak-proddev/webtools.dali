@@ -13,7 +13,7 @@
  *******************************************************************************/
 package org.eclipse.jpt.jpa.core.jpa3_0.context.persistence;
 
-import org.eclipse.jpt.jpa.core.jpa2_1.context.persistence.PersistenceUnit2_1;
+import org.eclipse.jpt.jpa.core.jpa2_2.context.persistence.PersistenceUnit2_2;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.schemagen.SchemaGeneration3_0;
 
 /**
@@ -25,7 +25,7 @@ import org.eclipse.jpt.jpa.core.jpa3_0.context.persistence.schemagen.SchemaGener
  * adopters on the understanding that any code that uses this API will almost
  * certainly be broken (repeatedly) as the API evolves.
  */
-public interface PersistenceUnit3_0 extends PersistenceUnit2_1 {
+public interface PersistenceUnit3_0 extends PersistenceUnit2_2 {
 	// ********** properties **********
 
 	SchemaGeneration3_0 getSchemaGeneration();

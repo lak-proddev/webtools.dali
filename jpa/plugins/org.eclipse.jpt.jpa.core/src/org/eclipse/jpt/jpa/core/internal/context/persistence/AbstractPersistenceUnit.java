@@ -1182,9 +1182,14 @@ public abstract class AbstractPersistenceUnit
 	}
 
 	protected SchemaGeneration2_2 buildSchemaGeneration() {
-		return this.isPersistenceXml2_2Compatible() ?
-				this.getContextModelFactory2_2().buildSchemaGeneration(this) :
-				new NullGenericSchemaGeneration2_2(this);
+		if (this.isPersistenceXml3_1Compatible()) {
+			return this.getContextModelFactory3_1().buildSchemaGeneration(this);
+		} else if (this.isPersistenceXml3_0Compatible()) {
+			return this.getContextModelFactory3_0().buildSchemaGeneration(this);
+		} else if (this.isPersistenceXml2_2Compatible()) {
+			return this.getContextModelFactory2_2().buildSchemaGeneration(this);
+		}
+		return new NullGenericSchemaGeneration2_2(this);
 	}
 
 	protected void syncProperties(IProgressMonitor monitor) {

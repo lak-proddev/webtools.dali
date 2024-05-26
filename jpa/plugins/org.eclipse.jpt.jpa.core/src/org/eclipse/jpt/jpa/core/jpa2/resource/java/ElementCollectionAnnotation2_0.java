@@ -29,7 +29,7 @@ import org.eclipse.jpt.jpa.core.resource.java.FetchType;
 public interface ElementCollectionAnnotation2_0 
 	extends Annotation
 {
-	String ANNOTATION_NAME = JPA3_0.ELEMENT_COLLECTION;
+	String ANNOTATION_NAME = JPA2_0.ELEMENT_COLLECTION;
 
 	/**
 	 * Corresponds to the 'targetClass' element of the element collection

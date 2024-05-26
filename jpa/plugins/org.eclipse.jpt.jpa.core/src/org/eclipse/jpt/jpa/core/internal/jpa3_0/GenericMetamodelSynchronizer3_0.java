@@ -36,6 +36,7 @@ import org.eclipse.jpt.jpa.core.jpa3_0.JpaProject3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.AttributeMapping3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.MetamodelField3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.context.MetamodelSourceType3_0;
+import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.GeneratedAnnotation3_0;
 import org.eclipse.jpt.jpa.core.jpa3_0.resource.java.JPA3_0;
 
 import com.ibm.icu.text.DateFormat;

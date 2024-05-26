@@ -29,7 +29,6 @@ import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedColumn;
 import org.eclipse.jpt.jpa.core.context.java.JavaSpecifiedPersistentAttribute;
 import org.eclipse.jpt.jpa.core.internal.jpa1.GenericJpaFactory;
 import org.eclipse.jpt.jpa.core.internal.jpa1.context.java.GenericJavaColumn;
-import org.eclipse.jpt.jpa.core.internal.jpa1.context.java.GenericJavaOrderable;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaCacheable3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaCollectionTable3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaConverterType3_0;
@@ -38,6 +37,7 @@ import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaElementC
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaEmbeddable3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaNamedStoredProcedureQuery3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaOrderColumn3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaOrderable3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaOrphanRemoval3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaPersistentType3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.GenericJavaSequenceGenerator3_0;
@@ -137,7 +137,7 @@ public class GenericJpaFactory3_0 extends GenericJpaFactory implements JpaFactor
 	}
 
 	public JavaOrderable3_0 buildJavaOrderable(JavaOrderable3_0.ParentAdapter parentAdapter) {
-		return new GenericJavaOrderable(parentAdapter);
+		return new GenericJavaOrderable3_0(parentAdapter);
 	}
 
 	@Override

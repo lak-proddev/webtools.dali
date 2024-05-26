@@ -12,11 +12,15 @@ package org.eclipse.jpt.jpa.core.internal.jpa2.context;
 import org.eclipse.jpt.common.core.utility.ValidationMessage;
 import org.eclipse.jpt.jpa.core.context.PersistentAttribute;
 import org.eclipse.jpt.jpa.core.internal.jpa1.context.AbstractNamedColumnValidator;
-import org.eclipse.jpt.jpa.core.jpa3_0.context.SpecifiedOrderColumn3_0;
+import org.eclipse.jpt.jpa.core.jpa2.context.SpecifiedOrderColumn2_0;
 import org.eclipse.jpt.jpa.core.validation.JptJpaCoreValidationMessages;
 
-public class OrderColumnValidator extends AbstractNamedColumnValidator<SpecifiedOrderColumn3_0> {
-	public OrderColumnValidator(PersistentAttribute persistentAttribute, SpecifiedOrderColumn3_0 column) {
+public class OrderColumnValidator
+	extends AbstractNamedColumnValidator<SpecifiedOrderColumn2_0>
+{
+	public OrderColumnValidator(
+				PersistentAttribute persistentAttribute,
+				SpecifiedOrderColumn2_0 column) {
 		super(persistentAttribute, column);
 	}
 

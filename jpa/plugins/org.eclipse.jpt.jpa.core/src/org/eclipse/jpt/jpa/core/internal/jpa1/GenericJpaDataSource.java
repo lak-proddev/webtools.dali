@@ -136,9 +136,16 @@ public class GenericJpaDataSource
 	}
 
 	protected DatabaseIdentifierAdapter buildDatabaseIdentifierAdapter() {
-		return this.isJpa2_0Compatible() ?
-				this.getJpaFactory2_0().buildDatabaseIdentifierAdapter(this) :
-				DatabaseIdentifierAdapter.Default.instance();
+		if (this.isJpa3_1Compatible()) {
+			return this.getJpaFactory3_1().buildDatabaseIdentifierAdapter(this);
+		} else if (this.isJpa3_0Compatible()) {
+			return this.getJpaFactory3_0().buildDatabaseIdentifierAdapter(this);
+		} else if (this.isJpa2_1Compatible()) {
+			return this.getJpaFactory2_1().buildDatabaseIdentifierAdapter(this);
+		} else if (this.isJpa2_0Compatible()) {
+			return this.getJpaFactory2_0().buildDatabaseIdentifierAdapter(this);
+		}
+		return DatabaseIdentifierAdapter.Default.instance();
 	}
 
 	protected void setConnectionProfile(ConnectionProfile connectionProfile) {
