@@ -27,15 +27,21 @@ public final class BinaryGeneratedValueAnnotation
 	private GenerationType strategy;
 	private String generator;
 
+	private final String annotationName;
 
 	public BinaryGeneratedValueAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryGeneratedValueAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.strategy = this.buildStrategy();
 		this.generator = this.buildGenerator();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -44,7 +50,6 @@ public final class BinaryGeneratedValueAnnotation
 		this.setStrategy_(this.buildStrategy());
 		this.setGenerator_(this.buildGenerator());
 	}
-
 
 	// ********** GeneratedValueAnnotation implementation **********
 

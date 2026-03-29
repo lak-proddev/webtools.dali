@@ -27,14 +27,20 @@ public abstract class BinaryAssociationOverrideAnnotation
 {
 	private final Vector<JoinColumnAnnotation> joinColumns;
 
+	protected final String annotationName;
 
 	protected BinaryAssociationOverrideAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	protected BinaryAssociationOverrideAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.joinColumns = this.buildJoinColumns();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -42,7 +48,6 @@ public abstract class BinaryAssociationOverrideAnnotation
 		super.update();
 		this.updateJoinColumns();
 	}
-
 
 	// ********** BinaryOverrideAnnotation implementation **********
 

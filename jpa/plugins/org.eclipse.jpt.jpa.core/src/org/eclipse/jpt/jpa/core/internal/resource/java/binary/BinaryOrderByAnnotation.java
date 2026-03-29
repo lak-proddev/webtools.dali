@@ -25,9 +25,15 @@ public final class BinaryOrderByAnnotation
 {
 	private String value;
 
+	private final String annotationName;
 
 	public BinaryOrderByAnnotation(JavaResourceAnnotatedElement parent, IAnnotation annotation) {
+		this(parent, annotation, ANNOTATION_NAME);
+	}
+
+	public BinaryOrderByAnnotation(JavaResourceAnnotatedElement parent, IAnnotation annotation, String annotationName) {
 		super(parent, annotation);
+		this.annotationName = annotationName;
 		this.value = this.buildValue();
 	}
 	
@@ -38,9 +44,8 @@ public final class BinaryOrderByAnnotation
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
-
 
 	// ********** OrderByAnnotation implementation **********
 

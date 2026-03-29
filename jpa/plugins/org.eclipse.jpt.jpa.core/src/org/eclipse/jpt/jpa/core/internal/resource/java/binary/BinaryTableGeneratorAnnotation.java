@@ -34,9 +34,15 @@ public final class BinaryTableGeneratorAnnotation
 	private String pkColumnValue;
 	private final Vector<UniqueConstraintAnnotation> uniqueConstraints;
 
+	private final String annotationName;
 
 	public BinaryTableGeneratorAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryTableGeneratorAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.table = this.buildTable();
 		this.schema = this.buildSchema();
 		this.catalog = this.buildCatalog();
@@ -47,7 +53,7 @@ public final class BinaryTableGeneratorAnnotation
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -61,7 +67,6 @@ public final class BinaryTableGeneratorAnnotation
 		this.setPkColumnValue_(this.buildPkColumnValue());
 		this.updateUniqueConstraints();
 	}
-
 
 	// ********** AbstractGeneratorAnnotation implementation **********
 
@@ -79,7 +84,6 @@ public final class BinaryTableGeneratorAnnotation
 	String getAllocationSizeElementName() {
 		return JPA.TABLE_GENERATOR__ALLOCATION_SIZE;
 	}
-
 
 	// ********** TableGeneratorAnnotation implementation **********
 

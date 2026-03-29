@@ -3,14 +3,16 @@
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0, which accompanies this distribution
  * and is available at https://www.eclipse.org/legal/epl-2.0/.
- * 
+ *
  * Contributors:
  *     Oracle - initial API and implementation
+ *     Lakshminarayana Nekkanti - JPA 3.x jakarta namespace support
  ******************************************************************************/
 package org.eclipse.jpt.jpa.core.internal.resource.java.source;
 
 import org.eclipse.jpt.common.core.internal.utility.jdt.ConversionDeclarationAnnotationElementAdapter;
-import org.eclipse.jpt.common.core.internal.utility.jdt.SimpleDeclarationAnnotationAdapter;
+
+import org.eclipse.jpt.common.core.internal.utility.jdt.JakartaAwareDeclarationAnnotationAdapter;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceAnnotatedElement;
 import org.eclipse.jpt.common.core.utility.jdt.AnnotatedElement;
 import org.eclipse.jpt.common.core.utility.jdt.DeclarationAnnotationAdapter;
@@ -25,21 +27,21 @@ public final class SourceTableAnnotation
 	extends SourceBaseTableAnnotation
 	implements TableAnnotation
 {
-	public static final DeclarationAnnotationAdapter DECLARATION_ANNOTATION_ADAPTER = new SimpleDeclarationAnnotationAdapter(ANNOTATION_NAME);
-
-	private static final DeclarationAnnotationElementAdapter<String> NAME_ADAPTER = ConversionDeclarationAnnotationElementAdapter.forStrings(DECLARATION_ANNOTATION_ADAPTER, JPA.TABLE__NAME);
-
-	private static final DeclarationAnnotationElementAdapter<String> SCHEMA_ADAPTER = ConversionDeclarationAnnotationElementAdapter.forStrings(DECLARATION_ANNOTATION_ADAPTER, JPA.TABLE__SCHEMA);
-
-	private static final DeclarationAnnotationElementAdapter<String> CATALOG_ADAPTER = ConversionDeclarationAnnotationElementAdapter.forStrings(DECLARATION_ANNOTATION_ADAPTER, JPA.TABLE__CATALOG);
+	public static final DeclarationAnnotationAdapter DECLARATION_ANNOTATION_ADAPTER = JakartaAwareDeclarationAnnotationAdapter.forJavax(ANNOTATION_NAME);
 
 
 	public SourceTableAnnotation(JavaResourceAnnotatedElement parent, AnnotatedElement element) {
 		super(parent, element, DECLARATION_ANNOTATION_ADAPTER);
 	}
 
+	public SourceTableAnnotation(JavaResourceAnnotatedElement parent, AnnotatedElement element, DeclarationAnnotationAdapter daa) {
+		super(parent, element, daa);
+	}
+
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return (this.daa instanceof JakartaAwareDeclarationAnnotationAdapter)
+				? ((JakartaAwareDeclarationAnnotationAdapter) this.daa).getAnnotationName()
+				: ANNOTATION_NAME;
 	}
 
 
@@ -47,17 +49,17 @@ public final class SourceTableAnnotation
 
 	@Override
 	protected DeclarationAnnotationElementAdapter<String> buildNameDeclarationAdapter() {
-		return NAME_ADAPTER;
+		return ConversionDeclarationAnnotationElementAdapter.forStrings(this.daa, JPA.TABLE__NAME);
 	}
 
 	@Override
 	protected DeclarationAnnotationElementAdapter<String> buildSchemaDeclarationAdapter() {
-		return SCHEMA_ADAPTER;
+		return ConversionDeclarationAnnotationElementAdapter.forStrings(this.daa, JPA.TABLE__SCHEMA);
 	}
 
 	@Override
 	protected DeclarationAnnotationElementAdapter<String> buildCatalogDeclarationAdapter() {
-		return CATALOG_ADAPTER;
+		return ConversionDeclarationAnnotationElementAdapter.forStrings(this.daa, JPA.TABLE__CATALOG);
 	}
 
 	@Override

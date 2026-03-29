@@ -22,12 +22,19 @@ public final class BinaryEmbeddedAnnotation
 	implements EmbeddedAnnotation
 {
 
+	private final String annotationName;
+
 	public BinaryEmbeddedAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryEmbeddedAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 }

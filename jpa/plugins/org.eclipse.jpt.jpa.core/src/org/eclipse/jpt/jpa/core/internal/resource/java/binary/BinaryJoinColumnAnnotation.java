@@ -21,14 +21,20 @@ public final class BinaryJoinColumnAnnotation
 	extends BinaryBaseJoinColumnAnnotation
 	implements JoinColumnAnnotation
 {
+	private final String annotationName;
+
 	public BinaryJoinColumnAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryJoinColumnAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
-
 
 	// ********** BinaryNamedColumnAnnotation implementation **********
 
@@ -41,7 +47,6 @@ public final class BinaryJoinColumnAnnotation
 	protected String getColumnDefinitionElementName() {
 		return JPA.JOIN_COLUMN__COLUMN_DEFINITION;
 	}
-
 
 	// ********** BinaryBaseColumnAnnotation implementation **********
 

@@ -10,7 +10,8 @@
 package org.eclipse.jpt.jpa.core.internal.resource.java.source;
 
 import org.eclipse.jdt.core.dom.Annotation;
-import org.eclipse.jpt.common.core.internal.utility.jdt.SimpleDeclarationAnnotationAdapter;
+
+import org.eclipse.jpt.common.core.internal.utility.jdt.JakartaAwareDeclarationAnnotationAdapter;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceModel;
 import org.eclipse.jpt.common.core.utility.TextRange;
 import org.eclipse.jpt.common.core.utility.jdt.AnnotatedElement;
@@ -28,7 +29,7 @@ public abstract class SourceSequenceGeneratorAnnotation
 	extends SourceDatabaseGeneratorAnnotation
 	implements SequenceGeneratorAnnotation
 {
-	public static final DeclarationAnnotationAdapter DECLARATION_ANNOTATION_ADAPTER = new SimpleDeclarationAnnotationAdapter(ANNOTATION_NAME);
+	public static final DeclarationAnnotationAdapter DECLARATION_ANNOTATION_ADAPTER = JakartaAwareDeclarationAnnotationAdapter.forJavax(ANNOTATION_NAME);
 
 	private static final DeclarationAnnotationElementAdapter<String> NAME_ADAPTER = buildAdapter(JPA.SEQUENCE_GENERATOR__NAME);
 
@@ -47,8 +48,15 @@ public abstract class SourceSequenceGeneratorAnnotation
 		this.sequenceNameAdapter = this.buildAdapter(SEQUENCE_NAME_ADAPTER);
 	}
 
+	protected SourceSequenceGeneratorAnnotation(JavaResourceModel parent, AnnotatedElement element, DeclarationAnnotationAdapter daa) {
+		super(parent, element, daa);
+		this.sequenceNameAdapter = this.buildAdapter(SEQUENCE_NAME_ADAPTER);
+	}
+
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return (this.daa instanceof JakartaAwareDeclarationAnnotationAdapter)
+				? ((JakartaAwareDeclarationAnnotationAdapter) this.daa).getAnnotationName()
+				: ANNOTATION_NAME;
 	}
 
 	@Override

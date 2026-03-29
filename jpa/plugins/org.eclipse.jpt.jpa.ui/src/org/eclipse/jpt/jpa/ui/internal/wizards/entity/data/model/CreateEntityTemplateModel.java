@@ -416,11 +416,20 @@ public class CreateEntityTemplateModel {
 
 	/**
 	 * Retrieves the JPA version of the current JpaProject.
-	 * 
-	 * @return The JPA version as a double, or -1 if the version format is invalid.
+	 *
+	 * @return The JPA version as a double, or -1 if:
+	 *         <ul>
+	 *           <li>the {@link JpaProject} is null (no JPA project is associated),</li>
+	 *           <li>the {@link JpaPlatform} is null for the current project, or</li>
+	 *           <li>the version string returned by {@link JpaPlatform#getJpaVersion()} cannot
+	 *               be parsed as a {@code double} (invalid version format).</li>
+	 *         </ul>
 	 */
 	private double getJpaVersion() {
 		JpaProject jpaProject = getJpaProject();
+		if (jpaProject == null) {
+			return -1;
+		}
 		JpaPlatform jpaPlatform = jpaProject.getJpaPlatform();
 		if (jpaPlatform == null) {
 			JptJpaUiPlugin.instance().logError("JpaPlatform is null for project: " + jpaProject.getProject().getName());

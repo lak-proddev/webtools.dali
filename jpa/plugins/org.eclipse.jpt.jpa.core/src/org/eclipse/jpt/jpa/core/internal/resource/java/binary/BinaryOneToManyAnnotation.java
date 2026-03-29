@@ -27,14 +27,21 @@ public final class BinaryOneToManyAnnotation
 
 	private Boolean orphanRemoval; //added in JPA 2.0
 
+	private final String annotationName;
+
 	public BinaryOneToManyAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryOneToManyAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.mappedBy = this.buildMappedBy();
 		this.orphanRemoval = this.buildOrphanRemoval();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -43,7 +50,6 @@ public final class BinaryOneToManyAnnotation
 		this.setMappedBy_(this.buildMappedBy());
 		this.setOrphanRemoval_(this.buildOrphanRemoval());
 	}
-
 
 	// ********** BinaryRelationshipMappingAnnotation implementation **********
 
@@ -61,7 +67,6 @@ public final class BinaryOneToManyAnnotation
 	String getCascadeElementName() {
 		return JPA.ONE_TO_MANY__CASCADE;
 	}
-
 
 	//**************** OwnableRelationshipMappingAnnotation implementation **************
 
@@ -91,7 +96,6 @@ public final class BinaryOneToManyAnnotation
 	public boolean mappedByTouches(int pos) {
 		throw new UnsupportedOperationException();
 	}
-
 
 	// ********** OneToMany2_0Annotation implementation **********
 

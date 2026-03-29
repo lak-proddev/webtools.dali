@@ -10,7 +10,8 @@
 package org.eclipse.jpt.jpa.core.internal.resource.java.source;
 
 import org.eclipse.jpt.common.core.internal.utility.jdt.NestedDeclarationAnnotationAdapter;
-import org.eclipse.jpt.common.core.internal.utility.jdt.SimpleDeclarationAnnotationAdapter;
+
+import org.eclipse.jpt.common.core.internal.utility.jdt.JakartaAwareDeclarationAnnotationAdapter;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceModel;
 import org.eclipse.jpt.common.core.utility.jdt.AnnotatedElement;
 import org.eclipse.jpt.common.core.utility.jdt.DeclarationAnnotationAdapter;
@@ -25,7 +26,7 @@ public final class SourceColumnAnnotation
 	implements ColumnAnnotation
 {
 	// this adapter is only used by a Column annotation associated with a mapping annotation (e.g. Basic)
-	public static final DeclarationAnnotationAdapter MAPPING_DECLARATION_ANNOTATION_ADAPTER = new SimpleDeclarationAnnotationAdapter(ANNOTATION_NAME);
+	public static final DeclarationAnnotationAdapter MAPPING_DECLARATION_ANNOTATION_ADAPTER = JakartaAwareDeclarationAnnotationAdapter.forJavax(ANNOTATION_NAME);
 
 
 	public SourceColumnAnnotation(JavaResourceModel parent, AnnotatedElement element, DeclarationAnnotationAdapter daa) {
@@ -33,7 +34,9 @@ public final class SourceColumnAnnotation
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return (this.daa instanceof JakartaAwareDeclarationAnnotationAdapter)
+				? ((JakartaAwareDeclarationAnnotationAdapter) this.daa).getAnnotationName()
+				: ANNOTATION_NAME;
 	}
 
 	// ********** SourceNamedColumnAnnotation implementation **********

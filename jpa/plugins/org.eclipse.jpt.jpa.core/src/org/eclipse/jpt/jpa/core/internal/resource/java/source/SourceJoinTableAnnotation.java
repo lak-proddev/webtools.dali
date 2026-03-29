@@ -12,7 +12,8 @@ package org.eclipse.jpt.jpa.core.internal.resource.java.source;
 import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jpt.common.core.internal.utility.jdt.ConversionDeclarationAnnotationElementAdapter;
 import org.eclipse.jpt.common.core.internal.utility.jdt.NestedIndexedDeclarationAnnotationAdapter;
-import org.eclipse.jpt.common.core.internal.utility.jdt.SimpleDeclarationAnnotationAdapter;
+
+import org.eclipse.jpt.common.core.internal.utility.jdt.JakartaAwareDeclarationAnnotationAdapter;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceModel;
 import org.eclipse.jpt.common.core.utility.jdt.AnnotatedElement;
 import org.eclipse.jpt.common.core.utility.jdt.DeclarationAnnotationAdapter;
@@ -30,7 +31,7 @@ public final class SourceJoinTableAnnotation
 	extends SourceBaseTableAnnotation
 	implements JoinTableAnnotation
 {
-	public static final DeclarationAnnotationAdapter DECLARATION_ANNOTATION_ADAPTER = new SimpleDeclarationAnnotationAdapter(JoinTableAnnotation.ANNOTATION_NAME);
+	public static final DeclarationAnnotationAdapter DECLARATION_ANNOTATION_ADAPTER = JakartaAwareDeclarationAnnotationAdapter.forJavax(JoinTableAnnotation.ANNOTATION_NAME);
 
 
 	private final JoinColumnsAnnotationContainer joinColumnsContainer = new JoinColumnsAnnotationContainer();
@@ -47,7 +48,9 @@ public final class SourceJoinTableAnnotation
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return (this.daa instanceof JakartaAwareDeclarationAnnotationAdapter)
+				? ((JakartaAwareDeclarationAnnotationAdapter) this.daa).getAnnotationName()
+				: ANNOTATION_NAME;
 	}
 
 	@Override

@@ -12,7 +12,8 @@ package org.eclipse.jpt.jpa.core.internal.resource.java.source;
 import org.eclipse.jdt.core.dom.Annotation;
 import org.eclipse.jpt.common.core.internal.utility.jdt.BooleanExpressionConverter;
 import org.eclipse.jpt.common.core.internal.utility.jdt.ConversionDeclarationAnnotationElementAdapter;
-import org.eclipse.jpt.common.core.internal.utility.jdt.SimpleDeclarationAnnotationAdapter;
+
+import org.eclipse.jpt.common.core.internal.utility.jdt.JakartaAwareDeclarationAnnotationAdapter;
 import org.eclipse.jpt.common.core.resource.java.JavaResourceAnnotatedElement;
 import org.eclipse.jpt.common.core.utility.TextRange;
 import org.eclipse.jpt.common.core.utility.jdt.AnnotatedElement;
@@ -31,7 +32,7 @@ public final class SourceOneToOneAnnotation
 	extends SourceRelationshipMappingAnnotation
 	implements OneToOneAnnotation2_0
 {
-	public static final DeclarationAnnotationAdapter DECLARATION_ANNOTATION_ADAPTER = new SimpleDeclarationAnnotationAdapter(ANNOTATION_NAME);
+	public static final DeclarationAnnotationAdapter DECLARATION_ANNOTATION_ADAPTER = JakartaAwareDeclarationAnnotationAdapter.forJavax(ANNOTATION_NAME);
 
 	static final DeclarationAnnotationElementAdapter<String> TARGET_ENTITY_ADAPTER = buildTargetEntityAdapter();
 
@@ -62,8 +63,17 @@ public final class SourceOneToOneAnnotation
 		this.orphanRemovalAdapter = this.buildBooleanAnnotationElementAdapter(ORPHAN_REMOVAL_ADAPTER);
 	}
 
+	public SourceOneToOneAnnotation(JavaResourceAnnotatedElement parent, AnnotatedElement element, DeclarationAnnotationAdapter daa) {
+		super(parent, element, daa);
+		this.mappedByAdapter = this.buildAnnotationElementAdapter(MAPPED_BY_ADAPTER);
+		this.optionalAdapter = this.buildBooleanAnnotationElementAdapter(OPTIONAL_ADAPTER);
+		this.orphanRemovalAdapter = this.buildBooleanAnnotationElementAdapter(ORPHAN_REMOVAL_ADAPTER);
+	}
+
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return (this.daa instanceof JakartaAwareDeclarationAnnotationAdapter)
+				? ((JakartaAwareDeclarationAnnotationAdapter) this.daa).getAnnotationName()
+				: ANNOTATION_NAME;
 	}
 
 	@Override

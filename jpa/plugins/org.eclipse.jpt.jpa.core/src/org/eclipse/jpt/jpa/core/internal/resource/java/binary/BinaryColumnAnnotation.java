@@ -22,14 +22,20 @@ public final class BinaryColumnAnnotation
 	implements ColumnAnnotation
 {
 
+	private final String annotationName;
+
 	public BinaryColumnAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryColumnAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
-
 
 	// ********** BinaryNamedColumnAnnotation implementation **********
 
@@ -42,7 +48,6 @@ public final class BinaryColumnAnnotation
 	protected String getColumnDefinitionElementName() {
 		return JPA.COLUMN__COLUMN_DEFINITION;
 	}
-
 
 	// ********** BinaryBaseColumnAnnotation implementation **********
 

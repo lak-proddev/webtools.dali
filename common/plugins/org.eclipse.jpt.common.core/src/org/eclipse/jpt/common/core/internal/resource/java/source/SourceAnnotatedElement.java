@@ -171,7 +171,38 @@ abstract class SourceAnnotatedElement<E extends AnnotatedElement>
 	}
 
 	public Annotation getAnnotation(String annotationName) {
-		return this.annotations.get(annotationName);
+		Annotation annotation = this.annotations.get(annotationName);
+		if (annotation == null && annotationName != null) {
+			// Symmetric namespace fallback: try the alternate persistence namespace
+			// so that javax.* callers find jakarta.* annotations (JPA 3.x projects)
+			// and jakarta.* callers find javax.* annotations (JPA 2.x projects).
+			String alternate = alternateNamespace(annotationName);
+			if (alternate != null) {
+				annotation = this.annotations.get(alternate);
+			}
+		}
+		return annotation;
+	}
+
+	private static final String JAVAX_PERSISTENCE_PREFIX = "javax.persistence"; //$NON-NLS-1$
+	private static final String JAKARTA_PERSISTENCE_PREFIX = "jakarta.persistence"; //$NON-NLS-1$
+
+	/**
+	 * Return the alternate persistence namespace for the given annotation name,
+	 * or {@code null} if the name does not belong to either namespace.
+	 * <ul>
+	 *   <li>{@code javax.persistence.*}   → {@code jakarta.persistence.*}</li>
+	 *   <li>{@code jakarta.persistence.*} → {@code javax.persistence.*}</li>
+	 * </ul>
+	 */
+	private static String alternateNamespace(String annotationName) {
+		if (annotationName.startsWith(JAVAX_PERSISTENCE_PREFIX)) {
+			return JAKARTA_PERSISTENCE_PREFIX + annotationName.substring(JAVAX_PERSISTENCE_PREFIX.length());
+		}
+		if (annotationName.startsWith(JAKARTA_PERSISTENCE_PREFIX)) {
+			return JAVAX_PERSISTENCE_PREFIX + annotationName.substring(JAKARTA_PERSISTENCE_PREFIX.length());
+		}
+		return null;
 	}
 
 	public Annotation getContainerAnnotation(String containerAnnotationName) {
@@ -236,21 +267,36 @@ abstract class SourceAnnotatedElement<E extends AnnotatedElement>
 	}
 
 	public ListIterable<NestableAnnotation> getAnnotations(String nestableAnnotationName) {
-		CombinationAnnotationContainer container = this.annotationContainers.get(nestableAnnotationName);
+		CombinationAnnotationContainer container = this.resolveAnnotationContainer(nestableAnnotationName);
 		return (container != null) ? container.getNestedAnnotations() : EmptyListIterable.<NestableAnnotation> instance();
 	}
 
 	public int getAnnotationsSize(String nestableAnnotationName) {
-		CombinationAnnotationContainer container = this.annotationContainers.get(nestableAnnotationName);
+		CombinationAnnotationContainer container = this.resolveAnnotationContainer(nestableAnnotationName);
 		return (container == null) ? 0 : container.getNestedAnnotationsSize();
 	}
 
 	public NestableAnnotation getAnnotation(int index, String nestableAnnotationName) {
-		CombinationAnnotationContainer container = this.annotationContainers.get(nestableAnnotationName);
+		CombinationAnnotationContainer container = this.resolveAnnotationContainer(nestableAnnotationName);
 		if (container == null) {
 			throw new ArrayIndexOutOfBoundsException("size: 0 index: " + index); //$NON-NLS-1$
 		}
 		return container.getNestedAnnotation(index);
+	}
+
+	/**
+	 * Look up a combination annotation container by nestable annotation name,
+	 * with a symmetric namespace fallback (javax ↔ jakarta).
+	 */
+	private CombinationAnnotationContainer resolveAnnotationContainer(String nestableAnnotationName) {
+		CombinationAnnotationContainer container = this.annotationContainers.get(nestableAnnotationName);
+		if (container == null && nestableAnnotationName != null) {
+			String alternate = alternateNamespace(nestableAnnotationName);
+			if (alternate != null) {
+				container = this.annotationContainers.get(alternate);
+			}
+		}
+		return container;
 	}
 
 	private String getNestableAnnotationName(String containerAnnotationName) {

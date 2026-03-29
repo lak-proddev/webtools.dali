@@ -26,15 +26,21 @@ public final class BinaryAttributeOverrideAnnotation
 	private ColumnAnnotation column;
 	private final ColumnAnnotation nullColumn;
 
+	private final String annotationName;
 
 	public BinaryAttributeOverrideAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryAttributeOverrideAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.column = this.buildColumn();
 		this.nullColumn = this.buildNullColumn();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -42,7 +48,6 @@ public final class BinaryAttributeOverrideAnnotation
 		super.update();
 		this.updateColumn();
 	}
-
 
 	//************ BinaryOverrideAnnotation implementation ****************
 

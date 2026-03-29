@@ -18,12 +18,19 @@ public final class BinaryMappedSuperclassAnnotation
 	extends BinaryAnnotation
 	implements MappedSuperclassAnnotation
 {
+	private final String annotationName;
+
 	public BinaryMappedSuperclassAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryMappedSuperclassAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 }

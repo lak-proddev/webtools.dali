@@ -21,14 +21,20 @@ public final class BinaryTableAnnotation
 	extends BinaryBaseTableAnnotation
 	implements TableAnnotation
 {
+	private final String annotationName;
+
 	public BinaryTableAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryTableAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
-
 
 	// ********** BinaryBaseTableAnnotation implementation **********
 

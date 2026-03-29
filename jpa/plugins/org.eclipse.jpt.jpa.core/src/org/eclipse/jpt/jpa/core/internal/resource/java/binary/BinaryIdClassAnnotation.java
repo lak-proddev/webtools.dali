@@ -25,14 +25,20 @@ public final class BinaryIdClassAnnotation
 {
 	private String value;
 
+	private final String annotationName;
 
 	public BinaryIdClassAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryIdClassAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.value = this.buildValue();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -40,7 +46,6 @@ public final class BinaryIdClassAnnotation
 		super.update();
 		this.setValue_(this.buildValue());
 	}
-
 
 	// ********** IdClassAnnotation implementation **********
 

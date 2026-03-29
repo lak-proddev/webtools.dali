@@ -25,14 +25,20 @@ public final class BinaryDiscriminatorValueAnnotation
 {
 	private String value;
 
+	private final String annotationName;
 
 	public BinaryDiscriminatorValueAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryDiscriminatorValueAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.value = this.buildValue();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -40,7 +46,6 @@ public final class BinaryDiscriminatorValueAnnotation
 		super.update();
 		this.setValue_(this.buildValue());
 	}
-
 
 	// ********** DiscriminatorValueAnnotation implementation **********
 

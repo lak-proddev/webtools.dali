@@ -24,14 +24,20 @@ public final class BinaryPrimaryKeyJoinColumnAnnotation
 {
 	private String referencedColumnName;
 
+	private final String annotationName;
 
 	public BinaryPrimaryKeyJoinColumnAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryPrimaryKeyJoinColumnAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.referencedColumnName = this.buildReferencedColumnName();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -39,7 +45,6 @@ public final class BinaryPrimaryKeyJoinColumnAnnotation
 		super.update();
 		this.setReferencedColumnName_(this.buildReferencedColumnName());
 	}
-
 
 	// ********** BinaryNamedColumnAnnotation implementation **********
 
@@ -52,7 +57,6 @@ public final class BinaryPrimaryKeyJoinColumnAnnotation
 	protected String getColumnDefinitionElementName() {
 		return JPA.PRIMARY_KEY_JOIN_COLUMN__COLUMN_DEFINITION;
 	}
-
 
 	// ********** PrimaryKeyJoinColumnAnnotation implementation **********
 
