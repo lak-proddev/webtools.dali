@@ -46,7 +46,7 @@ public final class NamedQueryAnnotationDefinition
 	}
 
 	public NestableAnnotation buildAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, int index) {
-		return new BinaryNamedQueryAnnotation1_0(parent, jdtAnnotation);
+		return new BinaryNamedQueryAnnotation1_0(parent, jdtAnnotation, this.getNestableAnnotationName());
 	}
 
 	public String getNestableAnnotationName() {

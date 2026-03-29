@@ -21,12 +21,19 @@ public final class BinaryTemporalAnnotation
 	extends BinaryBaseTemporalAnnotation
 	implements TemporalAnnotation
 {
+	private final String annotationName;
+
 	public BinaryTemporalAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryTemporalAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 	
 	@Override

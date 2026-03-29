@@ -25,14 +25,20 @@ public final class BinaryMapKeyAnnotation
 {
 	private String name;
 
+	private final String annotationName;
 
 	public BinaryMapKeyAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryMapKeyAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.name = this.buildName();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -45,7 +51,6 @@ public final class BinaryMapKeyAnnotation
 	public void toString(StringBuilder sb) {
 		sb.append(this.name);
 	}
-
 
 	// ********** MapKeyAnnotation implementation **********
 

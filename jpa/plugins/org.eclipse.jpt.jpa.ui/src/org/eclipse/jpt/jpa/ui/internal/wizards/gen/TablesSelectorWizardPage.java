@@ -680,7 +680,10 @@ public class TablesSelectorWizardPage extends WizardPage {
 			Collection<Table> ret = TablesSelectorWizardPage.this.getSelectedTables();
 			ArrayList<String> tableNames = new ArrayList<String>();
 			for(Table t : ret) {
-				tableNames.add(t.getName()); 
+				tableNames.add(t.getName());
+			}
+			if (customizer == null) {
+				return;
 			}
 			Schema schema = getSchema();
 			if(schema == null) {
@@ -718,7 +721,9 @@ public class TablesSelectorWizardPage extends WizardPage {
 	private boolean restoreWizardState() {
 		boolean pageComplete = false;
 		if (this.updatePersistenceXmlCheckBox != null){
-			this.updatePersistenceXmlCheckBox.setSelection(this.customizer.updatePersistenceXml());
+			boolean savedValue = this.customizer.updatePersistenceXml();
+			this.updatePersistenceXmlCheckBox.setSelection(savedValue);
+			this.updatePersistenceXml = savedValue;
 		}
 		List<String> preSelectedTableNames = this.customizer.getTableNames();
 		if(preSelectedTableNames!=null && preSelectedTableNames.size()>0) {

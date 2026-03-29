@@ -27,13 +27,20 @@ public final class BinarySecondaryTableAnnotation
 {
 	private final Vector<PrimaryKeyJoinColumnAnnotation> pkJoinColumns;
 
+	private final String annotationName;
+
 	public BinarySecondaryTableAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinarySecondaryTableAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.pkJoinColumns = this.buildPkJoinColumns();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -41,7 +48,6 @@ public final class BinarySecondaryTableAnnotation
 		super.update();
 		this.updatePkJoinColumns();
 	}
-
 
 	// ********** BinaryBaseTableAnnotation implementation **********
 
@@ -64,7 +70,6 @@ public final class BinarySecondaryTableAnnotation
 	protected String getUniqueConstraintElementName() {
 		return JPA.SECONDARY_TABLE__UNIQUE_CONSTRAINTS;
 	}
-
 
 	// ************* SecondaryTableAnnotation implementation *******************
 

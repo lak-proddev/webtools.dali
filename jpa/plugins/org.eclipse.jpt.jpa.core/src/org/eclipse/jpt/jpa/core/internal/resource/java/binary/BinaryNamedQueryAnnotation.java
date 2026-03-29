@@ -25,13 +25,20 @@ public abstract class BinaryNamedQueryAnnotation
 {
 	private String query;
 	
+	private final String annotationName;
+
 	public BinaryNamedQueryAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryNamedQueryAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.query = this.buildQuery();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -39,7 +46,6 @@ public abstract class BinaryNamedQueryAnnotation
 		super.update();
 		this.setQuery_(this.buildQuery());
 	}
-
 
 	// ********** BinaryNamedQueryAnnotation implementation **********
 
@@ -56,7 +62,6 @@ public abstract class BinaryNamedQueryAnnotation
 	public String getHintsElementName() {
 		return JPA.NAMED_QUERY__HINTS;
 	}
-
 
 	// ********** NamedNativeQueryAnnotation implementation **********
 

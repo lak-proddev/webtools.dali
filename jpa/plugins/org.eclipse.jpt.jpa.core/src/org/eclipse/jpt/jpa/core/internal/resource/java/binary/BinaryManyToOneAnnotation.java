@@ -24,14 +24,20 @@ public final class BinaryManyToOneAnnotation
 {
 	private Boolean optional;
 
+	private final String annotationName;
 
 	public BinaryManyToOneAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryManyToOneAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.optional = this.buildOptional();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -39,7 +45,6 @@ public final class BinaryManyToOneAnnotation
 		super.update();
 		this.setOptional_(this.buildOptional());
 	}
-
 
 	// ********** BinaryRelationshipMappingAnnotation implementation **********
 
@@ -57,7 +62,6 @@ public final class BinaryManyToOneAnnotation
 	String getCascadeElementName() {
 		return JPA.MANY_TO_ONE__CASCADE;
 	}
-
 
 	// ********** ManyToOneMappingAnnotation implementation **********
 

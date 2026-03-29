@@ -27,16 +27,22 @@ public final class BinaryNamedNativeQueryAnnotation
 	private String resultClass;
 	private String resultSetMapping;
 
+	private final String annotationName;
 
 	public BinaryNamedNativeQueryAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryNamedNativeQueryAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.query = this.buildQuery();
 		this.resultClass = this.buildResultClass();
 		this.resultSetMapping = this.buildResultSetMapping();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -46,7 +52,6 @@ public final class BinaryNamedNativeQueryAnnotation
 		this.setResultClass_(this.buildResultClass());
 		this.setResultSetMapping_(this.buildResultSetMapping());
 	}
-
 
 	// ********** BinaryNamedNativeQueryAnnotation implementation **********
 
@@ -59,7 +64,6 @@ public final class BinaryNamedNativeQueryAnnotation
 	public String getHintsElementName() {
 		return JPA.NAMED_NATIVE_QUERY__HINTS;
 	}
-
 
 	// ********** NamedNativeQueryAnnotation implementation **********
 

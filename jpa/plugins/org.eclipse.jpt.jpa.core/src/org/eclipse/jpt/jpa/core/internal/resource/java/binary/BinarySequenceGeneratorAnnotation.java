@@ -24,14 +24,20 @@ public abstract class BinarySequenceGeneratorAnnotation
 {
 	private String sequenceName;
 
+	protected final String annotationName;
 
 	protected BinarySequenceGeneratorAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	protected BinarySequenceGeneratorAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.sequenceName = this.buildSequenceName();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -39,7 +45,6 @@ public abstract class BinarySequenceGeneratorAnnotation
 		super.update();
 		this.setSequenceName_(this.buildSequenceName());
 	}
-
 
 	// ********** BinaryGeneratorAnnotation implementation **********
 
@@ -57,7 +62,6 @@ public abstract class BinarySequenceGeneratorAnnotation
 	String getAllocationSizeElementName() {
 		return JPA.SEQUENCE_GENERATOR__ALLOCATION_SIZE;
 	}
-
 
 	// ********** SequenceGeneratorAnnotation implementation **********
 

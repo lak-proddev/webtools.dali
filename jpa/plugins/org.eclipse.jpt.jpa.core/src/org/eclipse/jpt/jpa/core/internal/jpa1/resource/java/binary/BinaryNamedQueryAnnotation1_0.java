@@ -20,6 +20,10 @@ public final class BinaryNamedQueryAnnotation1_0
 	extends BinaryNamedQueryAnnotation
 {
 	public BinaryNamedQueryAnnotation1_0(JavaResourceModel parent, IAnnotation jdtAnnotation) {
-		super(parent, jdtAnnotation);
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryNamedQueryAnnotation1_0(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
+		super(parent, jdtAnnotation, annotationName);
 	}
 }

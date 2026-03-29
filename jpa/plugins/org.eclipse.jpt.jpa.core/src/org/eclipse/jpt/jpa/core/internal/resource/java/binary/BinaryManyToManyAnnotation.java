@@ -24,14 +24,20 @@ public final class BinaryManyToManyAnnotation
 {
 	private String mappedBy;
 
+	private final String annotationName;
 
 	public BinaryManyToManyAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryManyToManyAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.mappedBy = this.buildMappedBy();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -39,7 +45,6 @@ public final class BinaryManyToManyAnnotation
 		super.update();
 		this.setMappedBy_(this.buildMappedBy());
 	}
-
 
 	// ********** BinaryRelationshipMappingAnnotation implementation **********
 
@@ -57,7 +62,6 @@ public final class BinaryManyToManyAnnotation
 	String getCascadeElementName() {
 		return JPA.MANY_TO_MANY__CASCADE;
 	}
-
 
 	//**************** OwnableRelationshipMappingAnnotation implementation **************
 

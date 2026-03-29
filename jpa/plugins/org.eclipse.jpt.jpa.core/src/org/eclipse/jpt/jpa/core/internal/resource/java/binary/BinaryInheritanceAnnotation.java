@@ -26,14 +26,20 @@ public final class BinaryInheritanceAnnotation
 {
 	private InheritanceType strategy;
 
+	private final String annotationName;
 
 	public BinaryInheritanceAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryInheritanceAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.strategy = this.buildStrategy();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -41,7 +47,6 @@ public final class BinaryInheritanceAnnotation
 		super.update();
 		this.setStrategy_(this.buildStrategy());
 	}
-
 
 	// ********** InheritanceAnnotation implementation **********
 

@@ -27,15 +27,21 @@ public final class BinaryBasicAnnotation
 	private Boolean optional;
 	private FetchType fetch;
 
+	private final String annotationName;
 
 	public BinaryBasicAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryBasicAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.optional = this.buildOptional();
 		this.fetch = this.buildFetch();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -44,7 +50,6 @@ public final class BinaryBasicAnnotation
 		this.setOptional_(this.buildOptional());
 		this.setFetch_(this.buildFetch());
 	}
-
 
 	//*************** Basic implementation ****************
 

@@ -27,15 +27,22 @@ public class BinaryOneToOneAnnotation
 	private String mappedBy;
 	private Boolean orphanRemoval; //added in JPA 2.0
 
+	private final String annotationName;
+
 	public BinaryOneToOneAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryOneToOneAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.optional = this.buildOptional();
 		this.mappedBy = this.buildMappedBy();
 		this.orphanRemoval = this.buildOrphanRemoval();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -45,7 +52,6 @@ public class BinaryOneToOneAnnotation
 		this.setMappedBy_(this.buildMappedBy());
 		this.setOrphanRemoval_(this.buildOrphanRemoval());
 	}
-
 
 	// ********** BinaryRelationshipMappingAnnotation implementation **********
 
@@ -63,7 +69,6 @@ public class BinaryOneToOneAnnotation
 	String getCascadeElementName() {
 		return JPA.ONE_TO_ONE__CASCADE;
 	}
-
 
 	//**************** OwnableRelationshipMappingAnnotation implementation **************
 
@@ -94,7 +99,6 @@ public class BinaryOneToOneAnnotation
 		throw new UnsupportedOperationException();
 	}
 
-
 	//**************** OneToOneAnnotation implementation **************
 
 	// ***** optional
@@ -119,7 +123,6 @@ public class BinaryOneToOneAnnotation
 	public TextRange getOptionalTextRange() {
 		throw new UnsupportedOperationException();
 	}
-
 
 	// ********** OneToOne2_0Annotation implementation **********
 

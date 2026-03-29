@@ -28,15 +28,21 @@ public final class BinaryJoinTableAnnotation
 	private final Vector<JoinColumnAnnotation> joinColumns;
 	private final Vector<JoinColumnAnnotation> inverseJoinColumns;
 
+	private final String annotationName;
 
 	public BinaryJoinTableAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation) {
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryJoinTableAnnotation(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
 		super(parent, jdtAnnotation);
+		this.annotationName = annotationName;
 		this.joinColumns = this.buildJoinColumns();
 		this.inverseJoinColumns = this.buildInverseJoinColumns();
 	}
 
 	public String getAnnotationName() {
-		return ANNOTATION_NAME;
+		return this.annotationName;
 	}
 
 	@Override
@@ -45,7 +51,6 @@ public final class BinaryJoinTableAnnotation
 		this.updateJoinColumns();
 		this.updateInverseJoinColumns();
 	}
-
 
 	// ********** BinaryBaseTableAnnotation implementation **********
 
@@ -68,7 +73,6 @@ public final class BinaryJoinTableAnnotation
 	protected String getUniqueConstraintElementName() {
 		return JPA.JOIN_TABLE__UNIQUE_CONSTRAINTS;
 	}
-
 
 	// ********** JoinTableAnnotation implementation **********
 
@@ -110,7 +114,6 @@ public final class BinaryJoinTableAnnotation
 	private void updateJoinColumns() {
 		throw new UnsupportedOperationException();
 	}
-
 
 	// ***** inverse join columns
 	public ListIterable<JoinColumnAnnotation> getInverseJoinColumns() {

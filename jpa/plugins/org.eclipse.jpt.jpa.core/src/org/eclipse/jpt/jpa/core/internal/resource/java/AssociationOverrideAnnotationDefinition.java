@@ -46,7 +46,7 @@ public final class AssociationOverrideAnnotationDefinition
 	}
 
 	public NestableAnnotation buildAnnotation(JavaResourceAnnotatedElement parent, IAnnotation jdtAnnotation, int index) {
-		return new BinaryAssociationOverrideAnnotation1_0(parent, jdtAnnotation);
+		return new BinaryAssociationOverrideAnnotation1_0(parent, jdtAnnotation, this.getNestableAnnotationName());
 	}
 
 	public String getNestableAnnotationName() {

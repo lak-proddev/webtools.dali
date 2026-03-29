@@ -20,6 +20,10 @@ public final class BinaryAssociationOverrideAnnotation1_0
 	extends BinaryAssociationOverrideAnnotation
 {
 	public BinaryAssociationOverrideAnnotation1_0(JavaResourceModel parent, IAnnotation jdtAnnotation) {
-		super(parent, jdtAnnotation);
+		this(parent, jdtAnnotation, ANNOTATION_NAME);
+	}
+
+	public BinaryAssociationOverrideAnnotation1_0(JavaResourceModel parent, IAnnotation jdtAnnotation, String annotationName) {
+		super(parent, jdtAnnotation, annotationName);
 	}
 }
