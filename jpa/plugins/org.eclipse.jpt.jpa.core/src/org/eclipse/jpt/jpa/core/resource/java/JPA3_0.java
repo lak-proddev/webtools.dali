@@ -220,6 +220,8 @@ public interface JPA3_0 extends JPA {
 		String COLLECTION_TABLE__CATALOG            = "catalog";
 		String COLLECTION_TABLE__JOIN_COLUMNS       = "joinColumns";
 		String COLLECTION_TABLE__UNIQUE_CONSTRAINTS = "uniqueConstraints";
+		/** Added in JPA 2.1. */
+		String COLLECTION_TABLE__INDEXES            = "indexes";
 
 	// @ElementCollection
 	String ELEMENT_COLLECTION = PACKAGE_ + "ElementCollection";
@@ -374,6 +376,17 @@ public interface JPA3_0 extends JPA {
 		String NAMED_STORED_PROCEDURE_PARAMETER__NAME = "name";
 		String NAMED_STORED_PROCEDURE_PARAMETER__MODE = "mode";
 		String NAMED_STORED_PROCEDURE_PARAMETER__TYPE = "type";
+
+	// JPA 2.1 additions to pre-existing annotations (element names only)
+	// @SqlResultSetMapping gained classes= in JPA 2.1
+	String SQL_RESULT_SET_MAPPING__CLASSES = "classes";
+	// @TableGenerator gained indexes= in JPA 2.1
+	String TABLE_GENERATOR__INDEXES = "indexes";
+
+	// @ConstructorResult (added in JPA 2.1 — used in @SqlResultSetMapping)
+	String CONSTRUCTOR_RESULT = PACKAGE_ + "ConstructorResult";
+		String CONSTRUCTOR_RESULT__TARGET_CLASS = "targetClass";
+		String CONSTRUCTOR_RESULT__COLUMNS      = "columns";
 
 	// @ForeignKey (added in JPA 2.1 – used in join column and table annotations)
 	String FOREIGN_KEY = PACKAGE_ + "ForeignKey";
