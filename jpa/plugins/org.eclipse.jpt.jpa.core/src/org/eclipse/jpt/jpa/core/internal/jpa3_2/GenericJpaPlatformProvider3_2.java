@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2024 Lakshminarayana Nekkanti. All rights reserved.
+ * Copyright (c) 2024, 2026 Lakshminarayana Nekkanti and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *     Lakshminarayana Nekkanti - initial API and implementation
  *
  *******************************************************************************/
-package org.eclipse.jpt.jpa.core.internal.jpa3_1;
+package org.eclipse.jpt.jpa.core.internal.jpa3_2;
 
 import java.util.ArrayList;
 
@@ -40,22 +40,34 @@ import org.eclipse.jpt.jpa.core.internal.jpa2_1.context.orm.GenericOrmXmlDefinit
 import org.eclipse.jpt.jpa.core.internal.jpa2_1.context.persistence.GenericPersistenceXmlDefinition2_1;
 import org.eclipse.jpt.jpa.core.internal.jpa2_2.context.orm.GenericOrmXmlDefinition2_2;
 import org.eclipse.jpt.jpa.core.internal.jpa2_2.context.persistence.GenericPersistenceXmlDefinition2_2;
-import org.eclipse.jpt.jpa.core.internal.jpa3_0.GenericJpaPlatformProvider3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaBasicMappingDefinition3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaConverterTypeDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaElementCollectionMappingDefinition3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaEmbeddableDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaEmbeddedIdMappingDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaEmbeddedMappingDefinition3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaEntityDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaIdMappingDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaManyToManyMappingDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaManyToOneMappingDefinition3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaMappedSuperclassDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaOneToManyMappingDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaOneToOneMappingDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaTransientMappingDefinition3_0;
+import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.java.JavaVersionMappingDefinition3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.context.orm.GenericOrmXmlDefinition3_0;
 import org.eclipse.jpt.jpa.core.internal.jpa3_1.context.orm.GenericOrmXmlDefinition3_1;
 import org.eclipse.jpt.jpa.core.internal.jpa3_1.context.persistence.GenericPersistenceXmlDefinition3_1;
+import org.eclipse.jpt.jpa.core.internal.jpa3_2.context.orm.GenericOrmXmlDefinition3_2;
+import org.eclipse.jpt.jpa.core.internal.jpa3_2.context.persistence.GenericPersistenceXmlDefinition3_2;
 
 /**
  * All the state in the JPA platform should be "static" (i.e. unchanging once it
  * is initialized).
  */
-public class GenericJpaPlatformProvider3_1 extends AbstractJpaPlatformProvider {
+public class GenericJpaPlatformProvider3_2 extends AbstractJpaPlatformProvider {
 	// singleton
-	private static final JpaPlatformProvider INSTANCE = new GenericJpaPlatformProvider3_1();
+	private static final JpaPlatformProvider INSTANCE = new GenericJpaPlatformProvider3_2();
 
 	/**
 	 * Return the singleton
@@ -67,7 +79,7 @@ public class GenericJpaPlatformProvider3_1 extends AbstractJpaPlatformProvider {
 	/**
 	 * Enforce singleton usage
 	 */
-	private GenericJpaPlatformProvider3_1() {
+	private GenericJpaPlatformProvider3_2() {
 		super();
 	}
 
@@ -81,8 +93,8 @@ public class GenericJpaPlatformProvider3_1 extends AbstractJpaPlatformProvider {
 	// order should not be important here
 	protected static final JptResourceType[] MOST_RECENT_SUPPORTED_RESOURCE_TYPES = new JptResourceType[] {
 			JavaSourceFileDefinition.instance().getResourceType(), JarDefinition.instance().getResourceType(),
-			GenericPersistenceXmlDefinition3_1.instance().getResourceType(),
-			GenericOrmXmlDefinition3_1.instance().getResourceType() };
+			GenericPersistenceXmlDefinition3_2.instance().getResourceType(),
+			GenericOrmXmlDefinition3_2.instance().getResourceType() };
 
 	@Override
 	protected void addResourceModelProvidersTo(ArrayList<JpaResourceModelProvider> providers) {
@@ -104,10 +116,10 @@ public class GenericJpaPlatformProvider3_1 extends AbstractJpaPlatformProvider {
 	 */
 	@Override
 	protected void addJavaManagedTypeDefinitionsTo(ArrayList<JavaManagedTypeDefinition> definitions) {
-		CollectionTools.addAll(definitions, JAVA_MANAGED_TYPE_DEFINITIONS_3_1);
+		CollectionTools.addAll(definitions, JAVA_MANAGED_TYPE_DEFINITIONS_3_2);
 	}
 
-	protected static final JavaManagedTypeDefinition[] JAVA_MANAGED_TYPE_DEFINITIONS_3_1 = new JavaManagedTypeDefinition[] {
+	protected static final JavaManagedTypeDefinition[] JAVA_MANAGED_TYPE_DEFINITIONS_3_2 = new JavaManagedTypeDefinition[] {
 			JavaPersistentTypeDefinition.instance(), JavaConverterTypeDefinition3_0.instance() };
 
 	// ********** Java type mappings **********
@@ -130,10 +142,9 @@ public class GenericJpaPlatformProvider3_1 extends AbstractJpaPlatformProvider {
 		CollectionTools.addAll(definitions, DEFAULT_JAVA_ATTRIBUTE_MAPPING_DEFINITIONS);
 	}
 
-	// JPA 3.1 introduces no new attribute mapping annotations — reuse JPA 3.0's
-	// Jakarta-aware definitions directly.
-	protected static final DefaultJavaAttributeMappingDefinition[] DEFAULT_JAVA_ATTRIBUTE_MAPPING_DEFINITIONS =
-			GenericJpaPlatformProvider3_0.DEFAULT_JAVA_ATTRIBUTE_MAPPING_DEFINITIONS;
+	// order matches that used by the Reference Implementation (EclipseLink)
+	protected static final DefaultJavaAttributeMappingDefinition[] DEFAULT_JAVA_ATTRIBUTE_MAPPING_DEFINITIONS = new DefaultJavaAttributeMappingDefinition[] {
+			JavaEmbeddedMappingDefinition3_0.instance(), JavaBasicMappingDefinition3_0.instance() };
 
 	@Override
 	protected void addSpecifiedJavaAttributeMappingDefinitionsTo(
@@ -141,10 +152,14 @@ public class GenericJpaPlatformProvider3_1 extends AbstractJpaPlatformProvider {
 		CollectionTools.addAll(definitions, SPECIFIED_JAVA_ATTRIBUTE_MAPPING_DEFINITIONS);
 	}
 
-	// JPA 3.1 introduces no new attribute mapping annotations — reuse JPA 3.0's
-	// Jakarta-aware definitions directly.
-	protected static final JavaAttributeMappingDefinition[] SPECIFIED_JAVA_ATTRIBUTE_MAPPING_DEFINITIONS =
-			GenericJpaPlatformProvider3_0.SPECIFIED_JAVA_ATTRIBUTE_MAPPING_DEFINITIONS;
+	// order matches that used by the Reference Implementation (EclipseLink)
+	protected static final JavaAttributeMappingDefinition[] SPECIFIED_JAVA_ATTRIBUTE_MAPPING_DEFINITIONS = new JavaAttributeMappingDefinition[] {
+			JavaTransientMappingDefinition3_0.instance(), JavaElementCollectionMappingDefinition3_0.instance(),
+			JavaIdMappingDefinition3_0.instance(), JavaVersionMappingDefinition3_0.instance(),
+			JavaBasicMappingDefinition3_0.instance(), JavaEmbeddedMappingDefinition3_0.instance(),
+			JavaEmbeddedIdMappingDefinition3_0.instance(), JavaManyToManyMappingDefinition3_0.instance(),
+			JavaManyToOneMappingDefinition3_0.instance(), JavaOneToManyMappingDefinition3_0.instance(),
+			JavaOneToOneMappingDefinition3_0.instance() };
 
 	// ********** resource definitions **********
 
@@ -156,8 +171,8 @@ public class GenericJpaPlatformProvider3_1 extends AbstractJpaPlatformProvider {
 	protected static final JpaResourceDefinition[] RESOURCE_DEFINITIONS = new JpaResourceDefinition[] {
 			JavaSourceFileDefinition.instance(), JarDefinition.instance(), GenericPersistenceXmlDefinition.instance(),
 			GenericPersistenceXmlDefinition2_0.instance(), GenericPersistenceXmlDefinition2_1.instance(),
-			GenericPersistenceXmlDefinition2_2.instance(), GenericPersistenceXmlDefinition3_1.instance(), GenericOrmXmlDefinition.instance(),
+			GenericPersistenceXmlDefinition2_2.instance(), GenericPersistenceXmlDefinition3_1.instance(), GenericPersistenceXmlDefinition3_2.instance(), GenericOrmXmlDefinition.instance(),
 			GenericOrmXmlDefinition2_0.instance(), GenericOrmXmlDefinition2_1.instance(),
 			GenericOrmXmlDefinition2_2.instance(), GenericOrmXmlDefinition3_0.instance(),
-			GenericOrmXmlDefinition3_1.instance() };
+			GenericOrmXmlDefinition3_1.instance(), GenericOrmXmlDefinition3_2.instance() };
 }

@@ -97,7 +97,8 @@ public interface JPA3_0 extends JPA {
 	String ORDER_BY = PACKAGE_ + "OrderBy";
 	String PERSISTENCE_CONTEXT = PACKAGE_ + "PersistenceContext";
 	String PERSISTENCE_CONTEXTS = PACKAGE_ + "PersistenceContexts";
-	String PERSISTENCE_UNIT = PACKAGE_ + "XmlPersistenceUnit";
+	String PERSISTENCE = PACKAGE_ + "Persistence";
+	String PERSISTENCE_UNIT = PACKAGE_ + "PersistenceUnit";
 	String PERSISTENCE_UNITS = PACKAGE_ + "PersistenceUnits";
 	String POST_LOAD = PACKAGE_ + "PostLoad";
 	String POST_PERSIST = PACKAGE_ + "PostPersist";
@@ -156,8 +157,6 @@ public interface JPA3_0 extends JPA {
 		String GENERATION_TYPE__IDENTITY = GENERATION_TYPE_ + "IDENTITY";
 		String GENERATION_TYPE__SEQUENCE = GENERATION_TYPE_ + "SEQUENCE";
 		String GENERATION_TYPE__TABLE    = GENERATION_TYPE_ + "TABLE";
-		/** Added in JPA 3.1 ({@code GenerationType.UUID}). */
-		String GENERATION_TYPE__UUID     = GENERATION_TYPE_ + "UUID";
 
 	String INHERITANCE_TYPE = PACKAGE_ + "InheritanceType";
 		String INHERITANCE_TYPE_ = INHERITANCE_TYPE + '.';
@@ -182,7 +181,6 @@ public interface JPA3_0 extends JPA {
 	String ENTITY_TRANSACTION      = PACKAGE_ + "EntityTransaction";
 	String INSTRUMENTABLE_CLASS_LOADER = PACKAGE_ + "InstrumentableClassLoader";
 	String QUERY                  = PACKAGE_ + "Query";
-	String PERSISTENCE            = PACKAGE_ + "XmlPersistence";
 	String NON_UNIQUE_RESULT_EXCEPTION = PACKAGE_ + "NonUniqueResultException";
 	String OBJECT_NOT_FOUND_EXCEPTION  = PACKAGE_ + "ObjectNotFoundException";
 	String PERSISTENCE_EXCEPTION  = PACKAGE_ + "PersistenceException";
@@ -413,20 +411,4 @@ public interface JPA3_0 extends JPA {
 		String CONSTRAINT_MODE__CONSTRAINT    = CONSTRAINT_MODE_ + "CONSTRAINT";
 		String CONSTRAINT_MODE__NO_CONSTRAINT = CONSTRAINT_MODE_ + "NO_CONSTRAINT";
 		String CONSTRAINT_MODE__PROVIDER_DEFAULT = CONSTRAINT_MODE_ + "PROVIDER_DEFAULT";
-
-
-	// ====================================================================
-	// JPA 2.2 additions  (equivalent of JPA2_2 using jakarta prefix)
-	// ====================================================================
-	// JPA 2.2 mainly added @Repeatable support to existing annotations.
-	// The container annotations themselves (e.g. @AssociationOverrides) were
-	// already present. No fundamentally new annotation types were introduced.
-
-
-	// ====================================================================
-	// JPA 3.1 additions
-	// ====================================================================
-
-	/** Added in JPA 3.1: {@code GenerationType.UUID} — see {@link #GENERATION_TYPE__UUID}. */
-	// No new annotation types in JPA 3.1 beyond what is already declared above.
 }

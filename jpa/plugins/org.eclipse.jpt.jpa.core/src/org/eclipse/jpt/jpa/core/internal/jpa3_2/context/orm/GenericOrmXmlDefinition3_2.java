@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2024 Lakshminarayana Nekkanti. All rights reserved.
+ * Copyright (c) 2024, 2026 Lakshminarayana Nekkanti and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,8 @@
  *     Lakshminarayana Nekkanti - initial API and implementation
  *
  *******************************************************************************/
-package org.eclipse.jpt.jpa.core.internal.jpa3_1.context.orm;
+
+package org.eclipse.jpt.jpa.core.internal.jpa3_2.context.orm;
 
 import java.util.ArrayList;
 
@@ -41,11 +42,11 @@ import org.eclipse.jpt.jpa.core.internal.jpa2_1.context.orm.GenericOrmXmlContext
 import org.eclipse.jpt.jpa.core.internal.jpa2_1.context.orm.OrmConverterTypeDefinition2_1;
 import org.eclipse.jpt.jpa.core.resource.orm.OrmFactory;
 import org.eclipse.jpt.jpa.core.resource.orm.XmlEntityMappings;
-import org.eclipse.jpt.jpa.core.resource.orm.v3_1.JPA3_1;
+import org.eclipse.jpt.jpa.core.resource.orm.v3_2.JPA3_2;
 
-public class GenericOrmXmlDefinition3_1 extends AbstractOrmXmlDefinition {
+public class GenericOrmXmlDefinition3_2 extends AbstractOrmXmlDefinition {
 	// singleton
-	private static final OrmXmlDefinition INSTANCE = new GenericOrmXmlDefinition3_1();
+	private static final OrmXmlDefinition INSTANCE = new GenericOrmXmlDefinition3_2();
 
 	/**
 	 * Return the singleton
@@ -57,12 +58,12 @@ public class GenericOrmXmlDefinition3_1 extends AbstractOrmXmlDefinition {
 	/**
 	 * Enforce singleton usage
 	 */
-	private GenericOrmXmlDefinition3_1() {
+	private GenericOrmXmlDefinition3_2() {
 		super();
 	}
 
 	public JptResourceType getResourceType() {
-		return this.getResourceType(XmlEntityMappings.CONTENT_TYPE, JPA3_1.SCHEMA_VERSION);
+		return this.getResourceType(XmlEntityMappings.CONTENT_TYPE, JPA3_2.SCHEMA_VERSION);
 	}
 
 	public EFactory getResourceModelFactory() {
@@ -78,10 +79,10 @@ public class GenericOrmXmlDefinition3_1 extends AbstractOrmXmlDefinition {
 
 	@Override
 	protected void addManagedTypeDefinitionsTo(ArrayList<OrmManagedTypeDefinition> definitions) {
-		CollectionTools.addAll(definitions, MANAGED_TYPE_DEFINITIONS_3_0);
+		CollectionTools.addAll(definitions, MANAGED_TYPE_DEFINITIONS_3_1);
 	}
 
-	protected static final OrmManagedTypeDefinition[] MANAGED_TYPE_DEFINITIONS_3_0 = new OrmManagedTypeDefinition[] {
+	protected static final OrmManagedTypeDefinition[] MANAGED_TYPE_DEFINITIONS_3_1 = new OrmManagedTypeDefinition[] {
 			OrmPersistentTypeDefinition.instance(), OrmConverterTypeDefinition2_1.instance(), };
 
 	@Override
