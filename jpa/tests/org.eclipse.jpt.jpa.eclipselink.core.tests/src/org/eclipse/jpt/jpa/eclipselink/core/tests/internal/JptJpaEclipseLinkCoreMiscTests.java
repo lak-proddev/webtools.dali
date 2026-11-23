@@ -15,6 +15,7 @@ import org.eclipse.jpt.common.core.tests.BundleActivatorTest;
 import org.eclipse.jpt.common.core.tests.ValidationMessageClassTest;
 import org.eclipse.jpt.common.eclipselink.core.internal.libval.EclipseLinkLibraryValidatorTools;
 import org.eclipse.jpt.jpa.eclipselink.core.EclipseLinkJpaProject;
+import org.eclipse.jpt.jpa.eclipselink.core.tests.internal.platform.JptJpaEclipseLinkCorePlatformTests;
 import org.eclipse.jpt.jpa.eclipselink.core.validation.JptJpaEclipseLinkCoreValidationMessages;
 
 public class JptJpaEclipseLinkCoreMiscTests {
@@ -26,6 +27,7 @@ public class JptJpaEclipseLinkCoreMiscTests {
 		suite.addTest(new BundleActivatorTest(EclipseLinkJpaProject.class));
 		suite.addTest(new BundleActivatorTest(EclipseLinkLibraryValidatorTools.class));  // verify common.eclipselink.core plug-in also
 		suite.addTest(new ValidationMessageClassTest(JptJpaEclipseLinkCoreValidationMessages.class));
+		suite.addTest(JptJpaEclipseLinkCorePlatformTests.suite());
 
 		return suite;
 	}

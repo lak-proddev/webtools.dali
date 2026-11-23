@@ -16,6 +16,7 @@ package org.eclipse.jpt.jpa.core.tests.internal.jpa3_0;
 import junit.framework.TestCase;
 import org.eclipse.jpt.jpa.core.resource.java.JPA;
 import org.eclipse.jpt.jpa.core.resource.java.JPA3_0;
+import org.eclipse.jpt.jpa.core.resource.java.JPA3_1;
 
 /**
  * Verifies that {@link JPA} and {@link JPA3_0} expose the correct package
@@ -220,10 +221,10 @@ public class JpaConstantsTests extends TestCase {
 	}
 
 
-	// ---- JPA 3.1 constants in JPA3_0 ----
+	// ---- JPA 3.1 constants (GenerationType.UUID is defined in JPA3_1, not JPA3_0) ----
 
 	public void testJpa31GenerationTypeUuid() {
-		assertEquals("jakarta.persistence.GenerationType.UUID", JPA3_0.GENERATION_TYPE__UUID);
+		assertEquals("jakarta.persistence.GenerationType.UUID", JPA3_1.GENERATION_TYPE__UUID);
 	}
 
 

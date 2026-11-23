@@ -159,10 +159,12 @@
     <module>jpa/plugins/org.eclipse.jpt.jpa.ui</module>
 
     <!-- disable tests that don't currently work and are not currently RUN as part of the releng.aggregator build -->
-    <!-- <module>jpa/tests/org.eclipse.jpt.jpa.core.tests</module> -->
+    <!-- built (tests skipped in its pom) because org.eclipse.jpt.jpa.eclipselink.core.tests requires it -->
+    <module>jpa/tests/org.eclipse.jpt.jpa.core.tests</module>
     <module>jpa/tests/org.eclipse.jpt.jpa.core.tests.extension.resource</module>
-    <!-- disable these since they require org.eclipse.jpt.jpa.core.tests --> 
-    <!-- <module>jpa/tests/org.eclipse.jpt.jpa.eclipselink.core.tests</module> -->
+    <!-- runs only the platform suite, which needs no JPA project (see its pom) -->
+    <module>jpa/tests/org.eclipse.jpt.jpa.eclipselink.core.tests</module>
+    <!-- disable this since it requires org.eclipse.jpt.jpa.core.tests --> 
     <!-- <module>jpa/tests/org.eclipse.jpt.jpa.ui.tests</module> -->
     <!-- fails in Jenkins, works locally <module>jpa/tests/org.eclipse.jpt.jpa.gen.tests</module> -->
     <module>jpa/tests/org.eclipse.jpt.jpa.db.tests</module>

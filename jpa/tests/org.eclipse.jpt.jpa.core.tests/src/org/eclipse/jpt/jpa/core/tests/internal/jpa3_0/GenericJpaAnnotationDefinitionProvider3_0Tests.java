@@ -16,6 +16,7 @@ package org.eclipse.jpt.jpa.core.tests.internal.jpa3_0;
 import junit.framework.TestCase;
 import org.eclipse.jpt.common.core.resource.java.AnnotationDefinition;
 import org.eclipse.jpt.common.core.resource.java.NestableAnnotationDefinition;
+import org.eclipse.jpt.common.utility.internal.iterable.IterableTools;
 import org.eclipse.jpt.jpa.core.JpaAnnotationDefinitionProvider;
 import org.eclipse.jpt.jpa.core.internal.jpa3_0.GenericJpaAnnotationDefinitionProvider3_0;
 import org.eclipse.jpt.jpa.core.resource.java.JPA;
@@ -60,7 +61,7 @@ public class GenericJpaAnnotationDefinitionProvider3_0Tests extends TestCase {
 	// ---- annotation definitions ----
 
 	public void testAnnotationDefinitionsNotEmpty() {
-		assertFalse(this.provider.getAnnotationDefinitions().isEmpty());
+		assertFalse(IterableTools.isEmpty(this.provider.getAnnotationDefinitions()));
 	}
 
 	public void testNoAnnotationDefinitionUsesJavaxPackage() {
@@ -120,7 +121,7 @@ public class GenericJpaAnnotationDefinitionProvider3_0Tests extends TestCase {
 	// ---- nestable annotation definitions ----
 
 	public void testNestableAnnotationDefinitionsNotEmpty() {
-		assertFalse(this.provider.getNestableAnnotationDefinitions().isEmpty());
+		assertFalse(IterableTools.isEmpty(this.provider.getNestableAnnotationDefinitions()));
 	}
 
 	public void testNoNestableAnnotationDefinitionUsesJavaxPackage() {
@@ -162,8 +163,8 @@ public class GenericJpaAnnotationDefinitionProvider3_0Tests extends TestCase {
 				org.eclipse.jpt.jpa.core.internal.jpa2_1.GenericJpaAnnotationDefinitionProvider2_1.instance();
 		assertEquals(
 				"JPA 3.0 provider must expose same number of annotation definitions as JPA 2.1",
-				jpa21Provider.getAnnotationDefinitions().size(),
-				this.provider.getAnnotationDefinitions().size());
+				IterableTools.size(jpa21Provider.getAnnotationDefinitions()),
+				IterableTools.size(this.provider.getAnnotationDefinitions()));
 	}
 
 	public void testNestableAnnotationDefinitionCountMatchesJpa2_1Provider() {
@@ -171,7 +172,7 @@ public class GenericJpaAnnotationDefinitionProvider3_0Tests extends TestCase {
 				org.eclipse.jpt.jpa.core.internal.jpa2_1.GenericJpaAnnotationDefinitionProvider2_1.instance();
 		assertEquals(
 				"JPA 3.0 provider must expose same number of nestable annotation definitions as JPA 2.1",
-				jpa21Provider.getNestableAnnotationDefinitions().size(),
-				this.provider.getNestableAnnotationDefinitions().size());
+				IterableTools.size(jpa21Provider.getNestableAnnotationDefinitions()),
+				IterableTools.size(this.provider.getNestableAnnotationDefinitions()));
 	}
 }

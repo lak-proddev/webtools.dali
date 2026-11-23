@@ -22,11 +22,13 @@
 
   <groupId>org.eclipse.webtools.dali</groupId>
   <artifactId>org.eclipse.jpt.jpa.core.tests</artifactId>
-  <version>3.5.3-SNAPSHOT</version>
+  <version>3.5.100-SNAPSHOT</version>
   <packaging>eclipse-test-plugin</packaging>
 
   <properties>
     <org.eclipse.jpt.jpa.jar>${project.build.directory}/dependency/javax.persistence-2.2.0.jar</org.eclipse.jpt.jpa.jar>
+    <!-- Built only as a dependency of org.eclipse.jpt.jpa.eclipselink.core.tests; its own suite is still not run (Bug 480380) -->
+    <skipTests>true</skipTests>
   </properties>
 
   <build>
